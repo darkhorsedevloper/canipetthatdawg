@@ -1,3 +1,25 @@
+import { FaInstagram } from 'react-icons/fa'
+import { SiSubstack } from 'react-icons/si'
+import { BsCalendarCheck } from 'react-icons/bs'
+
+const links = [
+  {
+    icon: <FaInstagram size={22} />,
+    href: 'https://www.instagram.com/can_i_petthatdawgllc',
+    label: 'Instagram',
+  },
+  {
+    icon: <SiSubstack size={20} />,
+    href: 'https://substack.com/@canipetthatdawg',
+    label: 'Substack',
+  },
+  {
+    icon: <BsCalendarCheck size={20} />,
+    href: '#book',
+    label: 'Book',
+  },
+]
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -11,12 +33,18 @@ export default function Footer() {
       </div>
 
       <div className="footer-links">
-        {['Instagram', 'Substack', 'Book'].map(link => (
-          <a key={link} href={`#${link.toLowerCase()}`} style={{
-            fontSize: '14px', letterSpacing: '0.08em',
-            textTransform: 'uppercase', color: 'var(--muted)',
-          }}>
-            {link}
+        {links.map(({ icon, href, label }) => (
+          <a
+            key={label}
+            href={href}
+            target={href.startsWith('http') ? '_blank' : undefined}
+            rel={href.startsWith('http') ? 'noreferrer' : undefined}
+            aria-label={label}
+            style={{ color: 'var(--muted)', display: 'flex', alignItems: 'center', transition: 'color 0.2s' }}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--orange)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}
+          >
+            {icon}
           </a>
         ))}
       </div>
