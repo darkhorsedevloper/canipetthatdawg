@@ -1,6 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <!-- Orange background -->
-  <rect width="64" height="64" rx="12" fill="#C4892A"/>
-  <!-- Dog emoji centered — reads clearly even at 16px -->
-  <text x="32" y="48" font-size="40" text-anchor="middle" font-family="Apple Color Emoji, Segoe UI Emoji, sans-serif">🐕</text>
+  <text x="32" y="52" font-size="48" text-anchor="middle" font-family="Apple Color Emoji, Segoe UI Emoji, sans-serif">🐕</text>
 </svg>
