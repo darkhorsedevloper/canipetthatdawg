@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:       #F4EFE6;
+  --card:     #EBE5D8;
+  --panel:    #EDE8DC;
+  --charcoal: #2A2520;
+  --muted:    #8A8278;
+  --faint:    #4A4540;
+  --green:    #4A7C5E;
+  --orange:   #C4892A;
+  --blue:     #3A6B8A;
+  --hero-bg:  #1E1A15;
+  --border:   rgba(42, 37, 32, 0.1);
+  --serif:    'Space Mono', Courier, monospace;
+  --sans:     'Space Mono', Courier, monospace;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+}
+
+* {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E🤚%3C/text%3E%3C/svg%3E") 8 0, auto;
+}
+
+a, button {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E🐾%3C/text%3E%3C/svg%3E") 8 0, pointer;
+}
+
+a { text-decoration: none; }
+img { display: block; max-width: 100%; }
