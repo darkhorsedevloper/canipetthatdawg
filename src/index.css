@@ -34,11 +34,23 @@ body {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Ctext y='32' font-size='32'%3E🫳🏼🐕%3C/text%3E%3C/svg%3E") 16 0, auto;
 }
 
-a, button {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='56' viewBox='0 0 44 56'%3E%3Ctext x='4' y='30' font-size='26'%3E🫳🏼%3C/text%3E%3Ctext x='4' y='56' font-size='26'%3E🐕%3C/text%3E%3C/svg%3E") 16 8, pointer;
-}
-
 a { text-decoration: none; }
+
+/* Footer icon links — large hit area, CSS hover, mobile tap feedback */
+.footer-icon-link {
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin: -12px;
+  transition: color 0.15s, transform 0.1s;
+}
+.footer-icon-link:hover { color: var(--charcoal); }
+.footer-icon-link:active {
+  color: var(--charcoal);
+  transform: scale(0.88);
+}
+.footer-icon-link svg { pointer-events: none; }
 img { display: block; max-width: 100%; }
 
 /* ── Responsive Layout ── */

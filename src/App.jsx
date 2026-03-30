@@ -1,4 +1,5 @@
 import './index.css'
+import { usePetCursor } from './hooks/usePetCursor'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
@@ -11,6 +12,7 @@ import FieldNotes from './components/FieldNotes'
 import Footer from './components/Footer'
 
 export default function App() {
+  usePetCursor()
   return (
     <div style={{ maxWidth: '960px', margin: '0 auto', paddingTop: '24px', paddingBottom: '24px' }}>
 

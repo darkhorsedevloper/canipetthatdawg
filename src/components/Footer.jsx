@@ -5,7 +5,7 @@ import { BsCalendarCheck } from 'react-icons/bs'
 const links = [
   {
     icon: <FaInstagram size={22} />,
-    href: 'https://www.instagram.com/can_i_petthatdawgllc',
+    href: 'https://www.instagram.com/can_i_petthatdawgllc/',
     label: 'Instagram',
   },
   {
@@ -40,9 +40,7 @@ export default function Footer() {
             target={href.startsWith('http') ? '_blank' : undefined}
             rel={href.startsWith('http') ? 'noreferrer' : undefined}
             aria-label={label}
-            style={{ color: 'var(--orange)', display: 'flex', alignItems: 'center', transition: 'color 0.2s' }}
-            onMouseEnter={e => e.currentTarget.style.color = 'var(--charcoal)'}
-            onMouseLeave={e => e.currentTarget.style.color = 'var(--orange)'}
+            className="footer-icon-link"
           >
             {icon}
           </a>
