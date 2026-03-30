@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '960px', margin: '0 auto', paddingTop: '24px', paddingBottom: '24px' }}>
 
       {/* Color stripe */}
       <div style={{ height: '3px', display: 'flex' }}>
