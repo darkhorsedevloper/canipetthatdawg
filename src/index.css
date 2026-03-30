@@ -41,8 +41,7 @@ a { text-decoration: none; }
   color: var(--orange);
   display: flex;
   align-items: center;
-  padding: 12px;
-  margin: -12px;
+  padding: 8px;
   transition: color 0.15s, transform 0.1s;
 }
 .footer-icon-link:hover { color: var(--charcoal); }
