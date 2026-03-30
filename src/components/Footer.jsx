@@ -10,7 +10,7 @@ const links = [
   },
   {
     icon: <SiSubstack size={20} />,
-    href: 'https://substack.com/@canipetthatdawg',
+    href: 'https://substack.com/@petthatdawg',
     label: 'Substack',
   },
   {
