@@ -24,10 +24,10 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div>
-        <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: 'var(--muted)', letterSpacing: '0.05em' }}>
+        <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: 'var(--charcoal)', letterSpacing: '0.05em' }}>
           Can I Pet That Dawg · Walk Hard
         </p>
-        <p style={{ fontSize: '13px', color: 'var(--muted)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: '6px' }}>
+        <p style={{ fontSize: '13px', color: 'var(--faint)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: '6px' }}>
           Can I Pet That Dawg LLC · Atlanta, GA
         </p>
       </div>
@@ -40,9 +40,9 @@ export default function Footer() {
             target={href.startsWith('http') ? '_blank' : undefined}
             rel={href.startsWith('http') ? 'noreferrer' : undefined}
             aria-label={label}
-            style={{ color: 'var(--muted)', display: 'flex', alignItems: 'center', transition: 'color 0.2s' }}
-            onMouseEnter={e => e.currentTarget.style.color = 'var(--orange)'}
-            onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}
+            style={{ color: 'var(--orange)', display: 'flex', alignItems: 'center', transition: 'color 0.2s' }}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--charcoal)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--orange)'}
           >
             {icon}
           </a>
