@@ -1,18 +1,11 @@
 export default function Nav() {
   return (
-    <header style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '28px 56px',
-      borderBottom: '0.5px solid var(--border)',
-      background: 'var(--bg)',
-    }}>
+    <header className="nav-header">
       <div style={{ fontFamily: 'var(--serif)', fontSize: '18px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--charcoal)' }}>
         Can I Pet That <span style={{ color: 'var(--orange)' }}>Dawg</span>
       </div>
 
-      <nav style={{ display: 'flex', gap: '32px' }}>
+      <nav className="nav-links">
         {['Services', 'About', 'Field Notes', 'Book'].map(link => (
           <a key={link} href={`#${link.toLowerCase().replace(' ', '-')}`} style={{ fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)' }}>
             {link}

@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
     <section style={{
-      margin: '12px',
+      margin: '8px',
       borderRadius: '8px',
       overflow: 'hidden',
       background: 'var(--hero-bg)',
@@ -12,7 +12,6 @@ export default function Hero() {
       justifyContent: 'flex-end',
     }}>
 
-      {/* Photo placeholder — swap with real img later */}
       <div style={{
         position: 'absolute', inset: 0,
         display: 'flex', flexDirection: 'column',
@@ -32,14 +31,12 @@ export default function Hero() {
         </p>
       </div>
 
-      {/* Fade overlay */}
       <div style={{
         position: 'absolute', inset: 0,
         background: 'linear-gradient(to top, rgba(18,14,11,0.99) 0%, rgba(18,14,11,0.35) 55%, transparent 100%)',
       }}/>
 
-      {/* Content */}
-      <div style={{ position: 'relative', zIndex: 1, padding: '48px 56px 52px' }}>
+      <div className="hero-content">
 
         <div style={{
           fontSize: '13px', letterSpacing: '0.18em', textTransform: 'uppercase',
@@ -50,10 +47,10 @@ export default function Hero() {
           Can I Pet That Dawg LLC · Atlanta, GA
         </div>
 
-        <h1 style={{
-          fontFamily: 'var(--serif)', fontSize: '46px',
-          fontWeight: 400, lineHeight: 1.1,
-          color: '#EDE5D2', marginBottom: '18px',
+        <h1 className="hero-title" style={{
+          fontFamily: 'var(--serif)',
+          fontWeight: 400,
+          color: '#EDE5D2',
         }}>
           Dogs who need more<br/>
           than a walk deserve<br/>

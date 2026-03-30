@@ -31,7 +31,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" style={{ padding: '48px 28px', borderBottom: '0.5px solid var(--border)' }}>
+    <section id="services" className="section-pad" style={{ borderBottom: '0.5px solid var(--border)' }}>
 
       <p style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px' }}>
         Services
@@ -41,19 +41,14 @@ export default function Services() {
         Three ways to give your dog a <em style={{ color: 'var(--orange)' }}>real day.</em>
       </h2>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '12px' }}>
+      <div className="grid-2col">
         {services.map((s, i) => (
-          <div key={i} style={{
-            gridColumn: s.span ? '1 / -1' : 'auto',
+          <div key={i} className={s.span ? 'service-span' : ''} style={{
             background: 'var(--card)',
             border: `0.5px solid var(--border)`,
             borderLeft: s.accent ? `2px solid ${s.accent}` : `0.5px solid var(--border)`,
             borderRadius: s.accent ? '0 4px 4px 0' : '4px',
             padding: '22px 18px',
-            display: s.span ? 'grid' : 'block',
-            gridTemplateColumns: s.span ? '1fr auto' : 'none',
-            gap: s.span ? '16px' : 0,
-            alignItems: s.span ? 'start' : 'auto',
           }}>
             <div>
               <span style={{
@@ -70,15 +65,6 @@ export default function Services() {
               <p style={{ fontFamily: 'var(--serif)', fontSize: '36px', color: 'var(--charcoal)', lineHeight: 1 }}>{s.price}</p>
               <p style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '3px' }}>{s.note}</p>
             </div>
-            {s.span && (
-              <div style={{
-                width: '88px', height: '88px', background: 'var(--panel)',
-                borderRadius: '3px', border: '0.5px dashed rgba(196,137,42,0.25)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}>
-                <span style={{ fontSize: '8px', color: 'rgba(196,137,42,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Photo</span>
-              </div>
-            )}
           </div>
         ))}
       </div>

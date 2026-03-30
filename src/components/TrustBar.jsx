@@ -7,9 +7,9 @@ const items = [
 
 export default function TrustBar() {
   return (
-    <div style={{ display: 'flex', background: 'var(--panel)', borderBottom: '0.5px solid var(--border)' }}>
+    <div className="trust-bar">
       {items.map((item, i) => (
-        <div key={i} style={{ flex: 1, padding: '14px 16px', borderRight: i < items.length - 1 ? '0.5px solid var(--border)' : 'none' }}>
+        <div key={i} className="trust-bar-item">
           <div style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: item.color, marginBottom: '3px' }}>
             {item.label}
           </div>

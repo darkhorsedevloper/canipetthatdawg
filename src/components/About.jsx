@@ -1,20 +1,8 @@
 export default function About() {
   return (
-    <section id="about" style={{
-      display: 'grid',
-      gridTemplateColumns: '1fr 1.3fr',
-      borderTop: '0.5px solid var(--border)',
-      borderBottom: '0.5px solid var(--border)',
-    }}>
+    <section id="about" className="about-grid">
 
-      <div style={{
-        background: 'var(--card)',
-        minHeight: '260px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRight: '0.5px solid var(--border)',
-      }}>
+      <div className="about-photo">
         <p style={{ fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(196,137,42,0.4)', textAlign: 'center', padding: '0 20px', lineHeight: 1.6 }}>
           Crickett + Kira<br />golden hour portrait
         </p>

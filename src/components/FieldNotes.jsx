@@ -6,7 +6,7 @@ const posts = [
 
 export default function FieldNotes() {
   return (
-    <section id="field-notes" style={{ padding: '48px 28px' }}>
+    <section id="field-notes" className="section-pad">
 
       <p style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px' }}>
         Field Notes
@@ -24,9 +24,10 @@ export default function FieldNotes() {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'baseline',
+            gap: '16px',
             borderBottom: i === posts.length - 1 ? '0.5px solid var(--border)' : 'none',
           }}>
-            <p style={{ fontFamily: 'var(--serif)', fontSize: '16px', color: 'var(--charcoal)', lineHeight: 1.3, maxWidth: '400px' }}>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '16px', color: 'var(--charcoal)', lineHeight: 1.3 }}>
               {p.title}
             </p>
             <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>

@@ -7,7 +7,7 @@ const items = [
 
 export default function Why() {
   return (
-    <section style={{ padding: '48px 28px', background: 'var(--panel)', borderTop: '0.5px solid var(--border)', borderBottom: '0.5px solid var(--border)' }}>
+    <section className="section-pad" style={{ background: 'var(--panel)', borderTop: '0.5px solid var(--border)', borderBottom: '0.5px solid var(--border)' }}>
 
       <p style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '8px' }}>
         Why Can I Pet That Dawg
@@ -17,7 +17,7 @@ export default function Why() {
         The difference you can <em style={{ color: 'var(--orange)' }}>actually feel.</em>
       </h2>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '28px' }}>
+      <div className="why-grid">
         {items.map((item, i) => (
           <div key={i}>
             <div style={{ width: '20px', height: '2px', borderRadius: '1px', background: item.bar, marginBottom: '12px' }} />
