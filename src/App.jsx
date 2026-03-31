@@ -10,6 +10,7 @@ import About from './components/About'
 import Creds from './components/Creds'
 import FieldNotes from './components/FieldNotes'
 import Footer from './components/Footer'
+import ReviewTicker from './components/ReviewTicker'
 
 export default function App() {
   usePetCursor()
@@ -26,6 +27,7 @@ export default function App() {
       <Nav />
       <Hero />
       <TrustBar />
+      <ReviewTicker />
       <PhotoStrips />
       <Services />
       <Why />
