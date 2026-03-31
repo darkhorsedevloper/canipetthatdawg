@@ -23,24 +23,23 @@ const ColorStripe = () => (
 export default function App() {
   usePetCursor()
   return (
-    <>
+    <div style={{ maxWidth: '960px', margin: '0 auto' }}>
       <div style={{ height: '24px' }} />
       <ColorStripe />
-      <div style={{ maxWidth: '960px', margin: '0 auto' }}>
-        <Nav />
-        <Hero />
-        <TrustBar />
-        <PhotoStrips />
-        <Services />
-        <Why />
-        <About />
-        <CredsBento />
-        <FieldNotes />
-        <ReviewTicker />
-        <Footer />
-      </div>
+      <Nav />
+      <Hero />
+      <TrustBar />
+      <PhotoStrips />
+      <Services />
+      <Why />
+      <About />
+      <CredsBento />
+      <FieldNotes />
+      <ReviewTicker />
+      <Footer />
+      <div style={{ height: '24px' }} />
       <ColorStripe />
       <div style={{ height: '24px' }} />
-    </>
+    </div>
   )
 }
