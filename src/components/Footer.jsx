@@ -15,7 +15,7 @@ const links = [
   },
   {
     icon: <BsCalendarCheck size={20} />,
-    href: '#book',
+    href: 'https://www.timetopet.com/portal/',
     label: 'Book',
   },
 ]
