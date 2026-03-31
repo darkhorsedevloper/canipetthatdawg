@@ -65,7 +65,7 @@ export default function Hero() {
         </p>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '28px' }}>
-          <a href="https://www.timetopet.com/portal/" target="_blank" rel="noreferrer" style={{
+          <a href="https://www.timetopet.com/portal/create" target="_blank" rel="noreferrer" style={{
             fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase',
             background: 'var(--orange)', color: '#0A0806',
             padding: '14px 32px', borderRadius: '2px', fontWeight: 700,
