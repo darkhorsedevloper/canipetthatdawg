@@ -22,7 +22,7 @@ export default function CredsBento() {
       </h2>
 
       {/* Badge row */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '8px' }}>
+      <div className="bento-badges">
 
         {/* Fear Free — badge as seal */}
         <div style={{
@@ -39,7 +39,7 @@ export default function CredsBento() {
           <img
             src="/fearfree.png"
             alt="Fear Free Certified Professional"
-            style={{ width: '72px', height: 'auto', objectFit: 'contain', position: 'absolute', top: '14px', right: '14px', opacity: 0.92 }}
+            className="fearfree-seal"
           />
           <div>
             <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px' }}>Certification</p>
@@ -95,7 +95,7 @@ export default function CredsBento() {
       </div>
 
       {/* Books + Podcasts row */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '8px' }}>
+      <div className="bento-bottom">
 
         {/* Books */}
         <div style={{

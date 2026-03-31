@@ -188,3 +188,36 @@ img { display: block; max-width: 100%; }
   .footer { padding: 56px; flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 0; }
   .footer-links { gap: 32px; }
 }
+
+/* Bento grid */
+.bento-badges {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.bento-bottom {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+@media (min-width: 640px) {
+  .bento-badges { grid-template-columns: repeat(3, 1fr); }
+  .bento-bottom { grid-template-columns: 2fr 1fr; }
+}
+
+/* Fear Free badge — scales with cell width on mobile */
+.fearfree-seal {
+  width: 64px;
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  opacity: 0.92;
+}
+
+@media (min-width: 640px) {
+  .fearfree-seal { width: 72px; }
+}
