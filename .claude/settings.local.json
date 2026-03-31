@@ -3,7 +3,10 @@
     "allow": [
       "Bash(nvm --version)",
       "Bash(brew --version)",
-      "Bash(gh auth:*)"
+      "Bash(gh auth:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
