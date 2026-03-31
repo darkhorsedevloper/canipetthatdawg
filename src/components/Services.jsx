@@ -45,8 +45,10 @@ export default function Services() {
         {services.map((s, i) => (
           <div key={i} className={s.span ? 'service-span' : ''} style={{
             background: 'var(--card)',
-            border: `0.5px solid var(--border)`,
-            borderLeft: s.accent ? `2px solid ${s.accent}` : `0.5px solid var(--border)`,
+            borderTop: '0.5px solid var(--border)',
+            borderRight: '0.5px solid var(--border)',
+            borderBottom: '0.5px solid var(--border)',
+            borderLeft: s.accent ? `2px solid ${s.accent}` : '0.5px solid var(--border)',
             borderRadius: s.accent ? '0 4px 4px 0' : '4px',
             padding: '22px 18px',
           }}>

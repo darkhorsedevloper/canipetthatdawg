@@ -100,7 +100,9 @@ export default function CredsBento() {
         {/* Books */}
         <div style={{
           background: 'var(--card)',
-          border: '0.5px solid var(--border)',
+          borderTop: '0.5px solid var(--border)',
+          borderRight: '0.5px solid var(--border)',
+          borderBottom: '0.5px solid var(--border)',
           borderLeft: '2px solid var(--orange)',
           borderRadius: '0 4px 4px 0',
           padding: '20px 18px',
@@ -119,7 +121,9 @@ export default function CredsBento() {
         {/* Podcasts */}
         <div style={{
           background: 'var(--card)',
-          border: '0.5px solid var(--border)',
+          borderTop: '0.5px solid var(--border)',
+          borderRight: '0.5px solid var(--border)',
+          borderBottom: '0.5px solid var(--border)',
           borderLeft: '2px solid var(--blue)',
           borderRadius: '0 4px 4px 0',
           padding: '20px 16px',

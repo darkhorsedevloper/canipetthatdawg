@@ -24,6 +24,7 @@ export default function App() {
   usePetCursor()
   return (
     <>
+      <div style={{ height: '24px' }} />
       <ColorStripe />
       <div style={{ maxWidth: '960px', margin: '0 auto' }}>
         <Nav />
@@ -39,6 +40,7 @@ export default function App() {
         <Footer />
       </div>
       <ColorStripe />
+      <div style={{ height: '24px' }} />
     </>
   )
 }
