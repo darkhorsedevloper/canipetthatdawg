@@ -1,11 +1,11 @@
 const quotes = [
-  { text: '"Kira came home actually tired for once."', client: 'Sarah M.' },
-  { text: '"I get a photo report before I even think to ask."', client: 'James T.' },
-  { text: '"She knows my dog better than I do."', client: 'Priya K.' },
-  { text: '"No hidden fees. Ever. I\'ve checked."', client: 'Marcus D.' },
-  { text: '"The GPS updates give me actual peace of mind."', client: 'Lauren B.' },
-  { text: '"My anxious rescue is a different dog on these walks."', client: 'Tom R.' },
-  { text: '"Worth every dollar. Zero hesitation."', client: 'Amanda C.' },
+  { text: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit."', client: 'Client Name' },
+  { text: '"Sed do eiusmod tempor incididunt ut labore et dolore magna."', client: 'Client Name' },
+  { text: '"Ut enim ad minim veniam, quis nostrud exercitation."', client: 'Client Name' },
+  { text: '"Duis aute irure dolor in reprehenderit in voluptate velit."', client: 'Client Name' },
+  { text: '"Excepteur sint occaecat cupidatat non proident."', client: 'Client Name' },
+  { text: '"Sunt in culpa qui officia deserunt mollit anim id est laborum."', client: 'Client Name' },
+  { text: '"Nemo enim ipsam voluptatem quia voluptas sit aspernatur."', client: 'Client Name' },
 ]
 
 // Duplicate for seamless loop
