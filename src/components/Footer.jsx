@@ -24,8 +24,10 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div>
-        <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: 'var(--charcoal)', letterSpacing: '0.05em' }}>
-          Can I Pet That Dawg · Walk Hard
+        <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', letterSpacing: '0.05em' }}>
+          <span style={{ color: 'var(--charcoal)' }}>Can I Pet That </span>
+          <span style={{ color: 'var(--orange)' }}>Dawg</span>
+          <span style={{ color: 'var(--muted)' }}> · Walk Hard</span>
         </p>
         <p style={{ fontSize: '13px', color: 'var(--faint)', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: '6px' }}>
           Can I Pet That Dawg LLC · Atlanta, GA
