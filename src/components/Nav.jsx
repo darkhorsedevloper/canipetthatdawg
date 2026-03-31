@@ -6,7 +6,7 @@ export default function Nav() {
       </div>
 
       <nav className="nav-links">
-        {['Services', 'About', 'Field Notes', 'Book'].map(link => (
+        {['Services', 'About', 'Field Notes'].map(link => (
           <a key={link} href={`#${link.toLowerCase().replace(' ', '-')}`} style={{ fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)' }}>
             {link}
           </a>
