@@ -24,24 +24,30 @@ export default function CredsBento() {
       {/* Badge row */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '8px' }}>
 
-        {/* Fear Free — real badge */}
+        {/* Fear Free — badge as seal */}
         <div style={{
           background: 'var(--charcoal)',
           border: '0.5px solid var(--border)',
           borderRadius: '6px',
-          padding: '24px 16px',
+          padding: '20px 16px',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '12px',
+          justifyContent: 'space-between',
           minHeight: '140px',
+          position: 'relative',
         }}>
           <img
             src="/fearfree.png"
             alt="Fear Free Certified Professional"
-            style={{ width: '100%', maxWidth: '140px', height: 'auto', objectFit: 'contain' }}
+            style={{ width: '72px', height: 'auto', objectFit: 'contain', position: 'absolute', top: '14px', right: '14px', opacity: 0.92 }}
           />
+          <div>
+            <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px' }}>Certification</p>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: '#EDE5D2', lineHeight: 1.3 }}>Fear Free<br />Certified</p>
+          </div>
+          <p style={{ fontSize: '10px', color: 'rgba(226,217,198,0.45)', lineHeight: 1.6, maxWidth: '130px' }}>
+            Trained to reduce stress &amp; read behavioral signals.
+          </p>
         </div>
 
         {/* PSI — placeholder until image added */}
