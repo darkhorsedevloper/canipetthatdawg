@@ -27,13 +27,13 @@ export default function App() {
       <Nav />
       <Hero />
       <TrustBar />
-      <ReviewTicker />
       <PhotoStrips />
       <Services />
       <Why />
       <About />
       <Creds />
       <FieldNotes />
+      <ReviewTicker />
       <Footer />
 
     </div>
