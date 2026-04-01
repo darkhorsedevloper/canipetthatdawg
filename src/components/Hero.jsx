@@ -52,9 +52,8 @@ export default function Hero() {
           fontWeight: 400,
           color: '#EDE5D2',
         }}>
-          Dogs who need more<br/>
-          than a walk deserve<br/>
-          <em style={{ color: 'var(--orange)' }}>the real thing.</em>
+          Lorem Ipsum<br/>
+           <br/><em style={{ color: 'var(--orange)' }}>Lorem Ipsum</em>
         </h1>
 
         <p style={{

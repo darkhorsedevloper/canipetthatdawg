@@ -13,6 +13,7 @@ import Footer from './components/Footer'
 import ReviewTicker from './components/ReviewTicker'
 import ContactTerminal from './components/ContactTerminal'
 import ServiceMap from './components/ServiceMap'
+import MapShowcase from './components/MapShowcase'
 
 const ColorStripe = () => (
   <div style={{ height: '3px', display: 'flex', width: '100%' }}>
@@ -38,6 +39,7 @@ export default function App() {
       <CredsBento />
       <FieldNotes />
       <ReviewTicker />
+      <MapShowcase />
       <ServiceMap />
       <ContactTerminal />
       <Footer />

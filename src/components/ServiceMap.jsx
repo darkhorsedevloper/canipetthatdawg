@@ -7,14 +7,7 @@ const RADIUS = 16093 // 10 miles in metres
 const PIN_SVG = `
 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
   <circle cx="22" cy="22" r="20" fill="#F4EFE6" stroke="#C4892A" stroke-width="2"/>
-  <!-- Handle loop -->
-  <path d="M13 30 Q10 22 16 19" fill="none" stroke="#2A2520" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Strap -->
-  <line x1="16" y1="19" x2="28" y2="13" stroke="#2A2520" stroke-width="2" stroke-linecap="round"/>
-  <!-- Clasp ring -->
-  <circle cx="28" cy="13" r="3.5" fill="none" stroke="#C4892A" stroke-width="1.8"/>
-  <!-- Clasp connector -->
-  <line x1="28" y1="16.5" x2="28" y2="19" stroke="#C4892A" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="22" y="28" text-anchor="middle" font-size="20">🐾</text>
 </svg>`
 
 export default function ServiceMap() {
@@ -90,13 +83,13 @@ export default function ServiceMap() {
 
       <style>{`
         .service-map {
-          height: 260px;
+          height: 200px;
           border-radius: 6px;
           overflow: hidden;
           border: 0.5px solid var(--border);
         }
         @media (min-width: 640px) {
-          .service-map { height: 320px; }
+          .service-map { height: 260px; }
         }
       `}</style>
 

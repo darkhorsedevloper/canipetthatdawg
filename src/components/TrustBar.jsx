@@ -1,5 +1,5 @@
 const items = [
-  { label: 'Certified', value: 'Fear Free + CPR', color: 'var(--green)' },
+  { label: 'Certified', value: 'Fear Free', color: 'var(--green)' },
   { label: 'Every visit', value: 'GPS + report card', color: 'var(--orange)' },
   { label: 'Coverage', value: 'Insured + bonded', color: 'var(--blue)' },
   { label: 'Promise', value: 'No hidden fees', color: 'var(--muted)' },

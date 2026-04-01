@@ -1,13 +1,17 @@
+import MiniMap from './MiniMap'
+
 const books = [
-  { title: 'The Other End of the Leash', author: 'Patricia McConnell' },
-  { title: 'Inside of a Dog', author: 'Alexandra Horowitz' },
-  { title: 'Decoding Your Dog', author: 'DACVB Authors' },
+  { title: 'Lorem ipsum dolor sit amet', author: 'Auctor Placeholder', img: null },
+  { title: 'Consectetur adipiscing elit', author: 'Nominus Faber', img: null },
+  { title: 'Sed do eiusmod tempor', author: 'Lorem Ipsum', img: null },
+  { title: 'How Stella Learned to Talk', author: 'Christina Hunger', img: null },
 ]
 
 const pods = [
-  'Drinking from the Toilet',
-  'The Functional Dog Collaborative',
-  'Canine Conversations',
+  { name: 'Lorem Ipsum Podcast', url: null, img: null },
+  { name: 'Dolor Sit Amet Show', url: null, img: null },
+  { name: 'Consectetur Daily', url: null, img: null },
+  { name: 'Pet Sitter Confessional', url: 'https://www.petsitterconfessional.com/', img: '/PetSitterC.png' },
 ]
 
 export default function CredsBento() {
@@ -64,10 +68,10 @@ export default function CredsBento() {
           minHeight: '140px',
         }}>
           <div style={{ border: '2px solid var(--blue)', borderRadius: '50%', width: '64px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontFamily: 'var(--serif)', fontSize: '22px', fontWeight: 700, color: 'var(--blue)' }}>PSI</span>
+            <span style={{ fontFamily: 'var(--serif)', fontSize: '16px', fontWeight: 700, color: 'var(--blue)', textAlign: 'center', lineHeight: 1.1 }}>PSA</span>
           </div>
           <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(226,217,198,0.5)', textAlign: 'center' }}>
-            Pet Sitters International<br />Insured & Bonded
+            Pet Sitters Associates<br />Insured & Bonded
           </p>
         </div>
 
@@ -94,6 +98,20 @@ export default function CredsBento() {
 
       </div>
 
+      {/* Service area map cell */}
+      <div style={{
+        border: '0.5px solid var(--border)',
+        borderRadius: '6px',
+        overflow: 'hidden',
+        marginBottom: '8px',
+      }}>
+        <div style={{ padding: '10px 14px', background: 'var(--panel)', borderBottom: '0.5px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)' }}>Service Area</p>
+          <p style={{ fontSize: '9px', color: 'var(--muted)' }}>Atlanta 30318 · 10 mi</p>
+        </div>
+        <MiniMap height={130} />
+      </div>
+
       {/* Books + Podcasts row */}
       <div className="bento-bottom">
 
@@ -111,9 +129,19 @@ export default function CredsBento() {
             Reading List
           </p>
           {books.map((b, i) => (
-            <div key={i} style={{ marginBottom: i < books.length - 1 ? '10px' : 0 }}>
-              <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '13px', color: 'var(--charcoal)', lineHeight: 1.3 }}>{b.title}</p>
-              <p style={{ fontSize: '10px', color: 'var(--muted)', marginTop: '2px' }}>{b.author}</p>
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: i < books.length - 1 ? '10px' : 0 }}>
+              {b.img && (
+  <div style={{
+    width: '36px', height: '36px', borderRadius: '4px', flexShrink: 0,
+    backgroundImage: `url(${b.img})`,
+    backgroundSize: '300%',
+    backgroundPosition: 'center center',
+  }} />
+)}
+              <div>
+                <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '13px', color: 'var(--charcoal)', lineHeight: 1.3 }}>{b.title}</p>
+                <p style={{ fontSize: '10px', color: 'var(--muted)', marginTop: '2px' }}>{b.author}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -132,7 +160,14 @@ export default function CredsBento() {
             Podcasts
           </p>
           {pods.map((p, i) => (
-            <p key={i} style={{ fontSize: '12px', color: 'var(--faint)', lineHeight: 1.8 }}>{p}</p>
+            p.url ? (
+              <a key={i} href={p.url} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', marginBottom: i < pods.length - 1 ? '6px' : 0 }}>
+                {p.img && <img src={p.img} alt={p.name} style={{ width: '32px', height: '32px', borderRadius: '4px', objectFit: 'contain', flexShrink: 0, background: 'var(--card)' }} />}
+                <span style={{ fontSize: '12px', color: 'var(--blue)', lineHeight: 1.4, borderBottom: '0.5px solid var(--blue)', paddingBottom: '1px' }}>{p.name}</span>
+              </a>
+            ) : (
+              <p key={i} style={{ fontSize: '12px', color: 'var(--faint)', lineHeight: 1.8, marginBottom: i < pods.length - 1 ? '2px' : 0 }}>{p.name}</p>
+            )
           ))}
         </div>
 

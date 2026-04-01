@@ -1,3 +1,5 @@
+import MiniMap from './MiniMap'
+
 export default function About() {
   return (
     <section id="about" className="about-grid">
@@ -37,6 +39,13 @@ export default function About() {
         <a href="#about" style={{ fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', borderBottom: '0.5px solid var(--border)', paddingBottom: '2px' }}>
           Full story →
         </a>
+
+        <div style={{ marginTop: '20px' }}>
+          <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '8px' }}>
+            Serving · Atlanta 30318 · 10-mile radius
+          </p>
+          <MiniMap height={120} />
+        </div>
       </div>
 
     </section>
