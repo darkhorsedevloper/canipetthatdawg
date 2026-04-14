@@ -1,3 +1,5 @@
+import hero from '../data/hero.json'
+
 export default function Hero() {
   return (
     <section style={{
@@ -44,7 +46,7 @@ export default function Hero() {
           display: 'flex', alignItems: 'center', gap: '10px',
         }}>
           <span style={{ display: 'block', width: '24px', height: '1px', background: 'var(--green)' }}/>
-          Can I Pet That Dawg LLC · Atlanta, GA
+          {hero.eyebrow}
         </div>
 
         <h1 className="hero-title" style={{
@@ -52,36 +54,36 @@ export default function Hero() {
           fontWeight: 400,
           color: '#EDE5D2',
         }}>
-          Lorem Ipsum<br/>
-           <br/><em style={{ color: 'var(--orange)' }}>Lorem Ipsum</em>
+          {hero.headline}<br/>
+          <br/><em style={{ color: 'var(--orange)' }}>{hero.headlineAccent}</em>
         </h1>
 
         <p style={{
           fontSize: '15px', lineHeight: 1.75,
           color: 'rgba(226,217,198,0.85)', maxWidth: '400px', marginBottom: '32px',
         }}>
-          Enrichment-first sessions, adventure hikes, and overnight care — behavioral expertise, zero hidden fees.
+          {hero.subheadline}
         </p>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '28px' }}>
-          <a href="https://www.timetopet.com/portal/create" target="_blank" rel="noreferrer" style={{
+          <a href={hero.ctaUrl} target="_blank" rel="noreferrer" style={{
             fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase',
             background: 'var(--orange)', color: '#0A0806',
             padding: '14px 32px', borderRadius: '2px', fontWeight: 700,
           }}>
-            Book a Session
+            {hero.ctaLabel}
           </a>
-          <a href="#services" style={{
+          <a href={hero.secondaryUrl} style={{
             fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase',
             color: 'rgba(226,217,198,0.75)',
             borderBottom: '0.5px solid rgba(226,217,198,0.5)', paddingBottom: '2px',
           }}>
-            See Services
+            {hero.secondaryLabel}
           </a>
         </div>
 
         <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '13px', color: 'rgba(226,217,198,0.55)' }}>
-          "Moving forward even when afraid." — Walk Hard
+          "{hero.quote}" — {hero.quoteAttribution}
         </p>
 
       </div>

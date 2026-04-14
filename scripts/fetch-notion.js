@@ -17,6 +17,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY })
 const DATABASE_ID = 'abc92211-0ce1-4460-a900-f1435cebbf64'
+const HERO_DATABASE_ID = '3f7da6447e7a4792b942d4ff295ed138'
 
 async function fetchPages() {
   console.log('📡 Fetching pages from Notion...')
@@ -51,7 +52,21 @@ async function fetchPages() {
   console.log(`✅ Wrote ${pages.length} pages to src/data/pages.json`)
 }
 
-fetchPages().catch(err => {
+async function fetchHero() {
+  console.log('📡 Fetching hero from Notion...')
+  const response = await notion.databases.query({ database_id: HERO_DATABASE_ID })
+  const hero = {}
+  response.results.forEach(page => {
+    const field = page.properties['Field']?.title?.[0]?.plain_text
+    const value = page.properties['Value']?.rich_text?.[0]?.plain_text ?? ''
+    if (field) hero[field] = value
+  })
+  const outPath = resolve(__dirname, '../src/data/hero.json')
+  writeFileSync(outPath, JSON.stringify(hero, null, 2))
+  console.log('✅ Wrote hero to src/data/hero.json')
+}
+
+Promise.all([fetchPages(), fetchHero()]).catch(err => {
   console.error('❌ Notion fetch failed:', err.message)
   process.exit(1)
 })

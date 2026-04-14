@@ -1,4 +1,5 @@
 import './index.css'
+import { useEffect } from 'react'
 import { usePetCursor } from './hooks/usePetCursor'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -23,6 +24,9 @@ const ColorStripe = () => (
 )
 
 export default function App() {
+  useEffect(() => {
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0)
+  }, [])
   usePetCursor()
   return (
     <div style={{ maxWidth: '960px', margin: '0 auto' }}>
