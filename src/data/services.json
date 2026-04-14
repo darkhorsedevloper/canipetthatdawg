@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Walk + Field Session",
+    "badge": "Walk + Field Session · Most booked",
+    "desc": "Movement, sniffing, and space to settle —handled right. Quality over Quantity. No pack walks. ",
+    "price": "$75",
+    "note": "per session · 2 dog max · 75 minutes",
+    "badgeColor": "var(--green)",
+    "accent": "var(--green)",
+    "span": false
+  },
+  {
+    "name": "Adventure Hike",
+    "badge": "Premium",
+    "desc": "Real trails. No chaos.",
+    "price": "$175",
+    "note": "per dog · 2 dog max ·3 hours",
+    "badgeColor": "var(--orange)",
+    "accent": null,
+    "span": false
+  },
+  {
+    "name": "Overnight Stay",
+    "badge": "Overnight",
+    "desc": "Your dog stays home.\nI'll take care of the rest — **even the cat**.",
+    "price": "$160",
+    "note": "flat rate · no extras  · full 24 hours",
+    "badgeColor": "var(--blue)",
+    "accent": "var(--blue)",
+    "span": false
+  }
+]

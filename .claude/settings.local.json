@@ -10,7 +10,8 @@
       "Bash(npm install:*)",
       "Bash(npm run:*)",
       "Bash(node -e \"import\\(''@notionhq/client''\\).then\\(m => console.log\\(Object.keys\\(m\\)\\)\\)\")",
-      "Bash(node -e \":*)"
+      "Bash(node -e \":*)",
+      "mcp__67e78592-e0b8-4198-a970-6600ebfd2d7d__notion-create-database"
     ]
   }
 }

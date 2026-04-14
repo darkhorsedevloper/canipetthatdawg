@@ -18,6 +18,24 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const notion = new Client({ auth: process.env.NOTION_API_KEY })
 const DATABASE_ID = 'abc92211-0ce1-4460-a900-f1435cebbf64'
 const HERO_DATABASE_ID = '3f7da6447e7a4792b942d4ff295ed138'
+const TRUSTBAR_DATABASE_ID = 'f18f662a4c0449198b39b1207091ca3f'
+const SERVICES_DATABASE_ID = '75ccdef9e6da44ed83da12126cd726d7'
+
+function richText(prop) {
+  if (!prop?.rich_text) return ''
+  return prop.rich_text.map(span => {
+    const text = span.plain_text
+    return span.annotations?.bold ? `**${text}**` : text
+  }).join('')
+}
+
+const COLOR_MAP = {
+  green: 'var(--green)',
+  orange: 'var(--orange)',
+  blue: 'var(--blue)',
+  muted: 'var(--muted)',
+  none: null,
+}
 
 async function fetchPages() {
   console.log('📡 Fetching pages from Notion...')
@@ -66,7 +84,42 @@ async function fetchHero() {
   console.log('✅ Wrote hero to src/data/hero.json')
 }
 
-Promise.all([fetchPages(), fetchHero()]).catch(err => {
+async function fetchTrustBar() {
+  console.log('📡 Fetching trust bar from Notion...')
+  const response = await notion.databases.query({
+    database_id: TRUSTBAR_DATABASE_ID,
+    sorts: [{ property: 'Order', direction: 'ascending' }],
+  })
+  const items = response.results.map(page => ({
+    label: page.properties['Label']?.title?.[0]?.plain_text ?? '',
+    value: page.properties['Value']?.rich_text?.[0]?.plain_text ?? '',
+    color: COLOR_MAP[page.properties['Color']?.select?.name] ?? 'var(--muted)',
+  }))
+  writeFileSync(resolve(__dirname, '../src/data/trustbar.json'), JSON.stringify(items, null, 2))
+  console.log('✅ Wrote trust bar to src/data/trustbar.json')
+}
+
+async function fetchServices() {
+  console.log('📡 Fetching services from Notion...')
+  const response = await notion.databases.query({
+    database_id: SERVICES_DATABASE_ID,
+    sorts: [{ property: 'Order', direction: 'ascending' }],
+  })
+  const items = response.results.map(page => ({
+    name: page.properties['Name']?.title?.[0]?.plain_text ?? '',
+    badge: richText(page.properties['Badge']),
+    desc: richText(page.properties['Description']),
+    price: richText(page.properties['Price']),
+    note: richText(page.properties['Note']),
+    badgeColor: COLOR_MAP[page.properties['BadgeColor']?.select?.name] ?? 'var(--muted)',
+    accent: COLOR_MAP[page.properties['Accent']?.select?.name] ?? null,
+    span: page.properties['Featured']?.checkbox ?? false,
+  }))
+  writeFileSync(resolve(__dirname, '../src/data/services.json'), JSON.stringify(items, null, 2))
+  console.log('✅ Wrote services to src/data/services.json')
+}
+
+Promise.all([fetchPages(), fetchHero(), fetchTrustBar(), fetchServices()]).catch(err => {
   console.error('❌ Notion fetch failed:', err.message)
   process.exit(1)
 })

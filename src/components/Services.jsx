@@ -1,33 +1,4 @@
-const services = [
-  {
-    badge: 'Walk + Field Session · Most booked',
-    badgeColor: 'var(--green)',
-    name: '1 hr 15 min of real work',
-    desc: 'Structured movement, sniff work, enrichment, and behavioral reinforcement. Two dogs max — no upcharge for the second.',
-    price: '$75',
-    note: 'per session · 2 dog max · no upcharge',
-    accent: 'var(--green)',
-    span: true,
-  },
-  {
-    badge: 'Premium',
-    badgeColor: 'var(--orange)',
-    name: 'Adventure Hike',
-    desc: 'Real trails, real terrain. Pre-screened for fitness and recall.',
-    price: '$175',
-    note: 'per dog · 2 dog max',
-    accent: null,
-  },
-  {
-    badge: 'Overnight',
-    badgeColor: 'var(--blue)',
-    name: 'Overnight Stay',
-    desc: 'Home environment, consistent routine. Not a kennel.',
-    price: '$160',
-    note: 'flat rate · no extras',
-    accent: 'var(--blue)',
-  },
-]
+import services from '../data/services.json'
 
 export default function Services() {
   return (
@@ -63,9 +34,13 @@ export default function Services() {
                 {s.badge}
               </span>
               <p style={{ fontFamily: 'var(--serif)', fontSize: '19px', color: 'var(--charcoal)', marginBottom: '7px', lineHeight: 1.2 }}>{s.name}</p>
-              <p style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.65, marginBottom: '14px' }}>{s.desc}</p>
+              <p style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.65, marginBottom: '14px' }}>
+                {s.desc.split(/(\*\*[^*]+\*\*)/).map((part, j) =>
+                  part.startsWith('**') ? <strong key={j} style={{ color: 'var(--charcoal)' }}>{part.slice(2, -2)}</strong> : part
+                )}
+              </p>
               <p style={{ fontFamily: 'var(--serif)', fontSize: '36px', color: 'var(--charcoal)', lineHeight: 1 }}>{s.price}</p>
-              <p style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '3px' }}>{s.note}</p>
+              <p style={{ fontSize: '11px', color: 'var(--faint)', marginTop: '3px' }}>{s.note}</p>
             </div>
           </div>
         ))}
