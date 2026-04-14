@@ -14,7 +14,7 @@ export default function About() {
 
       <div style={{ padding: '32px 24px', background: 'var(--bg)' }}>
         <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '19px', color: 'var(--faint)', lineHeight: 1.45, marginBottom: '16px' }}>
-          "I'm not here to be <strong style={{ fontStyle: 'normal', color: 'var(--orange)' }}>loved by every dog.</strong> I'm here to actually know them."
+          "Your dog isn’t a checklist.<strong style={{ fontStyle: 'normal', color: 'var(--orange)' }}>Nothing gets overlooked.</strong> Every dog is handled with attention and intention."
         </p>
 
         <p style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '16px' }}>
