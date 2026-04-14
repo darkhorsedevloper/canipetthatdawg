@@ -6,6 +6,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --bg:       #F4EFE6;
   --card:     #EBE5D8;
@@ -220,4 +224,19 @@ img { display: block; max-width: 100%; }
 
 @media (min-width: 640px) {
   .fearfree-seal { width: 72px; }
+}
+
+/* CTA */
+.cta-heading {
+  font-size: 38px;
+}
+.cta-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+@media (min-width: 640px) {
+  .cta-heading { font-size: 56px; }
+  .cta-buttons { grid-template-columns: repeat(4, 1fr); }
 }

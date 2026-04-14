@@ -11,6 +11,7 @@ import CredsBento from './components/CredsBento'
 import FieldNotes from './components/FieldNotes'
 import Footer from './components/Footer'
 import ReviewTicker from './components/ReviewTicker'
+import CTA from './components/CTA'
 import ContactTerminal from './components/ContactTerminal'
 
 const ColorStripe = () => (
@@ -37,6 +38,7 @@ export default function App() {
       <CredsBento />
       <FieldNotes />
       <ReviewTicker />
+      <CTA />
       <ContactTerminal />
       <Footer />
       <div style={{ height: '24px' }} />

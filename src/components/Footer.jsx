@@ -5,7 +5,7 @@ import { BsCalendarCheck } from 'react-icons/bs'
 const links = [
   {
     icon: <FaInstagram size={22} />,
-    href: 'https://www.instagram.com/can_i_petthatdawgllc/',
+    href: 'https://www.instagram.com/canipet_that_dawg_llc/',
     label: 'Instagram',
   },
   {

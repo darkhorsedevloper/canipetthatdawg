@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "fetch-notion": "node scripts/fetch-notion.js",
+    "build": "node scripts/fetch-notion.js && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
+    "@notionhq/client": "^2.3.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",

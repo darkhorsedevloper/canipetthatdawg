@@ -13,7 +13,7 @@ export default function Nav() {
         ))}
       </nav>
 
-      <a href="https://www.timetopet.com/portal/create" target="_blank" rel="noreferrer" style={{ fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase', background: 'var(--charcoal)', color: '#F4EFE6', padding: '12px 24px', borderRadius: '2px' }}>
+      <a href="https://www.timetopet.com/portal/create/create-account" target="_blank" rel="noreferrer" style={{ fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase', background: 'var(--charcoal)', color: '#F4EFE6', padding: '12px 24px', borderRadius: '2px' }}>
         Book Now
       </a>
     </header>

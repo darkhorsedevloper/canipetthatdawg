@@ -1,0 +1,90 @@
+[
+  {
+    "id": "34294af1-2232-8144-9a9b-d3435ac16e85",
+    "name": "Home",
+    "slug": "/",
+    "seoTitle": "Professional Pet Sitting Services | Can I Pet That Dawg LLC",
+    "seoDescription": "Trusted, loving pet care in your home. Book a pet sitter or dog walker today.",
+    "inNavBar": true,
+    "navOrder": 1,
+    "pageType": "Core",
+    "status": "Published"
+  },
+  {
+    "id": "34294af1-2232-817a-96f7-e96a7f1a768d",
+    "name": "Services",
+    "slug": "/services",
+    "seoTitle": "Pet Sitting & Dog Walking Services | Can I Pet That Dawg LLC",
+    "seoDescription": "From dog walking to overnight stays, explore all our pet care services and pricing.",
+    "inNavBar": true,
+    "navOrder": 2,
+    "pageType": "Core",
+    "status": "Published"
+  },
+  {
+    "id": "34294af1-2232-8176-9ee8-cad08ef1a446",
+    "name": "About",
+    "slug": "/about",
+    "seoTitle": "About Us | Can I Pet That Dawg LLC",
+    "seoDescription": "Meet our team of certified, passionate pet sitters who treat your pets like family.",
+    "inNavBar": true,
+    "navOrder": 3,
+    "pageType": "Core",
+    "status": "Published"
+  },
+  {
+    "id": "34294af1-2232-8194-b4ee-eca9b6ebd4bd",
+    "name": "Reviews",
+    "slug": "/reviews",
+    "seoTitle": "Client Reviews | Can I Pet That Dawg LLC",
+    "seoDescription": "See what pet parents are saying about our 5-star care.",
+    "inNavBar": true,
+    "navOrder": 4,
+    "pageType": "Core",
+    "status": "Published"
+  },
+  {
+    "id": "34294af1-2232-815d-a2d4-c8c06b1c6de5",
+    "name": "FAQ",
+    "slug": "/faq",
+    "seoTitle": "Frequently Asked Questions | Can I Pet That Dawg LLC",
+    "seoDescription": "Answers to common questions about booking, pricing, policies, and more.",
+    "inNavBar": true,
+    "navOrder": 5,
+    "pageType": "Core",
+    "status": "Published"
+  },
+  {
+    "id": "34294af1-2232-817c-9d3d-ee935eb3fe38",
+    "name": "Blog",
+    "slug": "/blog",
+    "seoTitle": "Pet Care Tips & News | Can I Pet That Dawg LLC",
+    "seoDescription": "Expert tips for pet owners — from dog walking guides to seasonal care advice.",
+    "inNavBar": true,
+    "navOrder": 6,
+    "pageType": "Core",
+    "status": "Published"
+  },
+  {
+    "id": "34294af1-2232-8139-b152-c10802cab859",
+    "name": "Book Now / Contact",
+    "slug": "/book",
+    "seoTitle": "Book a Pet Sitter | Can I Pet That Dawg LLC",
+    "seoDescription": "Ready to book? Contact us or schedule your first meet & greet today.",
+    "inNavBar": true,
+    "navOrder": 7,
+    "pageType": "Core",
+    "status": "Published"
+  },
+  {
+    "id": "34294af1-2232-816e-9715-e12713d2f1cf",
+    "name": "Service Area",
+    "slug": "/service-area",
+    "seoTitle": "Our Service Area | Can I Pet That Dawg LLC",
+    "seoDescription": "See the neighborhoods and ZIP codes we cover for pet sitting and dog walking.",
+    "inNavBar": true,
+    "navOrder": 99,
+    "pageType": "Core",
+    "status": "Published"
+  }
+]
