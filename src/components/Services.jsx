@@ -9,7 +9,7 @@ export default function Services() {
       </p>
 
       <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, lineHeight: 1.25, color: 'var(--charcoal)', marginBottom: '24px' }}>
-        Three ways to give your dog a <em style={{ color: 'var(--orange)' }}>real day.</em>
+        Pick what best  <em style={{ color: 'var(--orange)' }}>fits your dog</em>
       </h2>
 
       <div className="grid-2col">

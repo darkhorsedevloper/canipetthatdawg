@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Fear Free Certified",
+    "text": "Trained to read behavioral signals, reduce stress, and never force what isn't ready.",
+    "bar": "var(--green)"
+  },
+  {
+    "title": "Verified every visit",
+    "text": "GPS check-in, timestamps, photo report card — sent before you even ask.",
+    "bar": "var(--orange)"
+  },
+  {
+    "title": "Enrichment over mileage",
+    "text": "A tired dog isn't always a fulfilled dog. Mental challenge matters as much as miles.",
+    "bar": "var(--blue)"
+  },
+  {
+    "title": "One handler, every time",
+    "text": "Your dog knows who's coming. Consistency builds trust — for them and for you.",
+    "bar": "var(--green)"
+  }
+]

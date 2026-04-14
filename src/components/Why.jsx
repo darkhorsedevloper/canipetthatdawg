@@ -1,9 +1,4 @@
-const items = [
-  { bar: 'var(--green)', title: 'Fear Free Certified', text: 'Trained to read behavioral signals, reduce stress, and never force what isn\'t ready.' },
-  { bar: 'var(--orange)', title: 'Verified every visit', text: 'GPS check-in, timestamps, photo report card — sent before you even ask.' },
-  { bar: 'var(--blue)', title: 'Enrichment over mileage', text: 'A tired dog isn\'t always a fulfilled dog. Mental challenge matters as much as miles.' },
-  { bar: 'var(--green)', title: 'One handler, every time', text: 'Your dog knows who\'s coming. Consistency builds trust — for them and for you.' },
-]
+import items from '../data/why.json'
 
 export default function Why() {
   return (
@@ -14,7 +9,7 @@ export default function Why() {
       </p>
 
       <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, lineHeight: 1.25, color: 'var(--charcoal)', marginBottom: '28px' }}>
-        The difference you can <em style={{ color: 'var(--orange)' }}>actually feel.</em>
+        Less noise.  <em style={{ color: 'var(--orange)' }}>Better care.</em>
       </h2>
 
       <div className="why-grid">

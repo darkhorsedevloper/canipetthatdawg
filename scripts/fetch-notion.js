@@ -20,6 +20,7 @@ const DATABASE_ID = 'abc92211-0ce1-4460-a900-f1435cebbf64'
 const HERO_DATABASE_ID = '3f7da6447e7a4792b942d4ff295ed138'
 const TRUSTBAR_DATABASE_ID = 'f18f662a4c0449198b39b1207091ca3f'
 const SERVICES_DATABASE_ID = '75ccdef9e6da44ed83da12126cd726d7'
+const WHY_DATABASE_ID = '4dbc819c95144303a10d8bf3e5bfd29f'
 
 function richText(prop) {
   if (!prop?.rich_text) return ''
@@ -119,7 +120,22 @@ async function fetchServices() {
   console.log('✅ Wrote services to src/data/services.json')
 }
 
-Promise.all([fetchPages(), fetchHero(), fetchTrustBar(), fetchServices()]).catch(err => {
+async function fetchWhy() {
+  console.log('📡 Fetching why section from Notion...')
+  const response = await notion.databases.query({
+    database_id: WHY_DATABASE_ID,
+    sorts: [{ property: 'Order', direction: 'ascending' }],
+  })
+  const items = response.results.map(page => ({
+    title: page.properties['Title']?.title?.[0]?.plain_text ?? '',
+    text: richText(page.properties['Text']),
+    bar: COLOR_MAP[page.properties['Color']?.select?.name] ?? 'var(--muted)',
+  }))
+  writeFileSync(resolve(__dirname, '../src/data/why.json'), JSON.stringify(items, null, 2))
+  console.log('✅ Wrote why section to src/data/why.json')
+}
+
+Promise.all([fetchPages(), fetchHero(), fetchTrustBar(), fetchServices(), fetchWhy()]).catch(err => {
   console.error('❌ Notion fetch failed:', err.message)
   process.exit(1)
 })
