@@ -70,14 +70,39 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: space-between;
   padding: 20px 24px;
-  border-bottom: 0.5px solid var(--border);
-  background: var(--bg);
 }
 .nav-links { display: none; }
+.nav-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-book-btn {
+  font-size: '11px';
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--charcoal);
+  color: #F4EFE6;
+  padding: 10px 16px;
+  border-radius: 2px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.nav-mobile-menu {
+  background: var(--bg);
+  border-top: 0.5px solid var(--border);
+}
 
 @media (min-width: 640px) {
   .nav-header { padding: 28px 56px; }
   .nav-links { display: flex; gap: 32px; }
+  .nav-hamburger { display: none; }
+  .nav-book-btn { font-size: 13px; padding: 12px 24px; }
+  .nav-mobile-menu { display: none; }
 }
 
 /* Hero */
