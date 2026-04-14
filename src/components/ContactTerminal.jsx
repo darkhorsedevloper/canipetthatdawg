@@ -58,6 +58,7 @@ export default function ContactTerminal() {
   const [sending, setSending] = useState(false)
   const inputRef          = useRef(null)
   const bottomRef         = useRef(null)
+  const hasInteracted     = useRef(false)
 
   // Show first prompt on mount
   useEffect(() => {
@@ -70,11 +71,14 @@ export default function ContactTerminal() {
   }, [])
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
-    if (!done) inputRef.current?.focus()
+    if (hasInteracted.current) {
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+      inputRef.current?.focus()
+    }
   }, [lines, done])
 
   const handleKey = (e) => {
+    hasInteracted.current = true
     if (e.key !== 'Enter' || !input.trim() || sending) return
     const val = input.trim()
     const current = STEPS[step]
@@ -152,7 +156,7 @@ export default function ContactTerminal() {
 
       <div
         className="terminal-window"
-        onClick={() => !done && inputRef.current?.focus()}
+        onClick={() => { if (!done) { hasInteracted.current = true; inputRef.current?.focus() } }}
       >
         <div className="terminal-topbar">
           <span className="terminal-dot" style={{ background: '#FF5F57' }} />
@@ -186,7 +190,6 @@ export default function ContactTerminal() {
                 onKeyDown={handleKey}
                 placeholder={STEPS[step]?.placeholder}
                 className="terminal-input"
-                autoFocus
                 autoCapitalize="off"
                 autoCorrect="off"
                 spellCheck={false}

@@ -55,7 +55,7 @@ export default function Hero() {
           color: '#EDE5D2',
         }}>
           {hero.headline}<br/>
-          <br/><em style={{ color: 'var(--orange)' }}>{hero.headlineAccent}</em>
+          <em style={{ color: 'var(--orange)' }}>{hero.headlineAccent}</em>
         </h1>
 
         <p style={{
