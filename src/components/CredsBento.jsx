@@ -1,5 +1,3 @@
-import MiniMap from './MiniMap'
-
 const books = [
   { title: 'Lorem ipsum dolor sit amet', author: 'Auctor Placeholder', img: null },
   { title: 'Consectetur adipiscing elit', author: 'Nominus Faber', img: null },
@@ -54,25 +52,26 @@ export default function CredsBento() {
           </p>
         </div>
 
-        {/* PSI — placeholder until image added */}
+        {/* PSI + PSA stacked */}
         <div style={{
           background: 'var(--charcoal)',
           border: '0.5px solid var(--border)',
           borderRadius: '6px',
-          padding: '24px 16px',
+          overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
           minHeight: '140px',
         }}>
-          <div style={{ border: '2px solid var(--blue)', borderRadius: '50%', width: '64px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontFamily: 'var(--serif)', fontSize: '16px', fontWeight: 700, color: 'var(--blue)', textAlign: 'center', lineHeight: 1.1 }}>PSA</span>
+          {/* Pet Sitters International */}
+          <div style={{ flex: 1, padding: '14px 16px', borderBottom: '0.5px solid rgba(226,217,198,0.1)' }}>
+            <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '4px' }}>Member</p>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '13px', color: '#EDE5D2', lineHeight: 1.3 }}>Pet Sitters<br />International</p>
           </div>
-          <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(226,217,198,0.5)', textAlign: 'center' }}>
-            Pet Sitters Associates<br />Insured & Bonded
-          </p>
+          {/* Pet Sitters Associates */}
+          <div style={{ flex: 1, padding: '14px 16px' }}>
+            <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '4px' }}>Insured &amp; Bonded</p>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '13px', color: '#EDE5D2', lineHeight: 1.3 }}>Pet Sitters<br />Associates</p>
+          </div>
         </div>
 
         {/* Time To Pet — placeholder until image added */}
@@ -96,20 +95,6 @@ export default function CredsBento() {
           </p>
         </div>
 
-      </div>
-
-      {/* Service area map cell */}
-      <div style={{
-        border: '0.5px solid var(--border)',
-        borderRadius: '6px',
-        overflow: 'hidden',
-        marginBottom: '8px',
-      }}>
-        <div style={{ padding: '10px 14px', background: 'var(--panel)', borderBottom: '0.5px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)' }}>Service Area</p>
-          <p style={{ fontSize: '9px', color: 'var(--muted)' }}>Atlanta 30318 · 10 mi</p>
-        </div>
-        <MiniMap height={130} />
       </div>
 
       {/* Books + Podcasts row */}

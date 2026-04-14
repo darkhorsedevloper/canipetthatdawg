@@ -4,10 +4,12 @@ export default function About() {
   return (
     <section id="about" className="about-grid">
 
-      <div className="about-photo">
-        <p style={{ fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(196,137,42,0.4)', textAlign: 'center', padding: '0 20px', lineHeight: 1.6 }}>
-          Crickett + Kira<br />golden hour portrait
-        </p>
+      <div style={{ display: 'flex', flexDirection: 'column', background: 'var(--card)', borderBottom: '0.5px solid var(--border)' }}>
+        <div style={{ padding: '10px 14px', background: 'var(--panel)', borderBottom: '0.5px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)' }}>Service Area</p>
+          <p style={{ fontSize: '9px', color: 'var(--muted)', letterSpacing: '0.08em' }}>Atlanta 30318 · 10 mi</p>
+        </div>
+        <MiniMap height={280} />
       </div>
 
       <div style={{ padding: '32px 24px', background: 'var(--bg)' }}>
@@ -40,12 +42,6 @@ export default function About() {
           Full story →
         </a>
 
-        <div style={{ marginTop: '20px' }}>
-          <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '8px' }}>
-            Serving · Atlanta 30318 · 10-mile radius
-          </p>
-          <MiniMap height={120} />
-        </div>
       </div>
 
     </section>
