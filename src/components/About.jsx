@@ -16,15 +16,17 @@ export default function About() {
       </div>
 
       <div style={{ padding: '32px 24px', background: 'var(--bg)' }}>
-        <p style={{ fontFamily: ‘var(--serif)’, fontStyle: ‘italic’, fontSize: ‘19px’, color: ‘var(--faint)’, lineHeight: 1.45, marginBottom: ‘16px’ }}>
-          "{content.quote} <strong style={{ fontStyle: ‘normal’, color: ‘var(--orange)’ }}>{content.quoteAccent}</strong> {content.quoteEnd}"
+        <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '19px', color: 'var(--faint)', lineHeight: 1.45, marginBottom: '16px' }}>
+          {'"'}{content.quote}{' '}
+          <strong style={{ fontStyle: 'normal', color: 'var(--orange)' }}>{content.quoteAccent}</strong>
+          {' '}{content.quoteEnd}{'"'}
         </p>
 
-        <p style={{ fontSize: ‘12px’, color: ‘var(--muted)’, lineHeight: 1.7, marginBottom: ‘16px’ }}>
+        <p style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '16px' }}>
           {content.bio}
         </p>
 
-        <div style={{ display: ‘flex’, gap: ‘6px’, flexWrap: ‘wrap’, marginBottom: ‘18px’ }}>
+        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '18px' }}>
           {tags.map(tag => (
             <span key={tag.label} style={{
               fontSize: '9px', letterSpacing: '0.08em', textTransform: 'uppercase',
@@ -38,9 +40,8 @@ export default function About() {
         </div>
 
         <a href="#about" style={{ fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', borderBottom: '0.5px solid var(--border)', paddingBottom: '2px' }}>
-          Full story →
+          Full story
         </a>
-
       </div>
 
     </section>

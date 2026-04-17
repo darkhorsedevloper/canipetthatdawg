@@ -1,13 +1,22 @@
 {
   "content": {
     "quote": "Your dog isn't a checklist.",
-    "quoteAccent": "Nothing gets overlooked.",
     "quoteEnd": "Every dog is handled with attention and intention.",
-    "bio": "Former SF software engineer. Lifelong equestrian. I combine behavioral depth, real field experience, and tech-forward systems — because your dog deserves a professional, not a neighbor with free afternoons."
+    "bio": "Former software engineer. Lifelong equestrian.\n\nThoughtful, structured dog care backed by real experience and attention to detail.",
+    "quoteAccent": "Nothing gets overlooked."
   },
   "tags": [
-    { "label": "Fear Free Certified", "color": "var(--green)" },
-    { "label": "SF Engineering", "color": "var(--blue)" },
-    { "label": "Lifelong Equestrian", "color": "var(--orange)" }
+    {
+      "label": "Fear Free Certified",
+      "color": "var(--green)"
+    },
+    {
+      "label": "SF Engineering",
+      "color": "var(--blue)"
+    },
+    {
+      "label": "Lifelong Equestrian",
+      "color": "var(--orange)"
+    }
   ]
 }
