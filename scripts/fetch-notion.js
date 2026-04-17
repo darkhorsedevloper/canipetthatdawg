@@ -21,6 +21,8 @@ const HERO_DATABASE_ID = '3f7da6447e7a4792b942d4ff295ed138'
 const TRUSTBAR_DATABASE_ID = 'f18f662a4c0449198b39b1207091ca3f'
 const SERVICES_DATABASE_ID = '75ccdef9e6da44ed83da12126cd726d7'
 const WHY_DATABASE_ID = '4dbc819c95144303a10d8bf3e5bfd29f'
+const ABOUT_DATABASE_ID = 'bcf60bb78c9b41779392ace442440040'
+const ABOUT_TAGS_DATABASE_ID = '1939622b8f6342f8ba18c90c42c0f7a3'
 
 function richText(prop) {
   if (!prop?.rich_text) return ''
@@ -135,7 +137,27 @@ async function fetchWhy() {
   console.log('✅ Wrote why section to src/data/why.json')
 }
 
-Promise.all([fetchPages(), fetchHero(), fetchTrustBar(), fetchServices(), fetchWhy()]).catch(err => {
+async function fetchAbout() {
+  console.log('📡 Fetching about from Notion...')
+  const [contentRes, tagsRes] = await Promise.all([
+    notion.databases.query({ database_id: ABOUT_DATABASE_ID }),
+    notion.databases.query({ database_id: ABOUT_TAGS_DATABASE_ID, sorts: [{ property: 'Order', direction: 'ascending' }] }),
+  ])
+  const content = {}
+  contentRes.results.forEach(page => {
+    const field = page.properties['Field']?.title?.[0]?.plain_text
+    const value = richText(page.properties['Value'])
+    if (field) content[field] = value
+  })
+  const tags = tagsRes.results.map(page => ({
+    label: page.properties['Label']?.title?.[0]?.plain_text ?? '',
+    color: COLOR_MAP[page.properties['Color']?.select?.name] ?? 'var(--muted)',
+  }))
+  writeFileSync(resolve(__dirname, '../src/data/about.json'), JSON.stringify({ content, tags }, null, 2))
+  console.log('✅ Wrote about to src/data/about.json')
+}
+
+Promise.all([fetchPages(), fetchHero(), fetchTrustBar(), fetchServices(), fetchWhy(), fetchAbout()]).catch(err => {
   console.error('❌ Notion fetch failed:', err.message)
   process.exit(1)
 })

@@ -1,4 +1,7 @@
 import MiniMap from './MiniMap'
+import aboutData from '../data/about.json'
+
+const { content, tags } = aboutData
 
 export default function About() {
   return (
@@ -13,20 +16,16 @@ export default function About() {
       </div>
 
       <div style={{ padding: '32px 24px', background: 'var(--bg)' }}>
-        <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '19px', color: 'var(--faint)', lineHeight: 1.45, marginBottom: '16px' }}>
-          "Your dog isn’t a checklist.<strong style={{ fontStyle: 'normal', color: 'var(--orange)' }}>Nothing gets overlooked.</strong> Every dog is handled with attention and intention."
+        <p style={{ fontFamily: ‘var(--serif)’, fontStyle: ‘italic’, fontSize: ‘19px’, color: ‘var(--faint)’, lineHeight: 1.45, marginBottom: ‘16px’ }}>
+          "{content.quote} <strong style={{ fontStyle: ‘normal’, color: ‘var(--orange)’ }}>{content.quoteAccent}</strong> {content.quoteEnd}"
         </p>
 
-        <p style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '16px' }}>
-          Former SF software engineer. Lifelong equestrian. I combine behavioral depth, real field experience, and tech-forward systems — because your dog deserves a professional, not a neighbor with free afternoons.
+        <p style={{ fontSize: ‘12px’, color: ‘var(--muted)’, lineHeight: 1.7, marginBottom: ‘16px’ }}>
+          {content.bio}
         </p>
 
-        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '18px' }}>
-          {[
-            { label: 'Fear Free Certified', color: 'var(--green)' },
-            { label: 'SF Engineering', color: 'var(--blue)' },
-            { label: 'Lifelong Equestrian', color: 'var(--orange)' },
-          ].map(tag => (
+        <div style={{ display: ‘flex’, gap: ‘6px’, flexWrap: ‘wrap’, marginBottom: ‘18px’ }}>
+          {tags.map(tag => (
             <span key={tag.label} style={{
               fontSize: '9px', letterSpacing: '0.08em', textTransform: 'uppercase',
               padding: '4px 10px', borderRadius: '20px',
