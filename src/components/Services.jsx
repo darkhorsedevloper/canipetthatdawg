@@ -1,4 +1,36 @@
-import services from '../data/services.json'
+// Services data is inlined here — Notion fetch overwrites services.json on build
+const services = [
+  {
+    name: 'Walk + Field Session',
+    badge: 'Most booked',
+    desc: 'Movement, sniffing, and space to settle. Quality over quantity. No pack walks.',
+    price: '$75',
+    note: 'per session · 2 dog max · 75 min',
+    badgeColor: 'var(--green)',
+    accent: 'var(--green)',
+    featured: true,
+  },
+  {
+    name: 'Adventure Hike',
+    badge: 'Premium',
+    desc: 'Real trails. No chaos. One handler, one pair of dogs, three unhurried hours.',
+    price: '$175',
+    note: 'per dog · 2 dog max · 3 hrs',
+    badgeColor: 'var(--orange)',
+    accent: 'var(--orange)',
+    featured: false,
+  },
+  {
+    name: 'Overnight Stay',
+    badge: 'Overnight',
+    desc: 'Your dog stays home. I handle the rest — even the cat.',
+    price: '$160',
+    note: 'flat · no extras · full 24 hrs',
+    badgeColor: 'var(--blue)',
+    accent: 'var(--blue)',
+    featured: false,
+  },
+]
 
 export default function Services() {
   return (
