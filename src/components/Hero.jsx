@@ -59,7 +59,7 @@ export default function Hero() {
 
         <h1 className="hero-title" style={{
           fontFamily: 'var(--serif)',
-          fontWeight: 400,
+          fontWeight: 700,
           color: '#EDE5D2',
         }}>
           {hero.headline}<br/>
