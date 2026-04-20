@@ -15,6 +15,7 @@ import Footer from './components/Footer'
 import ReviewTicker from './components/ReviewTicker'
 import CTA from './components/CTA'
 import ContactTerminal from './components/ContactTerminal'
+import DawgOfTheDay from './components/DawgOfTheDay'
 import PawTrail from './components/PawTrail'
 
 const ColorStripe = () => (
@@ -45,6 +46,7 @@ export default function App() {
       <CredsBento />
       <FieldNotes />
       <ReviewTicker />
+      <DawgOfTheDay />
       <CTA />
       <ContactTerminal />
       <Footer />

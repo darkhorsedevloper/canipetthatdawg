@@ -2,6 +2,58 @@ import { useState } from 'react'
 
 const links = ['Services', 'About', 'Field Notes']
 
+// Sliding paw pill — dark mode toggle
+function ModeSwitch({ dark, onToggle }) {
+  const w = 58, h = 30, pad = 3, ball = 24, glyph = 14
+  return (
+    <button
+      onClick={onToggle}
+      aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+      title={dark ? 'Light mode' : 'Dark mode'}
+      style={{
+        width: w, height: h,
+        background: dark ? 'var(--panel)' : 'var(--charcoal)',
+        border: '1px solid var(--border)',
+        borderRadius: 999,
+        padding: pad,
+        position: 'relative',
+        cursor: 'pointer',
+        transition: 'background 360ms cubic-bezier(.4,.14,.3,1)',
+        flexShrink: 0,
+        overflow: 'hidden',
+      }}
+    >
+      {/* Ambient paw prints in track */}
+      <span aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        display: 'flex', alignItems: 'center',
+        paddingLeft: 6, paddingRight: 6,
+        justifyContent: 'space-between',
+        opacity: 0.28, fontSize: Math.round(glyph * 0.55),
+      }}>
+        <span style={{ color: dark ? 'var(--orange)' : '#F4EFE6', transform: 'rotate(-18deg)', display: 'inline-block' }}>🐾</span>
+        <span style={{ color: dark ? 'var(--orange)' : '#F4EFE6', transform: 'rotate(8deg)',  display: 'inline-block' }}>🐾</span>
+        <span style={{ color: dark ? 'var(--orange)' : '#F4EFE6', transform: 'rotate(-6deg)', display: 'inline-block' }}>🐾</span>
+      </span>
+
+      {/* Sliding paw ball */}
+      <span style={{
+        position: 'absolute',
+        top: pad, left: pad,
+        width: ball, height: ball,
+        background: dark ? 'var(--orange)' : '#F4EFE6',
+        borderRadius: '50%',
+        transform: `translateX(${dark ? w - ball - pad * 2 : 0}px) rotate(${dark ? 12 : -12}deg)`,
+        transition: 'transform 460ms cubic-bezier(.4,1.5,.4,1), background 360ms',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontSize: glyph, lineHeight: 1,
+      }}>
+        🐾
+      </span>
+    </button>
+  )
+}
+
 export default function Nav({ dark, onToggleDark }) {
   const [open, setOpen] = useState(false)
 
@@ -28,15 +80,8 @@ export default function Nav({ dark, onToggleDark }) {
         </nav>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          {/* Paw toggle — dark mode */}
-          <button
-            className={`paw-toggle${dark ? ' dark' : ''}`}
-            onClick={onToggleDark}
-            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-            title={dark ? 'Light mode' : 'Dark mode'}
-          >
-            🐾
-          </button>
+          {/* Sliding paw mode switch */}
+          <ModeSwitch dark={dark} onToggle={onToggleDark} />
 
           {/* Book Now — always visible */}
           <a href="https://www.timetopet.com/portal/create/create-account" target="_blank" rel="noreferrer" className="nav-book-btn">
