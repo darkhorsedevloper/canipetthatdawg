@@ -18,22 +18,27 @@ export default function FieldNotes() {
 
       <div>
         {posts.map((p, i) => (
-          <div key={i} style={{
-            borderTop: '0.5px solid var(--border)',
-            padding: '17px 0',
+          <a key={i} href="#" style={{
             display: 'flex',
+            borderTop: '0.5px solid var(--border)',
+            borderBottom: i === posts.length - 1 ? '0.5px solid var(--border)' : 'none',
+            padding: '20px 0',
             justifyContent: 'space-between',
             alignItems: 'baseline',
             gap: '16px',
-            borderBottom: i === posts.length - 1 ? '0.5px solid var(--border)' : 'none',
-          }}>
-            <p style={{ fontFamily: 'var(--serif)', fontSize: '16px', color: 'var(--charcoal)', lineHeight: 1.3 }}>
+            textDecoration: 'none',
+            transition: 'padding 180ms',
+          }}
+          onMouseEnter={e => e.currentTarget.style.paddingLeft = '8px'}
+          onMouseLeave={e => e.currentTarget.style.paddingLeft = '0'}
+          >
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: 'var(--charcoal)', lineHeight: 1.3 }}>
               {p.title}
             </p>
-            <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
+            <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>
               {p.date}
             </span>
-          </div>
+          </a>
         ))}
       </div>
 

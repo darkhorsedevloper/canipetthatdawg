@@ -12,10 +12,15 @@ export default function About() {
           <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)' }}>Service Area</p>
           <p style={{ fontSize: '9px', color: 'var(--muted)', letterSpacing: '0.08em' }}>Atlanta 30318 · 10 mi</p>
         </div>
-        <MiniMap height={280} />
+        <div style={{ padding: '16px' }}>
+          <MiniMap />
+        </div>
       </div>
 
-      <div style={{ padding: '32px 24px', background: 'var(--bg)' }}>
+      <div style={{ padding: '36px 28px', background: 'var(--bg)' }}>
+        <p style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '14px' }}>
+          About
+        </p>
         <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '19px', color: 'var(--faint)', lineHeight: 1.45, marginBottom: '16px' }}>
           {'"'}{content.quote}{' '}
           <strong style={{ fontStyle: 'normal', color: 'var(--orange)' }}>{content.quoteAccent}</strong>
@@ -39,8 +44,8 @@ export default function About() {
           ))}
         </div>
 
-        <a href="#about" style={{ fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', borderBottom: '0.5px solid var(--border)', paddingBottom: '2px' }}>
-          Full story
+        <a href="#about" style={{ fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', borderBottom: '0.5px solid var(--border)', paddingBottom: '2px' }}>
+          Full story →
         </a>
       </div>
 

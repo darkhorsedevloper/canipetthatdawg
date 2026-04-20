@@ -2,11 +2,17 @@ import { useState } from 'react'
 
 const links = ['Services', 'About', 'Field Notes']
 
-export default function Nav() {
+export default function Nav({ dark, onToggleDark }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <header style={{ borderBottom: '0.5px solid var(--border)', background: 'var(--bg)', position: 'relative' }}>
+    <header style={{
+      borderBottom: '0.5px solid var(--border)',
+      background: 'var(--bg)',
+      position: 'sticky', top: 0, zIndex: 50,
+      backdropFilter: 'blur(8px)',
+      WebkitBackdropFilter: 'blur(8px)',
+    }}>
       <div className="nav-header">
         <div style={{ fontFamily: 'var(--serif)', fontSize: '18px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--charcoal)' }}>
           Can I Pet That <span style={{ color: 'var(--orange)' }}>Dawg</span>
@@ -22,6 +28,16 @@ export default function Nav() {
         </nav>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {/* Paw toggle — dark mode */}
+          <button
+            className={`paw-toggle${dark ? ' dark' : ''}`}
+            onClick={onToggleDark}
+            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={dark ? 'Light mode' : 'Dark mode'}
+          >
+            🐾
+          </button>
+
           {/* Book Now — always visible */}
           <a href="https://www.timetopet.com/portal/create/create-account" target="_blank" rel="noreferrer" className="nav-book-btn">
             Book Now

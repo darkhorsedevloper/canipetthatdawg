@@ -1,6 +1,7 @@
 import './index.css'
 import { useEffect } from 'react'
 import { usePetCursor } from './hooks/usePetCursor'
+import { useDarkMode } from './hooks/useDarkMode'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
@@ -24,15 +25,16 @@ const ColorStripe = () => (
 )
 
 export default function App() {
+  const [dark, setDark] = useDarkMode()
   useEffect(() => {
     setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0)
   }, [])
   usePetCursor()
   return (
-    <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+    <div data-mode={dark ? 'dark' : 'light'} style={{ maxWidth: '960px', margin: '0 auto' }}>
       <div style={{ height: '24px' }} />
       <ColorStripe />
-      <Nav />
+      <Nav dark={dark} onToggleDark={() => setDark(d => !d)} />
       <Hero />
       <TrustBar />
       <PhotoStrips />
