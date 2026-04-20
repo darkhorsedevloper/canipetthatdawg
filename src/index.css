@@ -32,6 +32,16 @@ body {
   color: var(--charcoal);
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
+  transition: background 700ms cubic-bezier(.4,.14,.3,1), color 700ms cubic-bezier(.4,.14,.3,1);
+}
+
+/* Smooth theme transition on common containers */
+section, header, footer, nav, div[style], article, aside,
+.footer, .trust-bar-desktop, .trust-bar-item, .nav-book-btn,
+.about-grid, .bento-badges, .bento-bottom {
+  transition: background 700ms cubic-bezier(.4,.14,.3,1),
+              color 700ms cubic-bezier(.4,.14,.3,1),
+              border-color 700ms cubic-bezier(.4,.14,.3,1);
 }
 
 * {
@@ -90,7 +100,7 @@ img { display: block; max-width: 100%; }
   border-radius: 20px;
   font-size: 11px;
   white-space: nowrap;
-  transition: background 360ms, color 360ms;
+  transition: background 700ms cubic-bezier(.4,.14,.3,1), color 700ms cubic-bezier(.4,.14,.3,1);
 }
 .nav-mobile-menu {
   background: var(--bg);

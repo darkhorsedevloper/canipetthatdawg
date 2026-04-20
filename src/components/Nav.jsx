@@ -18,7 +18,7 @@ function ModeSwitch({ dark, onToggle }) {
         padding: pad,
         position: 'relative',
         cursor: 'pointer',
-        transition: 'background 360ms cubic-bezier(.4,.14,.3,1)',
+        transition: 'background 700ms cubic-bezier(.4,.14,.3,1)',
         flexShrink: 0,
         overflow: 'hidden',
         cursor: 'inherit',
