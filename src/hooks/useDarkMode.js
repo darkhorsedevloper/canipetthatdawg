@@ -10,6 +10,8 @@ export function useDarkMode() {
   })
 
   useEffect(() => {
+    // Apply to <html> so body background + all CSS variables cascade correctly
+    document.documentElement.setAttribute('data-mode', dark ? 'dark' : 'light')
     try { localStorage.setItem('cipd_dark', dark) } catch {}
   }, [dark])
 

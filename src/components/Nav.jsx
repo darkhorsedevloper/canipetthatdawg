@@ -21,6 +21,7 @@ function ModeSwitch({ dark, onToggle }) {
         transition: 'background 360ms cubic-bezier(.4,.14,.3,1)',
         flexShrink: 0,
         overflow: 'hidden',
+        cursor: 'inherit',
       }}
     >
       {/* Ambient paw prints in track */}

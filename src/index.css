@@ -82,15 +82,15 @@ img { display: block; max-width: 100%; }
   padding: 4px;
 }
 .nav-book-btn {
-  font-size: '11px';
   letter-spacing: 0.1em;
   text-transform: uppercase;
   background: var(--charcoal);
-  color: #F4EFE6;
+  color: var(--bg);
   padding: 10px 16px;
-  border-radius: 2px;
+  border-radius: 20px;
   font-size: 11px;
   white-space: nowrap;
+  transition: background 360ms, color 360ms;
 }
 .nav-mobile-menu {
   background: var(--bg);
@@ -101,7 +101,7 @@ img { display: block; max-width: 100%; }
   .nav-header { padding: 28px 56px; }
   .nav-links { display: flex; gap: 32px; }
   .nav-hamburger { display: none; }
-  .nav-book-btn { font-size: 13px; padding: 12px 24px; }
+  .nav-book-btn { font-size: 13px; padding: 12px 24px; border-radius: 20px; }
   .nav-mobile-menu { display: none; }
 }
 
