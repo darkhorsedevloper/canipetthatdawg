@@ -97,7 +97,7 @@ img { display: block; max-width: 100%; }
   background: var(--charcoal);
   color: var(--bg);
   padding: 10px 16px;
-  border-radius: 20px;
+  border-radius: 8px;
   font-size: 11px;
   white-space: nowrap;
   transition: background 700ms cubic-bezier(.4,.14,.3,1), color 700ms cubic-bezier(.4,.14,.3,1);
@@ -111,7 +111,7 @@ img { display: block; max-width: 100%; }
   .nav-header { padding: 28px 56px; }
   .nav-links { display: flex; gap: 32px; }
   .nav-hamburger { display: none; }
-  .nav-book-btn { font-size: 13px; padding: 12px 24px; border-radius: 20px; }
+  .nav-book-btn { font-size: 13px; padding: 12px 24px; border-radius: 8px; }
   .nav-mobile-menu { display: none; }
 }
 
