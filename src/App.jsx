@@ -15,6 +15,7 @@ import Footer from './components/Footer'
 import ReviewTicker from './components/ReviewTicker'
 import CTA from './components/CTA'
 import ContactTerminal from './components/ContactTerminal'
+import PawTrail from './components/PawTrail'
 
 const ColorStripe = () => (
   <div style={{ height: '3px', display: 'flex', width: '100%' }}>
@@ -47,6 +48,7 @@ export default function App() {
       <CTA />
       <ContactTerminal />
       <Footer />
+      <PawTrail />
       <div style={{ height: '24px' }} />
       <ColorStripe />
       <div style={{ height: '24px' }} />

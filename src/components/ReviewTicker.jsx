@@ -1,11 +1,10 @@
 const quotes = [
-  { text: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit."', client: 'Client Name' },
-  { text: '"Sed do eiusmod tempor incididunt ut labore et dolore magna."', client: 'Client Name' },
-  { text: '"Ut enim ad minim veniam, quis nostrud exercitation."', client: 'Client Name' },
-  { text: '"Duis aute irure dolor in reprehenderit in voluptate velit."', client: 'Client Name' },
-  { text: '"Excepteur sint occaecat cupidatat non proident."', client: 'Client Name' },
-  { text: '"Sunt in culpa qui officia deserunt mollit anim id est laborum."', client: 'Client Name' },
-  { text: '"Nemo enim ipsam voluptatem quia voluptas sit aspernatur."', client: 'Client Name' },
+  { text: 'Crickett sends a photo report before I think to ask.',        client: 'M.K. · Westside' },
+  { text: 'Kira came home tired AND settled. Rare combination.',          client: 'D.R. · O4W' },
+  { text: 'Felt like a friend was with my dog, not a stranger.',          client: 'S.L. · Inman Park' },
+  { text: 'Easiest onboarding of any sitter I\'ve tried.',                client: 'J.P. · Grant Park' },
+  { text: 'She noticed my dog was favoring a paw. Vet confirmed.',        client: 'A.C. · Kirkwood' },
+  { text: 'Adventure hike days are my dog\'s favorite days.',             client: 'T.N. · Decatur' },
 ]
 
 // Duplicate for seamless loop
@@ -29,7 +28,7 @@ export default function ReviewTicker() {
         {doubled.map((q, i) => (
           <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', paddingRight: '56px' }}>
             <span style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '13px', color: '#EDE5D2' }}>
-              {q.text}
+              {'"'}{q.text}{'"'}
             </span>
             <span style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--orange)' }}>
               — {q.client}

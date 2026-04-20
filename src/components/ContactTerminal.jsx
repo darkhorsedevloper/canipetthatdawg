@@ -4,7 +4,6 @@ const TICKET_ID = 'TKT-' + Math.floor(1000 + Math.random() * 9000)
 const TIMESTAMP = new Date().toISOString().slice(0, 19).replace('T', ' ')
 
 const FORMSPREE_URL = 'https://formspree.io/f/mreokrrr'
-
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const STEPS = [
@@ -12,34 +11,39 @@ const STEPS = [
     key: 'name',
     prompt: '> name:',
     placeholder: 'e.g. Crickett Sykes',
+    ghost: ['Jordan M.', 'Taylor R.', 'Sam K.'],
     validate: null,
   },
   {
     key: 'email',
     prompt: '> email:',
     placeholder: 'e.g. you@email.com',
+    ghost: ['jordan@gmail.com', 't.rios@hey.com', 'sam.k@proton.me'],
     validate: v => EMAIL_RE.test(v) ? null : '[error] enter a valid email address',
   },
   {
     key: 'title',
     prompt: '> title:',
     placeholder: 'e.g. Interested in walk sessions for my dog',
+    ghost: [
+      'Walks for my Heeler mix — weekdays?',
+      'Overnight stay, July 12–18',
+      'Meet & greet for a rescue pup',
+    ],
     validate: null,
   },
   {
     key: 'message',
     prompt: '> message:',
-    placeholder: 'Tell me what you\'re looking for...',
+    placeholder: "Tell me what you're looking for...",
+    ghost: [
+      'Hi! I have a 3yo rescue, high-energy. Looking for 2 walks a week.',
+      "We're traveling and need overnights — he's crate-trained.",
+      'New in Atlanta and looking for a steady walker. Can we chat?',
+    ],
     validate: null,
   },
 ]
-
-const SERVICE_MAP = {
-  '1': 'Walk + Field Session',
-  '2': 'Adventure Hike',
-  '3': 'Overnight Stay',
-  '4': 'General Question',
-}
 
 export default function ContactTerminal() {
   const [lines, setLines] = useState([
@@ -50,40 +54,87 @@ export default function ContactTerminal() {
     `> initializing ticket...`,
     `> type your response and press enter ↵`,
     `──────────────────────────────────────────`,
+    STEPS[0].prompt,
   ])
-  const [step, setStep]       = useState(0)
-  const [input, setInput]     = useState('')
-  const [data, setData]       = useState({})
-  const [done, setDone]       = useState(false)
-  const [sending, setSending] = useState(false)
-  const inputRef          = useRef(null)
-  const bottomRef         = useRef(null)
-  const hasInteracted     = useRef(false)
+  const [step, setStep]               = useState(0)
+  const [input, setInput]             = useState('')
+  const [data, setData]               = useState({})
+  const [done, setDone]               = useState(false)
+  const [sending, setSending]         = useState(false)
+  const [userEngaged, setUserEngaged] = useState(false)
+  const [ghost, setGhost]             = useState('')
+  const inputRef = useRef(null)
+  const bodyRef  = useRef(null)
 
-  // Show first prompt on mount
+  // Auto-scroll terminal body when lines change
   useEffect(() => {
-    const s = STEPS[0]
-    setLines(l => [
-      ...l,
-      s.prompt,
-      ...(s.hint || []),
-    ])
-  }, [])
+    if (bodyRef.current) bodyRef.current.scrollTop = bodyRef.current.scrollHeight
+  }, [lines])
 
+  // Ghost-typing loop
   useEffect(() => {
-    if (hasInteracted.current) {
-      bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
-      inputRef.current?.focus()
+    if (userEngaged || done || sending) { setGhost(''); return }
+    const examples = STEPS[step]?.ghost || []
+    if (!examples.length) return
+
+    let cancelled = false
+    let exIdx = 0
+    let charIdx = 0
+    let phase = 'typing'
+    let timer
+
+    const tick = () => {
+      if (cancelled) return
+      const text = examples[exIdx]
+      if (phase === 'typing') {
+        charIdx++
+        setGhost(text.slice(0, charIdx))
+        if (charIdx >= text.length) {
+          phase = 'pausing'
+          timer = setTimeout(tick, 1500)
+          return
+        }
+        timer = setTimeout(tick, 45 + Math.random() * 55)
+      } else if (phase === 'pausing') {
+        phase = 'deleting'
+        timer = setTimeout(tick, 40)
+      } else {
+        charIdx--
+        setGhost(text.slice(0, Math.max(0, charIdx)))
+        if (charIdx <= 0) {
+          exIdx = (exIdx + 1) % examples.length
+          phase = 'typing'
+          timer = setTimeout(tick, 600)
+          return
+        }
+        timer = setTimeout(tick, 22 + Math.random() * 25)
+      }
     }
-  }, [lines, done])
+    timer = setTimeout(tick, 500)
+    return () => { cancelled = true; clearTimeout(timer) }
+  }, [step, userEngaged, done, sending])
+
+  const lineColor = (line) => {
+    if (line.startsWith('>') && line.includes('[✓]')) return 'var(--green)'
+    if (line.startsWith('> [error]'))                  return '#FF5F57'
+    if (line.startsWith('//'))                          return 'var(--blue)'
+    if (line.startsWith('──'))                          return 'rgba(226,217,198,0.15)'
+    if (line.startsWith('>'))                           return 'var(--green)'
+    if (line.startsWith('  '))                          return 'rgba(226,217,198,0.7)'
+    return '#EDE5D2'
+  }
+
+  const handleInputChange = (e) => {
+    if (!userEngaged) setUserEngaged(true)
+    setInput(e.target.value)
+  }
 
   const handleKey = (e) => {
-    hasInteracted.current = true
+    if (!userEngaged) setUserEngaged(true)
     if (e.key !== 'Enter' || !input.trim() || sending) return
     const val = input.trim()
     const current = STEPS[step]
 
-    // Validate if needed
     if (current.validate) {
       const err = current.validate(val)
       if (err) {
@@ -97,13 +148,14 @@ export default function ContactTerminal() {
     const newData = { ...data, [current.key]: val }
     setData(newData)
     setInput('')
+    setUserEngaged(false) // re-enable ghost on next step
 
     const next = step + 1
     if (next < STEPS.length) {
       setTimeout(() => {
         setLines(l => [...l, STEPS[next].prompt])
         setStep(next)
-      }, 280)
+      }, 260)
     } else {
       setSending(true)
       setLines(l => [
@@ -147,149 +199,120 @@ export default function ContactTerminal() {
       className="section-pad"
       style={{ borderTop: '0.5px solid var(--border)', borderBottom: '0.5px solid var(--border)' }}
     >
-      <p style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px' }}>
+      <p style={{ fontSize: '10px', letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '14px' }}>
         Contact
       </p>
-      <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, color: 'var(--charcoal)', marginBottom: '20px', lineHeight: 1.25 }}>
+      <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 400, color: 'var(--charcoal)', marginBottom: '22px', lineHeight: 1.2 }}>
         Open a <em style={{ color: 'var(--orange)' }}>line.</em>
       </h2>
 
       <div
-        className="terminal-window"
-        onClick={() => { if (!done) { hasInteracted.current = true; inputRef.current?.focus() } }}
+        onClick={() => { if (!done) inputRef.current?.focus() }}
+        style={{
+          background: '#0F0D0A',
+          borderRadius: '8px',
+          overflow: 'hidden',
+          border: '0.5px solid rgba(255,255,255,0.08)',
+        }}
       >
-        <div className="terminal-topbar">
-          <span className="terminal-dot" style={{ background: '#FF5F57' }} />
-          <span className="terminal-dot" style={{ background: '#FFBD2E' }} />
-          <span className="terminal-dot" style={{ background: '#28CA41' }} />
-          <span className="terminal-title">crickett@ciplc ~ ticket</span>
+        {/* Title bar */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 6,
+          padding: '10px 14px', background: '#1A1714',
+          borderBottom: '0.5px solid rgba(255,255,255,0.06)',
+        }}>
+          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#FF5F57' }}/>
+          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#FFBD2E' }}/>
+          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#28CA41' }}/>
+          <span style={{
+            fontFamily: 'var(--serif)', fontSize: 13, fontWeight: 700,
+            color: 'rgba(255,255,255,0.72)', letterSpacing: '0.08em', marginLeft: 10,
+          }}>
+            crickett@canipet_that_dawg_llc ~ ticket
+          </span>
         </div>
 
-        <div className="terminal-body">
+        {/* Body */}
+        <div
+          ref={bodyRef}
+          style={{
+            padding: '18px 18px 22px',
+            minHeight: 260, maxHeight: 360,
+            overflowY: 'auto',
+            display: 'flex', flexDirection: 'column', gap: 4,
+            cursor: 'text',
+          }}
+        >
           {lines.map((line, i) => (
-            <p key={i} className="terminal-line" style={{
-              color: line.startsWith('>') && line.includes('[✓]') ? 'var(--green)'
-                   : line.startsWith('> [error]')               ? '#FF5F57'
-                   : line.startsWith('//')                       ? 'var(--blue)'
-                   : line.startsWith('──')                       ? 'rgba(226,217,198,0.15)'
-                   : line.startsWith('>')                        ? 'var(--green)'
-                   : line.startsWith('  [')                     ? 'rgba(226,217,198,0.55)'
-                   :                                               '#EDE5D2',
+            <p key={i} style={{
+              fontFamily: 'var(--serif)',
+              fontSize: 13, lineHeight: 1.7,
+              color: lineColor(line),
+              whiteSpace: 'pre-wrap', wordBreak: 'break-all',
             }}>
               {line}
             </p>
           ))}
 
           {!done && (
-            <div className="terminal-input-row">
-              <span className="terminal-caret">{'>'}</span>
-              <input
-                ref={inputRef}
-                value={input}
-                onChange={e => setInput(e.target.value)}
-                onKeyDown={handleKey}
-                placeholder={STEPS[step]?.placeholder}
-                className="terminal-input"
-                autoCapitalize="off"
-                autoCorrect="off"
-                spellCheck={false}
-              />
-              <span className="terminal-cursor" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 2, position: 'relative' }}>
+              <span style={{ color: 'var(--green)', fontFamily: 'var(--serif)', fontSize: 13, flexShrink: 0 }}>{'>'}</span>
+
+              <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
+                {/* Ghost typing overlay */}
+                {!userEngaged && !input && ghost && (
+                  <div style={{
+                    position: 'absolute', inset: 0,
+                    display: 'flex', alignItems: 'center',
+                    fontFamily: 'var(--serif)', fontSize: 13,
+                    color: 'rgba(255,255,255,0.38)',
+                    fontStyle: 'italic',
+                    pointerEvents: 'none',
+                    whiteSpace: 'nowrap', overflow: 'hidden',
+                  }}>
+                    {ghost}
+                    <span style={{
+                      display: 'inline-block', width: 6, height: 12, marginLeft: 2,
+                      background: 'rgba(255,255,255,0.28)',
+                      animation: 'blink 1s step-end infinite',
+                    }}/>
+                  </div>
+                )}
+
+                <input
+                  ref={inputRef}
+                  value={input}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKey}
+                  onFocus={() => setUserEngaged(true)}
+                  placeholder={userEngaged || !ghost ? STEPS[step]?.placeholder : ''}
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  style={{
+                    background: 'transparent', border: 'none', outline: 'none',
+                    color: '#EDE5D2', fontFamily: 'var(--serif)',
+                    fontSize: 13, width: '100%', minWidth: 0,
+                    caretColor: 'var(--green)',
+                  }}
+                />
+              </div>
+
+              {userEngaged && (
+                <span style={{
+                  display: 'inline-block', width: 7, height: 14,
+                  background: 'var(--green)',
+                  animation: 'blink 1s step-end infinite',
+                  flexShrink: 0,
+                }}/>
+              )}
             </div>
           )}
-
-          <div ref={bottomRef} />
         </div>
       </div>
 
       <style>{`
-        .terminal-window {
-          background: #0F0D0A;
-          border-radius: 8px;
-          overflow: hidden;
-          border: 0.5px solid rgba(226,217,198,0.08);
-        }
-        .terminal-topbar {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          padding: 10px 14px;
-          background: #1A1714;
-          border-bottom: 0.5px solid rgba(226,217,198,0.06);
-        }
-        .terminal-dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          display: inline-block;
-        }
-        .terminal-title {
-          font-family: var(--serif);
-          font-size: 10px;
-          color: rgba(226,217,198,0.3);
-          letter-spacing: 0.1em;
-          margin-left: 8px;
-        }
-        .terminal-body {
-          padding: 16px 14px 20px;
-          min-height: 240px;
-          max-height: 360px;
-          overflow-y: auto;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          cursor: text;
-        }
-        .terminal-line {
-          font-family: var(--serif);
-          font-size: 12px;
-          line-height: 1.7;
-          white-space: pre-wrap;
-          word-break: break-all;
-        }
-        .terminal-input-row {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          margin-top: 4px;
-        }
-        .terminal-caret {
-          color: var(--green);
-          font-family: var(--serif);
-          font-size: 12px;
-          flex-shrink: 0;
-        }
-        .terminal-input {
-          background: transparent;
-          border: none;
-          outline: none;
-          color: #EDE5D2;
-          font-family: var(--serif);
-          font-size: 12px;
-          flex: 1;
-          caret-color: var(--green);
-          min-width: 0;
-        }
-        .terminal-input::placeholder {
-          color: rgba(226,217,198,0.2);
-          font-style: italic;
-        }
-        .terminal-cursor {
-          display: inline-block;
-          width: 7px;
-          height: 13px;
-          background: var(--green);
-          animation: blink 1s step-end infinite;
-          flex-shrink: 0;
-        }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-        @media (min-width: 640px) {
-          .terminal-body { padding: 20px 20px 24px; min-height: 280px; }
-          .terminal-line { font-size: 13px; }
-          .terminal-input { font-size: 13px; }
-          .terminal-caret { font-size: 13px; }
-        }
       `}</style>
     </section>
   )
