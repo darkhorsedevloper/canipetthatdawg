@@ -43,12 +43,12 @@ export default function Services() {
       <h2 style={{
         fontFamily: 'var(--serif)',
         fontSize: 'clamp(28px, 4.5vw, 48px)',
-        fontWeight: 700,
+        fontWeight: 400,
         lineHeight: 1.15,
         color: 'var(--charcoal)',
         marginBottom: '28px',
       }}>
-        Pick what best <em style={{ color: 'var(--orange)', fontWeight: 700 }}>fits your dog.</em>
+        Pick what best <em style={{ color: 'var(--orange)' }}>fits your dog.</em>
       </h2>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px', marginBottom: '20px' }}>
@@ -129,7 +129,7 @@ export default function Services() {
               <p style={{
                 fontFamily: 'var(--serif)',
                 fontSize: '44px',
-                fontWeight: 700,
+                fontWeight: 400,
                 color: 'var(--charcoal)',
                 lineHeight: 1,
               }}>
