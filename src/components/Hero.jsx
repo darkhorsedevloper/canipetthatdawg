@@ -14,13 +14,13 @@ export default function Hero() {
       justifyContent: 'flex-end',
     }}>
 
-      {/* Subtle stripe pattern over the whole hero */}
+      {/* Subtle stripe pattern */}
       <div style={{
         position: 'absolute', inset: 0,
         backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 20px, transparent 20px 40px)',
       }}/>
 
-      {/* Strong two-direction gradient scrim */}
+      {/* Two-direction gradient scrim */}
       <div style={{
         position: 'absolute', inset: 0,
         background: [
@@ -29,7 +29,7 @@ export default function Hero() {
         ].join(', '),
       }}/>
 
-      {/* Photo placeholder — top right corner */}
+      {/* Photo placeholder — top right */}
       <div style={{
         position: 'absolute', top: 20, right: 20, zIndex: 1,
         width: 140, height: 100,
@@ -48,68 +48,102 @@ export default function Hero() {
 
       <div className="hero-content">
 
+        {/* Eyebrow */}
         <div style={{
           fontSize: '12px', letterSpacing: '0.18em', textTransform: 'uppercase',
           color: 'var(--green)', marginBottom: '18px',
           display: 'flex', alignItems: 'center', gap: '10px',
+          fontFamily: "'IBM Plex Mono', monospace",
         }}>
           <span style={{ display: 'block', width: '24px', height: '1px', background: 'var(--green)' }}/>
           {hero.eyebrow}
         </div>
 
+        {/* Headline — IBM Plex Mono upright + Instrument Serif italic accent */}
         <h1 className="hero-title" style={{
-          fontFamily: 'var(--serif)',
+          fontFamily: "'IBM Plex Mono', monospace",
           fontWeight: 700,
           color: '#EDE5D2',
+          letterSpacing: '0.01em',
         }}>
           {hero.headline}<br/>
-          <em style={{ color: 'var(--orange)' }}>{hero.headlineAccent}</em>
+          <em style={{
+            fontFamily: "'Instrument Serif', serif",
+            fontStyle: 'italic',
+            fontWeight: 400,
+            color: 'var(--orange)',
+          }}>
+            {hero.headlineAccent}
+          </em>
         </h1>
 
         <p style={{
           fontSize: '15px', lineHeight: 1.75,
           color: 'rgba(226,217,198,0.78)', maxWidth: '440px', marginBottom: '32px',
+          fontFamily: "'IBM Plex Mono', monospace",
         }}>
           {hero.subheadline}
         </p>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '28px', flexWrap: 'wrap' }}>
-          <a href={hero.ctaUrl} target="_blank" rel="noreferrer" style={{
-            fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700,
-            background: 'var(--orange)', color: '#0A0806',
-            padding: '14px 28px', borderRadius: '2px',
-          }}>
+        {/* Buttons */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '28px', flexWrap: 'wrap' }}>
+
+          {/* Primary — solid amber */}
+          <a
+            href={hero.ctaUrl}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              display: 'inline-flex', alignItems: 'center',
+              background: 'var(--orange)', color: '#0A0806',
+              padding: '14px 28px', borderRadius: '8px',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '12px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase',
+              textDecoration: 'none',
+            }}
+          >
             {hero.ctaLabel}
           </a>
 
+          {/* Secondary — dark border, two amber-highlight inner blocks */}
           <a
             href={hero.secondaryUrl}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderColor = 'var(--green)'
-              e.currentTarget.style.color = '#EDE5D2'
-              e.currentTarget.querySelector('span[data-arrow]').style.transform = 'translateX(3px)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'
-              e.currentTarget.style.color = 'rgba(255,255,255,0.85)'
-              e.currentTarget.querySelector('span[data-arrow]').style.transform = 'translateX(0)'
-            }}
             style={{
-              display: 'inline-flex', alignItems: 'center', gap: '10px',
-              fontSize: '12px', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 600,
-              color: 'rgba(255,255,255,0.85)',
-              padding: '14px 20px',
-              border: '1px solid rgba(255,255,255,0.35)',
-              borderRadius: '2px',
-              transition: 'border-color 180ms, color 180ms',
+              display: 'inline-flex', alignItems: 'center', gap: '5px',
+              border: '1.5px solid rgba(196,137,42,0.45)',
+              borderRadius: '8px',
+              padding: '5px 6px',
+              background: 'transparent',
+              textDecoration: 'none',
             }}
           >
-            {hero.secondaryLabel}
-            <span data-arrow aria-hidden style={{ transition: 'transform 180ms', display: 'inline-block' }}>↓</span>
+            <span style={{
+              background: 'var(--orange)', color: '#0A0806',
+              padding: '9px 16px', borderRadius: '4px',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '12px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase',
+              display: 'inline-flex', alignItems: 'center',
+            }}>
+              {hero.secondaryLabel}
+            </span>
+            <span style={{
+              background: 'var(--orange)', color: '#0A0806',
+              padding: '9px 12px', borderRadius: '4px',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '13px', fontWeight: 700,
+              display: 'inline-flex', alignItems: 'center',
+            }}>
+              ↓
+            </span>
           </a>
+
         </div>
 
-        <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '13px', color: 'rgba(226,217,198,0.55)' }}>
+        <p style={{
+          fontFamily: "'Instrument Serif', serif",
+          fontStyle: 'italic', fontSize: '13px',
+          color: 'rgba(226,217,198,0.55)',
+        }}>
           "{hero.quote}" — {hero.quoteAttribution}
         </p>
 
