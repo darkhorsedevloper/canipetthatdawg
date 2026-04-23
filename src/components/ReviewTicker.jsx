@@ -1,11 +1,4 @@
-const quotes = [
-  { text: 'Crickett sends a photo report before I think to ask.',        client: 'M.K. · Westside' },
-  { text: 'Kira came home tired AND settled. Rare combination.',          client: 'D.R. · O4W' },
-  { text: 'Felt like a friend was with my dog, not a stranger.',          client: 'S.L. · Inman Park' },
-  { text: 'Easiest onboarding of any sitter I\'ve tried.',                client: 'J.P. · Grant Park' },
-  { text: 'She noticed my dog was favoring a paw. Vet confirmed.',        client: 'A.C. · Kirkwood' },
-  { text: 'Adventure hike days are my dog\'s favorite days.',             client: 'T.N. · Decatur' },
-]
+import quotes from '../data/reviews.json'
 
 // Duplicate for seamless loop
 const doubled = [...quotes, ...quotes]

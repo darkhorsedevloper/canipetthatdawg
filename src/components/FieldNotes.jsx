@@ -1,8 +1,4 @@
-const posts = [
-  { title: 'What your dog is actually saying on the walk', date: 'Mar 2026' },
-  { title: 'Kira learns to ask for water', date: 'Feb 2026' },
-  { title: 'Why enrichment matters more than mileage', date: 'Jan 2026' },
-]
+import posts from '../data/blog.json'
 
 export default function FieldNotes() {
   return (

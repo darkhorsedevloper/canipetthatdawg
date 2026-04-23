@@ -1,9 +1,4 @@
-const DAWG = [
-  { name: 'Kira',    breed: 'Belgian Malinois', note: 'earned her off-leash recall this week',  color: 'var(--green)'  },
-  { name: 'Biscuit', breed: 'Mini Poodle',      note: 'first hike over 2 miles — total champ',  color: 'var(--orange)' },
-  { name: 'Marlow',  breed: 'Lab mix',          note: 'finally drank from the creek',           color: 'var(--blue)'   },
-  { name: 'Otis',    breed: 'Heeler',           note: "is learning 'settle' at coffee patios",  color: 'var(--green)'  },
-]
+import DAWG from '../data/dawg.json'
 
 export default function DawgOfTheDay() {
   const d = new Date()

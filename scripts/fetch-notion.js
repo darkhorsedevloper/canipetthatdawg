@@ -16,13 +16,16 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY })
-const DATABASE_ID = 'abc92211-0ce1-4460-a900-f1435cebbf64'
-const HERO_DATABASE_ID = '3f7da6447e7a4792b942d4ff295ed138'
-const TRUSTBAR_DATABASE_ID = 'f18f662a4c0449198b39b1207091ca3f'
-const SERVICES_DATABASE_ID = '75ccdef9e6da44ed83da12126cd726d7'
-const WHY_DATABASE_ID = '4dbc819c95144303a10d8bf3e5bfd29f'
-const ABOUT_DATABASE_ID = 'bcf60bb78c9b41779392ace442440040'
+const DATABASE_ID           = 'abc92211-0ce1-4460-a900-f1435cebbf64'
+const HERO_DATABASE_ID      = '3f7da6447e7a4792b942d4ff295ed138'
+const TRUSTBAR_DATABASE_ID  = 'f18f662a4c0449198b39b1207091ca3f'
+const SERVICES_DATABASE_ID  = '75ccdef9e6da44ed83da12126cd726d7'
+const WHY_DATABASE_ID       = '4dbc819c95144303a10d8bf3e5bfd29f'
+const ABOUT_DATABASE_ID     = 'bcf60bb78c9b41779392ace442440040'
 const ABOUT_TAGS_DATABASE_ID = '1939622b8f6342f8ba18c90c42c0f7a3'
+const REVIEWS_DATABASE_ID   = '85196d1a9dde49ed830c6f242679bb58'
+const BLOG_DATABASE_ID      = '4f17fabcd9224f9ab83295d519355454'
+const DAWG_DATABASE_ID      = 'd9d8fceeeab54caea20a6274bc37267d'
 
 function richText(prop) {
   if (!prop?.rich_text) return ''
@@ -157,7 +160,63 @@ async function fetchAbout() {
   console.log('✅ Wrote about to src/data/about.json')
 }
 
-Promise.all([fetchPages(), fetchHero(), fetchTrustBar(), fetchServices(), fetchWhy(), fetchAbout()]).catch(err => {
+async function fetchReviews() {
+  console.log('📡 Fetching reviews from Notion...')
+  const response = await notion.databases.query({
+    database_id: REVIEWS_DATABASE_ID,
+    filter: { property: 'Published', checkbox: { equals: true } },
+  })
+  const items = response.results.map(page => ({
+    text:   page.properties['Review']?.rich_text?.[0]?.plain_text ?? '',
+    client: page.properties['Client Name']?.title?.[0]?.plain_text ?? '',
+  }))
+  writeFileSync(resolve(__dirname, '../src/data/reviews.json'), JSON.stringify(items, null, 2))
+  console.log(`✅ Wrote ${items.length} reviews to src/data/reviews.json`)
+}
+
+async function fetchBlog() {
+  console.log('📡 Fetching blog posts from Notion...')
+  const response = await notion.databases.query({
+    database_id: BLOG_DATABASE_ID,
+    filter: { property: 'Status', select: { equals: 'Published' } },
+    sorts: [{ property: 'Publish Date', direction: 'descending' }],
+  })
+  const items = response.results.map(page => {
+    const raw = page.properties['Publish Date']?.date?.start
+    const date = raw
+      ? new Date(raw).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+      : ''
+    return {
+      title: page.properties['Title']?.title?.[0]?.plain_text ?? '',
+      date,
+    }
+  })
+  writeFileSync(resolve(__dirname, '../src/data/blog.json'), JSON.stringify(items, null, 2))
+  console.log(`✅ Wrote ${items.length} blog posts to src/data/blog.json`)
+}
+
+async function fetchDawg() {
+  console.log('📡 Fetching Dawg of the Day from Notion...')
+  const COLOR_MAP_DAWG = { green: 'var(--green)', orange: 'var(--orange)', blue: 'var(--blue)' }
+  const response = await notion.databases.query({
+    database_id: DAWG_DATABASE_ID,
+    filter: { property: 'Active', checkbox: { equals: true } },
+    sorts: [{ property: 'Order', direction: 'ascending' }],
+  })
+  const items = response.results.map(page => ({
+    name:  page.properties['Name']?.title?.[0]?.plain_text ?? '',
+    breed: page.properties['Breed']?.rich_text?.[0]?.plain_text ?? '',
+    note:  page.properties['Weekly Note']?.rich_text?.[0]?.plain_text ?? '',
+    color: COLOR_MAP_DAWG[page.properties['Color']?.select?.name] ?? 'var(--green)',
+  }))
+  writeFileSync(resolve(__dirname, '../src/data/dawg.json'), JSON.stringify(items, null, 2))
+  console.log(`✅ Wrote ${items.length} dawgs to src/data/dawg.json`)
+}
+
+Promise.all([
+  fetchPages(), fetchHero(), fetchTrustBar(), fetchServices(),
+  fetchWhy(), fetchAbout(), fetchReviews(), fetchBlog(), fetchDawg(),
+]).catch(err => {
   console.error('❌ Notion fetch failed:', err.message)
   process.exit(1)
 })
