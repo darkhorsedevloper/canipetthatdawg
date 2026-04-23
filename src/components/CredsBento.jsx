@@ -1,15 +1,5 @@
-const books = [
-  { title: 'The Other End of the Leash', author: 'Patricia McConnell' },
-  { title: "Don't Shoot the Dog",        author: 'Karen Pryor' },
-  { title: 'How Stella Learned to Talk', author: 'Christina Hunger' },
-  { title: 'For the Love of a Dog',      author: 'Patricia McConnell' },
-]
-
-const pods = [
-  { name: 'Pet Sitter Confessional',  url: 'https://www.petsitterconfessional.com/', initials: 'PSC' },
-  { name: 'Drinking From the Toilet', url: null },
-  { name: 'Canine Conversations',     url: null },
-]
+import books from '../data/books.json'
+import pods from '../data/podcasts.json'
 
 const card = {
   borderRadius: '10px',

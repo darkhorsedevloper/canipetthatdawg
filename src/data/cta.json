@@ -1,0 +1,6 @@
+[
+  { "label": "Book a Session", "sub": "Time To Pet portal",       "href": "https://www.timetopet.com/portal/create",      "color": "#C4892A", "external": true  },
+  { "label": "Meet & Greet",   "sub": "Schedule a visit",         "href": "https://www.timetopet.com/portal/create",      "color": "#4A7C5E", "external": true  },
+  { "label": "View Services",  "sub": "Rates + details",          "href": "#services",                                    "color": "#3A6B8A", "external": false },
+  { "label": "Follow Along",   "sub": "@canipet_that_dawg_llc",   "href": "https://instagram.com/canipet_that_dawg_llc",  "color": "#EDE5D2", "external": true  }
+]

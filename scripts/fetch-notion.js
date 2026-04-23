@@ -26,6 +26,9 @@ const ABOUT_TAGS_DATABASE_ID = '1939622b8f6342f8ba18c90c42c0f7a3'
 const REVIEWS_DATABASE_ID   = '85196d1a9dde49ed830c6f242679bb58'
 const BLOG_DATABASE_ID      = '4f17fabcd9224f9ab83295d519355454'
 const DAWG_DATABASE_ID      = 'd9d8fceeeab54caea20a6274bc37267d'
+const CTA_DATABASE_ID       = '5961c28c2d7445b4bd4ff939a609875f'
+const BOOKS_DATABASE_ID     = '7df9bc62749d4c9ab85e58a589a953ab'
+const PODCASTS_DATABASE_ID  = '9539e48f7b674d5ea305371252190a7e'
 
 function richText(prop) {
   if (!prop?.rich_text) return ''
@@ -213,9 +216,59 @@ async function fetchDawg() {
   console.log(`✅ Wrote ${items.length} dawgs to src/data/dawg.json`)
 }
 
+async function fetchCTA() {
+  console.log('📡 Fetching CTA actions from Notion...')
+  const CTA_COLOR_MAP = { orange: '#C4892A', green: '#4A7C5E', blue: '#3A6B8A', cream: '#EDE5D2' }
+  const response = await notion.databases.query({
+    database_id: CTA_DATABASE_ID,
+    sorts: [{ property: 'Order', direction: 'ascending' }],
+  })
+  const items = response.results.map(page => ({
+    label:    page.properties['Label']?.title?.[0]?.plain_text ?? '',
+    sub:      page.properties['Sub']?.rich_text?.[0]?.plain_text ?? '',
+    href:     page.properties['URL']?.url ?? '#',
+    color:    CTA_COLOR_MAP[page.properties['Color']?.select?.name] ?? '#C4892A',
+    external: page.properties['External']?.checkbox ?? false,
+  }))
+  writeFileSync(resolve(__dirname, '../src/data/cta.json'), JSON.stringify(items, null, 2))
+  console.log(`✅ Wrote ${items.length} CTA actions to src/data/cta.json`)
+}
+
+async function fetchBooks() {
+  console.log('📡 Fetching reading list from Notion...')
+  const response = await notion.databases.query({
+    database_id: BOOKS_DATABASE_ID,
+    filter: { property: 'Active', checkbox: { equals: true } },
+    sorts: [{ property: 'Order', direction: 'ascending' }],
+  })
+  const items = response.results.map(page => ({
+    title:  page.properties['Title']?.title?.[0]?.plain_text ?? '',
+    author: page.properties['Author']?.rich_text?.[0]?.plain_text ?? '',
+  }))
+  writeFileSync(resolve(__dirname, '../src/data/books.json'), JSON.stringify(items, null, 2))
+  console.log(`✅ Wrote ${items.length} books to src/data/books.json`)
+}
+
+async function fetchPodcasts() {
+  console.log('📡 Fetching podcasts from Notion...')
+  const response = await notion.databases.query({
+    database_id: PODCASTS_DATABASE_ID,
+    filter: { property: 'Active', checkbox: { equals: true } },
+    sorts: [{ property: 'Order', direction: 'ascending' }],
+  })
+  const items = response.results.map(page => ({
+    name:     page.properties['Name']?.title?.[0]?.plain_text ?? '',
+    url:      page.properties['URL']?.url ?? null,
+    initials: page.properties['Initials']?.rich_text?.[0]?.plain_text ?? '',
+  }))
+  writeFileSync(resolve(__dirname, '../src/data/podcasts.json'), JSON.stringify(items, null, 2))
+  console.log(`✅ Wrote ${items.length} podcasts to src/data/podcasts.json`)
+}
+
 Promise.all([
   fetchPages(), fetchHero(), fetchTrustBar(), fetchServices(),
   fetchWhy(), fetchAbout(), fetchReviews(), fetchBlog(), fetchDawg(),
+  fetchCTA(), fetchBooks(), fetchPodcasts(),
 ]).catch(err => {
   console.error('❌ Notion fetch failed:', err.message)
   process.exit(1)

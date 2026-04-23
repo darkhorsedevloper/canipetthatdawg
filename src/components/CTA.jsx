@@ -1,9 +1,4 @@
-const actions = [
-  { label: 'Book a Session', sub: 'Time To Pet portal', href: 'https://www.timetopet.com/portal/create', external: true, color: '#C4892A' },
-  { label: 'Meet & Greet', sub: 'Schedule a visit', href: 'https://www.timetopet.com/portal/create', external: true, color: '#4A7C5E' },
-  { label: 'View Services', sub: 'Rates + details', href: '#services', external: false, color: '#3A6B8A' },
-  { label: 'Follow Along', sub: '@canipet_that_dawg_llc', href: 'https://instagram.com/canipet_that_dawg_llc', external: true, color: '#EDE5D2' },
-]
+import actions from '../data/cta.json'
 
 export default function CTA() {
   return (
