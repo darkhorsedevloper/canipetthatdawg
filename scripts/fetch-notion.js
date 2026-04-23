@@ -26,7 +26,8 @@ const ABOUT_TAGS_DATABASE_ID = '1939622b8f6342f8ba18c90c42c0f7a3'
 const REVIEWS_DATABASE_ID   = '85196d1a9dde49ed830c6f242679bb58'
 const BLOG_DATABASE_ID      = '4f17fabcd9224f9ab83295d519355454'
 const DAWG_DATABASE_ID      = 'd9d8fceeeab54caea20a6274bc37267d'
-const CTA_DATABASE_ID       = '5961c28c2d7445b4bd4ff939a609875f'
+const CTA_DATABASE_ID         = '5961c28c2d7445b4bd4ff939a609875f'
+const CTA_CONTENT_DATABASE_ID = '07bd76ca8205407683f430b3e6ed6339'
 const BOOKS_DATABASE_ID     = '7df9bc62749d4c9ab85e58a589a953ab'
 const PODCASTS_DATABASE_ID  = '9539e48f7b674d5ea305371252190a7e'
 
@@ -265,10 +266,23 @@ async function fetchPodcasts() {
   console.log(`✅ Wrote ${items.length} podcasts to src/data/podcasts.json`)
 }
 
+async function fetchCTAContent() {
+  console.log('📡 Fetching CTA content from Notion...')
+  const response = await notion.databases.query({ database_id: CTA_CONTENT_DATABASE_ID })
+  const content = {}
+  response.results.forEach(page => {
+    const field = page.properties['Field']?.title?.[0]?.plain_text
+    const value = page.properties['Value']?.rich_text?.[0]?.plain_text ?? ''
+    if (field) content[field] = value
+  })
+  writeFileSync(resolve(__dirname, '../src/data/cta-content.json'), JSON.stringify(content, null, 2))
+  console.log('✅ Wrote CTA content to src/data/cta-content.json')
+}
+
 Promise.all([
   fetchPages(), fetchHero(), fetchTrustBar(), fetchServices(),
   fetchWhy(), fetchAbout(), fetchReviews(), fetchBlog(), fetchDawg(),
-  fetchCTA(), fetchBooks(), fetchPodcasts(),
+  fetchCTA(), fetchCTAContent(), fetchBooks(), fetchPodcasts(),
 ]).catch(err => {
   console.error('❌ Notion fetch failed:', err.message)
   process.exit(1)

@@ -1,4 +1,5 @@
 import actions from '../data/cta.json'
+import cta from '../data/cta-content.json'
 
 export default function CTA() {
   return (
@@ -17,7 +18,7 @@ export default function CTA() {
           display: 'flex', alignItems: 'center', gap: '12px',
         }}>
           <span style={{ display: 'block', width: '24px', height: '1px', background: 'var(--green)' }} />
-          Atlanta · Now Accepting Clients
+          {cta.eyebrow}
         </p>
 
         <h2 className="cta-heading" style={{
@@ -27,8 +28,10 @@ export default function CTA() {
           color: '#EDE5D2',
           marginBottom: '20px',
         }}>
-          Ready when<br />
-          your dog <em style={{ color: 'var(--orange)' }}>is.</em>
+          {cta.headline.split('\n').map((line, i, arr) => (
+            <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+          ))}{' '}
+          <span style={{ color: 'var(--orange)' }}>{cta.headlineAccent}</span>
         </h2>
 
         <p style={{
@@ -38,7 +41,7 @@ export default function CTA() {
           maxWidth: '460px',
           marginBottom: '48px',
         }}>
-          Fear Free Certified, insured, and built around behavioral depth — not just availability.
+          {cta.subheadline}
         </p>
 
         <div className="cta-buttons">
