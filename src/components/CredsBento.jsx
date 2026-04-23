@@ -19,6 +19,7 @@ const card = {
 const darkCard = {
   ...card,
   background: 'var(--hero-bg)',
+  border: '1px solid var(--border-bold)',
 }
 
 const lightCard = {
@@ -111,7 +112,7 @@ export default function CredsBento() {
           </p>
           {books.map((b, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 0', borderTop: i === 0 ? 'none' : '0.5px solid var(--border)' }}>
-              <p style={{ fontFamily: "'Instrument Serif', serif", fontStyle: 'italic', fontSize: '14px', color: 'var(--charcoal)', lineHeight: 1.3 }}>{b.title}</p>
+              <p style={{ fontFamily: "'Space Mono', monospace", fontStyle: 'italic', fontSize: '13px', color: 'var(--charcoal)', lineHeight: 1.3 }}>{b.title}</p>
               <p style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.04em', marginLeft: '12px', whiteSpace: 'nowrap', fontFamily: "'IBM Plex Mono', monospace" }}>{b.author}</p>
             </div>
           ))}

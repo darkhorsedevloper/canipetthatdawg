@@ -62,7 +62,7 @@ export default function Hero() {
         {/* Headline — IBM Plex Mono upright + Instrument Serif italic accent */}
         <h1 className="hero-title" style={{
           fontFamily: "'IBM Plex Mono', monospace",
-          fontWeight: 700,
+          fontWeight: 400,
           color: '#EDE5D2',
           letterSpacing: '0.01em',
         }}>
@@ -105,36 +105,22 @@ export default function Hero() {
             {hero.ctaLabel}
           </a>
 
-          {/* Secondary — dark border, two amber-highlight inner blocks */}
+          {/* Secondary — dark fill, cream text + border */}
           <a
             href={hero.secondaryUrl}
             style={{
-              display: 'inline-flex', alignItems: 'center', gap: '5px',
-              border: '1.5px solid rgba(196,137,42,0.45)',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              border: '1.5px solid rgba(237,229,210,0.35)',
               borderRadius: '8px',
-              padding: '5px 6px',
-              background: 'transparent',
+              padding: '14px 28px',
+              background: 'rgba(18,14,11,0.55)',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '12px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase',
+              color: '#EDE5D2',
               textDecoration: 'none',
             }}
           >
-            <span style={{
-              background: 'var(--orange)', color: '#0A0806',
-              padding: '9px 16px', borderRadius: '4px',
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: '12px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase',
-              display: 'inline-flex', alignItems: 'center',
-            }}>
-              {hero.secondaryLabel}
-            </span>
-            <span style={{
-              background: 'var(--orange)', color: '#0A0806',
-              padding: '9px 12px', borderRadius: '4px',
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: '13px', fontWeight: 700,
-              display: 'inline-flex', alignItems: 'center',
-            }}>
-              ↓
-            </span>
+            {hero.secondaryLabel} ↓
           </a>
 
         </div>

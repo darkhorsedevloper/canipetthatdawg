@@ -14,7 +14,7 @@ export default function ReviewTicker() {
   return (
     <div style={{
       overflow: 'hidden',
-      background: 'var(--charcoal)',
+      background: 'var(--hero-bg)',
       borderTop: '0.5px solid rgba(196,137,42,0.3)',
       borderBottom: '0.5px solid rgba(196,137,42,0.3)',
       padding: '12px 0',
