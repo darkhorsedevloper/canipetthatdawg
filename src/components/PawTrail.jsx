@@ -1,5 +1,6 @@
-const PAWS = '🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  '
-const track = PAWS + PAWS
+const SEGMENT = '🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  🐾  '
+// Triple so the visible window is always filled and -33.333% loops seamlessly
+const track = SEGMENT + SEGMENT + SEGMENT
 
 export default function PawTrail() {
   return (
@@ -18,7 +19,7 @@ export default function PawTrail() {
         fontSize: 14,
         color: 'var(--orange)',
         opacity: 0.7,
-        animation: 'pawScroll 22s linear infinite',
+        animation: 'pawScroll 14s linear infinite',
         willChange: 'transform',
       }}>
         {track}
@@ -27,7 +28,7 @@ export default function PawTrail() {
       <style>{`
         @keyframes pawScroll {
           from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
+          to   { transform: translateX(-33.333%); }
         }
       `}</style>
     </div>
