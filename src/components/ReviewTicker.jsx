@@ -27,7 +27,7 @@ export default function ReviewTicker() {
       }}>
         {doubled.map((q, i) => (
           <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', paddingRight: '56px' }}>
-            <span style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '13px', color: '#EDE5D2' }}>
+            <span style={{ fontFamily: 'var(--serif)', fontSize: '13px', color: '#EDE5D2' }}>
               {'"'}{q.text}{'"'}
             </span>
             <span style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--orange)' }}>

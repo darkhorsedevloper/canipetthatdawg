@@ -68,8 +68,8 @@ export default function DawgOfTheDay() {
           </h2>
 
           <p style={{
-            fontFamily: 'var(--serif)', fontStyle: 'italic',
-            fontSize: '18px', color: 'var(--muted)', marginBottom: '14px',
+            fontFamily: 'var(--serif)',
+            fontSize: '14px', letterSpacing: '0.06em', color: 'var(--muted)', marginBottom: '14px',
           }}>
             — {dog.breed}
           </p>

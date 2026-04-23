@@ -21,7 +21,7 @@ export default function About() {
         <p style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '14px' }}>
           About
         </p>
-        <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: '19px', color: 'var(--faint)', lineHeight: 1.45, marginBottom: '16px' }}>
+        <p style={{ fontFamily: 'var(--serif)', fontSize: '19px', color: 'var(--faint)', lineHeight: 1.45, marginBottom: '16px' }}>
           {'"'}{content.quote}{' '}
           <strong style={{ fontStyle: 'normal', color: 'var(--orange)' }}>{content.quoteAccent}</strong>
           {' '}{content.quoteEnd}{'"'}
