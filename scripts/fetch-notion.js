@@ -29,7 +29,7 @@ const DAWG_DATABASE_ID      = 'd9d8fceeeab54caea20a6274bc37267d'
 const CTA_DATABASE_ID         = '5961c28c2d7445b4bd4ff939a609875f'
 const CTA_CONTENT_DATABASE_ID = '07bd76ca8205407683f430b3e6ed6339'
 const BOOKS_DATABASE_ID     = '7df9bc62749d4c9ab85e58a589a953ab'
-const PODCASTS_DATABASE_ID  = '9539e48f7b674d5ea305371252190a7e'
+const PODCASTS_DATABASE_ID  = 'b881ace1c78141cb92dcfed885e4807b'
 
 function richText(prop) {
   if (!prop?.rich_text) return ''
@@ -279,11 +279,24 @@ async function fetchCTAContent() {
   console.log('✅ Wrote CTA content to src/data/cta-content.json')
 }
 
-Promise.all([
-  fetchPages(), fetchHero(), fetchTrustBar(), fetchServices(),
-  fetchWhy(), fetchAbout(), fetchReviews(), fetchBlog(), fetchDawg(),
-  fetchCTA(), fetchCTAContent(), fetchBooks(), fetchPodcasts(),
-]).catch(err => {
-  console.error('❌ Notion fetch failed:', err.message)
-  process.exit(1)
+// Required — build fails if these can't be fetched
+const required = { pages: fetchPages, hero: fetchHero, trustBar: fetchTrustBar,
+  services: fetchServices, why: fetchWhy, about: fetchAbout }
+
+// Best-effort — logged as warnings, build continues with existing JSON stubs
+const optional = { reviews: fetchReviews, blog: fetchBlog, dawg: fetchDawg,
+  cta: fetchCTA, ctaContent: fetchCTAContent, books: fetchBooks, podcasts: fetchPodcasts }
+
+Promise.allSettled([
+  ...Object.entries(required).map(([name, fn]) =>
+    fn().catch(err => { throw Object.assign(err, { _fetcher: name }) })),
+  ...Object.entries(optional).map(([name, fn]) =>
+    fn().catch(err => console.warn(`⚠️  ${name} skipped (${err.message.slice(0, 80)})`)))
+]).then(results => {
+  const failed = results.filter(r => r.status === 'rejected')
+  if (failed.length) {
+    failed.forEach(r => console.error(`❌ ${r.reason._fetcher ?? 'unknown'}: ${r.reason.message}`))
+    process.exit(1)
+  }
+  console.log('🎉 All Notion data fetched successfully')
 })

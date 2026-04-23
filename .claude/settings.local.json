@@ -30,7 +30,24 @@
       "Bash(bunx @every-env/compound-plugin install --help)",
       "Bash(bunx @every-env/compound-plugin install compound-engineering --to cursor)",
       "Bash(bunx @every-env/compound-plugin install compound-engineering --to=cursor)",
-      "mcp__67e78592-e0b8-4198-a970-6600ebfd2d7d__notion-create-pages"
+      "mcp__67e78592-e0b8-4198-a970-6600ebfd2d7d__notion-create-pages",
+      "WebSearch",
+      "WebFetch(domain:support.claude.com)",
+      "Read(//private/tmp/**)",
+      "Bash(unzip -o \"/Users/cs/Downloads/Can I Pet That Dawg LLC.zip\" -d canipet_extract)",
+      "Bash(rm -rf canipet_extract2)",
+      "Bash(unzip -o \"/Users/cs/Downloads/Can I Pet That Dawg LLC \\(1\\).zip\" -d canipet_extract2)",
+      "Bash(rm -rf canipet_extract3)",
+      "Bash(unzip -o \"/Users/cs/Downloads/Can I Pet That Dawg LLC \\(2\\).zip\" -d canipet_extract3)",
+      "Bash(cp /tmp/canipet_extract3/src/components/*.jsx /Users/cs/canipetthatdawg/src/components/)",
+      "Bash(cp /tmp/canipet_extract3/src/data/*.json /Users/cs/canipetthatdawg/src/data/)",
+      "Bash(cp /tmp/canipet_extract3/src/index.css /Users/cs/canipetthatdawg/src/index.css)",
+      "Bash(git checkout *)",
+      "WebFetch(domain:claude.ai)",
+      "Bash(gh run *)",
+      "mcp__67e78592-e0b8-4198-a970-6600ebfd2d7d__notion-search",
+      "mcp__67e78592-e0b8-4198-a970-6600ebfd2d7d__notion-fetch",
+      "Bash(node -e ' *)"
     ]
   }
 }
