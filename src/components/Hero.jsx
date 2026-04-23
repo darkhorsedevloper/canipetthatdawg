@@ -59,7 +59,7 @@ export default function Hero() {
           {hero.eyebrow}
         </div>
 
-        {/* Headline — IBM Plex Mono upright + Instrument Serif italic accent */}
+        {/* Headline */}
         <h1 className="hero-title" style={{
           fontFamily: "'IBM Plex Mono', monospace",
           fontWeight: 400,
@@ -67,14 +67,14 @@ export default function Hero() {
           letterSpacing: '0.01em',
         }}>
           {hero.headline}<br/>
-          <em style={{
-            fontFamily: "'Instrument Serif', serif",
-            fontStyle: 'italic',
+          <span style={{
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontStyle: 'normal',
             fontWeight: 400,
             color: 'var(--orange)',
           }}>
             {hero.headlineAccent}
-          </em>
+          </span>
         </h1>
 
         <p style={{
@@ -126,8 +126,8 @@ export default function Hero() {
         </div>
 
         <p style={{
-          fontFamily: "'Instrument Serif', serif",
-          fontStyle: 'italic', fontSize: '13px',
+          fontFamily: "'IBM Plex Mono', monospace",
+          fontSize: '13px',
           color: 'rgba(226,217,198,0.55)',
         }}>
           "{hero.quote}" — {hero.quoteAttribution}

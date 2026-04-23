@@ -266,7 +266,6 @@ export default function ContactTerminal() {
                     display: 'flex', alignItems: 'center',
                     fontFamily: 'var(--serif)', fontSize: 13,
                     color: 'rgba(255,255,255,0.38)',
-                    fontStyle: 'italic',
                     pointerEvents: 'none',
                     whiteSpace: 'nowrap', overflow: 'hidden',
                   }}>

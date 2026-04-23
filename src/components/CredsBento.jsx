@@ -37,7 +37,7 @@ export default function CredsBento() {
 
       <h2 style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 'clamp(26px, 4vw, 42px)', fontWeight: 400, color: 'var(--charcoal)', marginBottom: '24px', lineHeight: 1.2 }}>
         What's behind the{' '}
-        <em style={{ fontFamily: "'Instrument Serif', serif", fontStyle: 'italic', color: 'var(--orange)' }}>work.</em>
+        <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontStyle: 'normal', color: 'var(--orange)' }}>work.</span>
       </h2>
 
       {/* Top row — dark cards */}
