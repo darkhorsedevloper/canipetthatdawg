@@ -81,12 +81,13 @@ export default function CredsBento() {
         </div>
 
         {/* Time To Pet */}
-        <div style={{ ...darkCard, padding: '24px 18px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '14px', minHeight: 170 }}>
-          <div style={{ border: '2px solid var(--orange)', borderRadius: '6px', padding: '10px 18px' }}>
-            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '13px', fontWeight: 700, color: 'var(--orange)', letterSpacing: '0.08em' }}>TIME TO PET</span>
+        <div style={{ ...darkCard, padding: '22px 18px', minHeight: 170, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div>
+            <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Platform</p>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3 }}>Time To Pet</p>
           </div>
-          <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(237,229,210,0.45)', textAlign: 'center', lineHeight: 1.6, fontFamily: "'IBM Plex Mono', monospace" }}>
-            Client Portal<br/>Active
+          <p style={{ fontSize: '11px', color: 'rgba(237,229,210,0.5)', lineHeight: 1.6, maxWidth: '130px', marginTop: '10px' }}>
+            Scheduling, GPS tracking, and report cards — all in one place.
           </p>
         </div>
 

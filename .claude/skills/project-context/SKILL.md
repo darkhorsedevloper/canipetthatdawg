@@ -66,28 +66,35 @@ All fetched by `scripts/fetch-notion.js`, output to `src/data/`.
 
 **To update content:** Edit in Notion → merge to main (or trigger redeploy) → fetch-notion.js runs at build time and overwrites JSON files.
 
+**Multi-line text in Notion:** Use ` | ` (space-pipe-space) as a line break delimiter in Notion rich text fields. The fetch script converts these to `\n` via `.replace(/ \| /g, '\n')`. Components should use `whiteSpace: 'pre-line'` to render the breaks.
+
+**Important:** Always join ALL rich_text runs, not just `[0]`. The fetch script uses `.map(t => t.plain_text).join('')` — Notion sometimes splits a single field into multiple text spans.
+
 **Podcasts DB issue:** Not accessible to the canipetthatdawg-site integration. Fetch script handles as soft failure — existing podcasts.json used as fallback. Fix: In Notion, open Podcasts DB → ••• → Connections → add canipetthatdawg-site.
 
 ## Component Map (src/components/)
 
+Page order: Nav → Hero → TrustBar → PhotoStrips → Services → EveryVisit → Why → DawgOfTheDay → ReviewTicker → CredsBento → About → FieldNotes → CTA → ContactTerminal → Footer
+
 | Component | Data source | Notes |
 |-----------|-------------|-------|
-| Nav.jsx | Hardcoded | Dark mode toggle (ModeSwitch pill), hamburger menu |
-| Hero.jsx | hero.json | IBM Plex Mono headline, orange accent span |
+| Nav.jsx | Hardcoded | Brand: "Can I Pet That **Dawg?**" (orange on "Dawg?"); dark mode toggle (ModeSwitch pill), hamburger menu |
+| Hero.jsx | hero.json | Typewriter animation on eyebrow field; subheadline uses `whiteSpace: pre-line`; "Fear Free" links to fearfreehappyhomes.com; quote renders as `{quote} — {quoteAttribution}` |
 | TrustBar.jsx | trustbar.json | Always-scrolling ticker |
-| PhotoStrips.jsx | Hardcoded | 3 placeholder photo slots |
-| Services.jsx | Hardcoded | ⚠️ Notion fetch overwrites services.json but component doesn't read it |
-| Why.jsx | why.json | 2-col grid |
+| PhotoStrips.jsx | Static assets | Real photos from src/assets/ — PP Kira Cute Down.JPEG, PP Kira Cute Summer.JPEG, PP Kira Cute.JPEG; 3-col desktop / 1-col mobile via `.photo-strips-grid` CSS class; `paddingBottom: 100%` + `position: absolute; inset: 0` for reliable aspect ratio on mobile |
+| Services.jsx | Hardcoded | Flip cards — front: service name + badge, back: description + price + Book This button. Uses CSS 3D transform with `preserve-3d`. Front text centering uses `display: table` / `display: table-cell` / `verticalAlign: middle` pattern. |
+| EveryVisit.jsx | Hardcoded | NEW — standalone section between Services and Why. Two feature cards: GPS Tracking (green, 📍) and Report Card (orange, 📋). References Time To Pet as a linked `"Time to Pet"` with quotes. |
+| Why.jsx | why.json | 2-col grid. Eyebrow: "Why Can I Pet That Dawg?" (with ?) |
 | DawgOfTheDay.jsx | dawg.json | Rotates by (date + month) % dogs.length |
 | ReviewTicker.jsx | reviews.json | Scrolling quotes ticker |
-| CredsBento.jsx | books.json + podcasts.json | Fear Free seal SVG, reading list, podcasts |
-| About.jsx | about.json | Map + bio |
+| CredsBento.jsx | books.json + podcasts.json | Fear Free seal SVG, PSI/PSA stacked card, Time To Pet card (all three use `darkCard` style with `--hero-bg` bg and `--border-bold` border), reading list, podcasts |
+| About.jsx | about.json | MiniMap + bio; label "Atlanta 30318 · within 10 mi"; top bar font size 12px |
 | FieldNotes.jsx | blog.json | Links to Substack |
 | CTA.jsx | cta.json + cta-content.json | Bottom CTA section |
 | ContactTerminal.jsx | Hardcoded | Multi-step contact form terminal |
-| Footer.jsx | Hardcoded | Instagram, Substack, Time To Pet |
+| Footer.jsx | Hardcoded | Brand: "Can I Pet That **Dawg?**" (orange on "Dawg?"); Instagram, Substack, Time To Pet |
 | PawTrail.jsx | Hardcoded | Decorative scrolling paw banner |
-| MiniMap.jsx | Hardcoded | Atlanta service area SVG map |
+| MiniMap.jsx | Hardcoded | Atlanta service area SVG map; no radius chip; legend font 12px |
 | MapShowcase.jsx | Hardcoded | Leaflet map style previewer |
 
 ## Known Pending Issues
@@ -96,18 +103,19 @@ All fetched by `scripts/fetch-notion.js`, output to `src/data/`.
 2. **Podcasts Notion access** — see above. One-time fix needed in Notion UI.
 3. **`<em>` tag in CTA.jsx** — `<em>` around "is." still renders italic in some browsers via browser defaults. Should be changed to `<span>`.
 4. **Hero photo placeholder** — still a dashed box. Real photo of Crickett + Kira on trail needed.
-5. **PhotoStrips** — three placeholder squares. Real photos needed.
 
 ## Responsive Design
 
 Single breakpoint: **640px**. Mobile-first throughout.
 
+- `overflow-x: hidden; max-width: 100%` on both `html` and `body` — prevents horizontal scroll
 - Hamburger & footer icons: 44px minimum touch targets
 - Hero placeholder: hidden below 480px
 - Map tiles: CSS grid auto-fit
 - CTA: 1-col below 360px
 - CredsBento author names: truncate with ellipsis
 - MiniMap "Hover pins": hidden on mobile
+- PhotoStrips: `.photo-strips-grid` — 1fr single column on mobile, `repeat(3, 1fr)` at 640px+
 
 ## Key Design Decisions
 
@@ -117,3 +125,5 @@ Single breakpoint: **640px**. Mobile-first throughout.
 - Hero secondary button: dark fill, cream text + border
 - Hero headline: IBM Plex Mono weight 400 (not 700)
 - Services data inlined to avoid Notion build step overwriting it
+- Brand name written as "Can I Pet That Dawg?" everywhere — question mark is part of the brand
+- EveryVisit section added after user testing showed GPS/report card features were buried
