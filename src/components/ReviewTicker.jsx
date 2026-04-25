@@ -5,13 +5,16 @@ const doubled = [...quotes, ...quotes]
 
 export default function ReviewTicker() {
   return (
-    <div style={{
+    <a href="https://g.page/r/CS7eaMrwENHeEBM/review" target="_blank" rel="noreferrer" style={{
+      display: 'block',
       overflow: 'hidden',
       background: 'var(--hero-bg)',
       borderTop: '0.5px solid rgba(196,137,42,0.3)',
       borderBottom: '0.5px solid rgba(196,137,42,0.3)',
       padding: '12px 0',
       whiteSpace: 'nowrap',
+      textDecoration: 'none',
+      cursor: 'pointer',
     }}>
       <div style={{
         display: 'inline-flex',
@@ -37,6 +40,6 @@ export default function ReviewTicker() {
           100% { transform: translateX(-50%); }
         }
       `}</style>
-    </div>
+    </a>
   )
 }
