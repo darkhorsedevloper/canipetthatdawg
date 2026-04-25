@@ -19,7 +19,7 @@ export default function ReviewTicker() {
       <div style={{
         display: 'inline-flex',
         gap: '0',
-        animation: 'ticker 40s linear infinite',
+        animation: 'ticker 20s linear infinite',
       }}>
         {doubled.map((q, i) => (
           <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', paddingRight: '56px' }}>
