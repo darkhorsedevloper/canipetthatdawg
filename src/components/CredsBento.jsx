@@ -94,7 +94,7 @@ export default function CredsBento() {
       </div>
 
       {/* Bottom row — light cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '10px' }} className="bento-bottom">
+      <div style={{ gap: '10px' }} className="bento-bottom">
 
         {/* Reading List */}
         <div style={{ ...lightCard, borderLeft: '2px solid var(--orange)', padding: '20px 20px' }}>
