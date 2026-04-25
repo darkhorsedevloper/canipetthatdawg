@@ -323,3 +323,7 @@ img { display: block; max-width: 100%; }
 
 /* ModeSwitch pill — cursor override so the sliding ball keeps pointer */
 .mode-switch-pill { cursor: pointer; }
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}

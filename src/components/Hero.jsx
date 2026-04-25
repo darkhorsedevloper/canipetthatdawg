@@ -1,6 +1,50 @@
+import { useState, useEffect } from 'react'
 import hero from '../data/hero.json'
 
+function useTypewriter(text, speed = 38, pauseAfter = 1800, delay = 400) {
+  const [displayed, setDisplayed] = useState('')
+  const [done, setDone] = useState(false)
+
+  useEffect(() => {
+    let i = 0
+    let timeout
+
+    function type() {
+      setDone(false)
+      setDisplayed('')
+      i = 0
+      const interval = setInterval(() => {
+        i++
+        setDisplayed(text.slice(0, i))
+        if (i >= text.length) {
+          clearInterval(interval)
+          setDone(true)
+          timeout = setTimeout(() => {
+            type()
+          }, pauseAfter)
+        }
+      }, speed)
+      return interval
+    }
+
+    let interval
+    const start = setTimeout(() => {
+      interval = type()
+    }, delay)
+
+    return () => {
+      clearTimeout(start)
+      clearTimeout(timeout)
+      clearInterval(interval)
+    }
+  }, [text, speed, pauseAfter, delay])
+
+  return { displayed, done }
+}
+
 export default function Hero() {
+  const { displayed, done } = useTypewriter(hero.eyebrow)
+
   return (
     <section style={{
       margin: '8px',
@@ -55,8 +99,18 @@ export default function Hero() {
           display: 'flex', alignItems: 'center', gap: '10px',
           fontFamily: "'IBM Plex Mono', monospace",
         }}>
-          <span style={{ display: 'block', width: '24px', height: '1px', background: 'var(--green)' }}/>
-          {hero.eyebrow}
+          <span style={{ display: 'block', width: '24px', height: '1px', background: 'var(--green)', flexShrink: 0 }}/>
+          {displayed}
+          {!done && (
+            <span style={{
+              display: 'inline-block',
+              width: '2px', height: '12px',
+              background: 'var(--green)',
+              marginLeft: '2px',
+              verticalAlign: 'middle',
+              animation: 'blink 0.7s step-end infinite',
+            }}/>
+          )}
         </div>
 
         {/* Headline */}
@@ -131,7 +185,7 @@ export default function Hero() {
           fontSize: '13px',
           color: 'rgba(226,217,198,0.55)',
         }}>
-          "{hero.quote}" — {hero.quoteAttribution}
+          {hero.quote} — {hero.quoteAttribution}
         </p>
 
       </div>
