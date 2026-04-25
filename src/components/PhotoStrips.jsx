@@ -13,14 +13,17 @@ export default function PhotoStrips() {
     <div className="photo-strips-grid" style={{ display: 'grid', gap: '6px', background: '#0E0B08' }}>
       {slots.map((s, i) => (
         <div key={i} style={{
-          aspectRatio: '1',
           position: 'relative',
+          width: '100%',
+          paddingBottom: '100%',
           overflow: 'hidden',
         }}>
           <img
             src={s.photo}
             alt={s.label}
             style={{
+              position: 'absolute',
+              inset: 0,
               width: '100%',
               height: '100%',
               objectFit: 'cover',
