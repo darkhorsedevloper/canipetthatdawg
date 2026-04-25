@@ -68,7 +68,7 @@ export default function Nav({ dark, onToggleDark }) {
     }}>
       <div className="nav-header">
         <div style={{ fontFamily: 'var(--serif)', fontSize: '18px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--charcoal)' }}>
-          Can I Pet That <span style={{ color: 'var(--orange)' }}>Dawg</span>
+          Can I Pet That <span style={{ color: 'var(--orange)' }}>Dawg?</span>
         </div>
 
         {/* Desktop links */}
