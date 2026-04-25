@@ -29,13 +29,13 @@ export default function Hero() {
         ].join(', '),
       }}/>
 
-      {/* Photo placeholder — top right */}
-      <div style={{
+      {/* Photo placeholder — top right, hidden on small mobile */}
+      <div className="hero-photo-placeholder" style={{
         position: 'absolute', top: 20, right: 20, zIndex: 1,
         width: 140, height: 100,
         border: '1px dashed rgba(255,255,255,0.2)',
         borderRadius: '4px',
-        display: 'flex', flexDirection: 'column',
+        flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center', gap: 6,
         fontSize: '9px', letterSpacing: '.14em', textTransform: 'uppercase',
         color: 'rgba(255,255,255,0.45)',

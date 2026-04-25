@@ -57,12 +57,15 @@ html.pet-down * {
 
 a { text-decoration: none; }
 
-/* Footer icon links — large hit area, CSS hover, mobile tap feedback */
+/* Footer icon links — 44px minimum touch target */
 .footer-icon-link {
   color: var(--orange);
   display: flex;
   align-items: center;
-  padding: 8px;
+  justify-content: center;
+  padding: 12px;
+  min-width: 44px;
+  min-height: 44px;
   transition: color 0.15s, transform 0.1s;
 }
 .footer-icon-link:hover { color: var(--charcoal); }
@@ -86,11 +89,14 @@ img { display: block; max-width: 100%; }
 .nav-hamburger {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 10px;
+  min-width: 44px;
+  min-height: 44px;
 }
 .nav-book-btn {
   letter-spacing: 0.1em;
@@ -275,6 +281,28 @@ img { display: block; max-width: 100%; }
 @media (min-width: 640px) {
   .cta-heading { font-size: 56px; }
   .cta-buttons { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Hero photo placeholder — hide on small mobile, show on larger screens */
+.hero-photo-placeholder { display: none; }
+@media (min-width: 480px) {
+  .hero-photo-placeholder { display: flex; }
+}
+
+/* MiniMap hover hint — irrelevant on touch devices */
+.hover-hint { display: none; }
+@media (min-width: 640px) {
+  .hover-hint { display: inline; }
+}
+
+/* CTA buttons — 2-col on most phones, 1-col on very small */
+@media (max-width: 359px) {
+  .cta-buttons { grid-template-columns: 1fr; }
+}
+
+/* Contact terminal — reduce min-height on very small screens */
+@media (max-width: 374px) {
+  .terminal-body { min-height: 180px !important; }
 }
 
 /* ── Dark mode ── */

@@ -64,7 +64,7 @@ function MapTile({ style }) {
   }, [])
 
   return (
-    <div style={{ flex: '1 1 260px' }}>
+    <div>
       <div style={{ marginBottom: '8px' }}>
         <span style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: 'var(--charcoal)', marginRight: '8px' }}>{style.name}</span>
         <span style={{ fontSize: '11px', color: 'var(--muted)' }}>{style.desc}</span>
@@ -80,7 +80,7 @@ export default function MapShowcase() {
       <p style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px' }}>
         Map Style Options — pick your favourite
       </p>
-      <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
         {STYLES.map(s => <MapTile key={s.name} style={s} />)}
       </div>
     </section>

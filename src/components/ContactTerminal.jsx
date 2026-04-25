@@ -235,6 +235,7 @@ export default function ContactTerminal() {
         {/* Body */}
         <div
           ref={bodyRef}
+          className="terminal-body"
           style={{
             padding: '18px 18px 22px',
             minHeight: 260, maxHeight: 360,

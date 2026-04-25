@@ -154,7 +154,7 @@ export default function MiniMap() {
             On request
           </span>
         </span>
-        <span style={{
+        <span className="hover-hint" style={{
           fontSize: 8, letterSpacing: '.18em', textTransform: 'uppercase',
           color: 'var(--orange)', opacity: 0.8,
         }}>

@@ -103,7 +103,7 @@ export default function CredsBento() {
           {books.map((b, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 0', borderTop: i === 0 ? 'none' : '0.5px solid var(--border)' }}>
               <p style={{ fontFamily: "'Space Mono', monospace", fontSize: '13px', color: 'var(--charcoal)', lineHeight: 1.3 }}>{b.title}</p>
-              <p style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.04em', marginLeft: '12px', whiteSpace: 'nowrap', fontFamily: "'IBM Plex Mono', monospace" }}>{b.author}</p>
+              <p style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.04em', marginLeft: '12px', flexShrink: 0, maxWidth: '45%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontFamily: "'IBM Plex Mono', monospace" }}>{b.author}</p>
             </div>
           ))}
         </div>
