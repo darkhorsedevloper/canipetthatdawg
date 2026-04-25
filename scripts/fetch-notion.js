@@ -86,7 +86,8 @@ async function fetchHero() {
   const hero = {}
   response.results.forEach(page => {
     const field = page.properties['Field']?.title?.[0]?.plain_text
-    const value = page.properties['Value']?.rich_text?.[0]?.plain_text ?? ''
+    const raw = page.properties['Value']?.rich_text?.map(t => t.plain_text).join('') ?? ''
+    const value = raw.replace(/ \| /g, '\n')
     if (field) hero[field] = value
   })
   const outPath = resolve(__dirname, '../src/data/hero.json')
