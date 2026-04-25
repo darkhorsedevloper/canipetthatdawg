@@ -81,6 +81,7 @@ export default function Hero() {
           fontSize: '15px', lineHeight: 1.75,
           color: 'rgba(226,217,198,0.78)', maxWidth: '440px', marginBottom: '32px',
           fontFamily: "'IBM Plex Mono', monospace",
+          whiteSpace: 'pre-line',
         }}>
           {hero.subheadline}
         </p>
