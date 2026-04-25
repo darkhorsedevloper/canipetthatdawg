@@ -1,28 +1,33 @@
+import photo1 from '../assets/PP Kira Cute Down.JPEG'
+import photo2 from '../assets/PP Kira Cute Summer.JPEG'
+import photo3 from '../assets/PP Kira Cute.JPEG'
+
 const slots = [
-  { label: 'On the trail',   color: 'var(--green)'  },
-  { label: 'The handler',    color: 'var(--orange)' },
-  { label: 'After the hike', color: 'var(--blue)'   },
+  { label: 'On the trail',   color: 'var(--green)',  photo: photo1 },
+  { label: 'The handler',    color: 'var(--orange)', photo: photo2 },
+  { label: 'After the hike', color: 'var(--blue)',   photo: photo3 },
 ]
 
 export default function PhotoStrips() {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '2px', background: '#0E0B08' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px', background: '#0E0B08' }}>
       {slots.map((s, i) => (
         <div key={i} style={{
-          background: 'var(--hero-bg)',
           aspectRatio: '1',
-          display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center', gap: '10px',
-          backgroundImage: 'repeating-linear-gradient(45deg, rgba(255,255,255,.02) 0 14px, transparent 14px 28px)',
+          position: 'relative',
+          overflow: 'hidden',
         }}>
-          <div style={{ width: '28px', height: '2px', borderRadius: '1px', background: s.color }} />
-          <p style={{
-            fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.35)',
-            fontFamily: "'IBM Plex Mono', monospace",
-          }}>
-            {s.label}
-          </p>
+          <img
+            src={s.photo}
+            alt={s.label}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              display: 'block',
+            }}
+          />
         </div>
       ))}
     </div>
