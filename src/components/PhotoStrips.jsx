@@ -10,7 +10,7 @@ const slots = [
 
 export default function PhotoStrips() {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px', background: '#0E0B08' }}>
+    <div className="photo-strips-grid" style={{ display: 'grid', gap: '6px', background: '#0E0B08' }}>
       {slots.map((s, i) => (
         <div key={i} style={{
           aspectRatio: '1',

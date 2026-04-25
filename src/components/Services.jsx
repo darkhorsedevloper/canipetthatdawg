@@ -157,11 +157,23 @@ function ServiceCard({ s }) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
           textAlign: 'center',
         }}>
+          {/* Description */}
+          <p style={{
+            fontSize: '14px',
+            color: 'var(--charcoal)',
+            lineHeight: 1.75,
+            fontFamily: "'IBM Plex Mono', monospace",
+            textAlign: 'left',
+            width: '100%',
+            flex: 1,
+          }}>
+            {s.desc}
+          </p>
+
           {/* Price + note */}
-          <div style={{ marginBottom: '16px', textAlign: 'center' }}>
+          <div style={{ marginTop: 'auto', marginBottom: '16px', textAlign: 'center', width: '100%' }}>
             <p style={{
               fontFamily: 'var(--serif)',
               fontSize: '42px',
@@ -175,20 +187,6 @@ function ServiceCard({ s }) {
               {s.note}
             </p>
           </div>
-
-          {/* Description */}
-          <p style={{
-            fontSize: '14px',
-            color: 'var(--charcoal)',
-            lineHeight: 1.75,
-            marginBottom: 'auto',
-            fontFamily: "'IBM Plex Mono', monospace",
-            textAlign: 'left',
-            alignSelf: 'flex-start',
-            width: '100%',
-          }}>
-            {s.desc}
-          </p>
 
           {/* Book CTA */}
           <a

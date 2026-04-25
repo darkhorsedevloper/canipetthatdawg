@@ -8,6 +8,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 :root {
@@ -33,6 +35,8 @@ body {
   color: var(--charcoal);
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
+  overflow-x: hidden;
+  max-width: 100%;
   transition: background 700ms cubic-bezier(.4,.14,.3,1), color 700ms cubic-bezier(.4,.14,.3,1);
 }
 
@@ -326,4 +330,10 @@ img { display: block; max-width: 100%; }
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
+}
+
+/* Photo strips — stack on mobile, 3-col on desktop */
+.photo-strips-grid { grid-template-columns: 1fr; }
+@media (min-width: 640px) {
+  .photo-strips-grid { grid-template-columns: 1fr 1fr 1fr; }
 }

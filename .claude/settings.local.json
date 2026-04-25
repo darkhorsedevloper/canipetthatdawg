@@ -47,7 +47,9 @@
       "Bash(gh run *)",
       "mcp__67e78592-e0b8-4198-a970-6600ebfd2d7d__notion-search",
       "mcp__67e78592-e0b8-4198-a970-6600ebfd2d7d__notion-fetch",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)"
     ]
   }
 }

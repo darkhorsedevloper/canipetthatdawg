@@ -142,10 +142,7 @@ export default function Hero() {
             target="_blank"
             rel="noreferrer"
             style={{ color: 'var(--green)', textDecoration: 'none', borderBottom: '1px solid var(--green)' }}
-          >
-            Fear Free
-          </a>
-          {hero.subheadline.replace('Fear Free', '')}
+          >Fear Free</a>{hero.subheadline.replace('Fear Free', '')}
         </p>
 
         {/* Buttons */}
