@@ -5,7 +5,7 @@ export default function Why() {
     <section className="section-pad" style={{ background: 'var(--panel)', borderTop: '0.5px solid var(--border)', borderBottom: '0.5px solid var(--border)' }}>
 
       <p style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '8px' }}>
-        Why Can I Pet That Dawg
+        Why Can I Pet That Dawg?
       </p>
 
       <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 400, lineHeight: 1.2, color: 'var(--charcoal)', marginBottom: '32px' }}>

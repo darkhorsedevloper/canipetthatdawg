@@ -9,8 +9,8 @@ export default function About() {
 
       <div style={{ display: 'flex', flexDirection: 'column', background: 'var(--card)', borderBottom: '0.5px solid var(--border)' }}>
         <div style={{ padding: '10px 14px', background: 'var(--panel)', borderBottom: '0.5px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)' }}>Service Area</p>
-          <p style={{ fontSize: '9px', color: 'var(--muted)', letterSpacing: '0.08em' }}>Atlanta 30318 · 10 mi</p>
+          <p style={{ fontSize: '12px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)' }}>Service Area</p>
+          <p style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.08em' }}>within Atlanta 30318 · 10 mi</p>
         </div>
         <div style={{ padding: '16px' }}>
           <MiniMap />

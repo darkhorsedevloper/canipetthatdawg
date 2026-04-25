@@ -126,22 +126,12 @@ export default function MiniMap() {
         </g>
       </svg>
 
-      {/* Radius chip */}
-      <div style={{
-        position: 'absolute', top: 10, right: 12,
-        fontFamily: 'var(--sans)', fontSize: 9,
-        letterSpacing: '.1em', textTransform: 'uppercase',
-        color: 'var(--muted)', background: 'var(--bg)',
-        padding: '3px 8px', borderRadius: 99, border: '0.5px solid var(--border)',
-      }}>
-        ≈ 10 mi radius
-      </div>
 
       {/* Legend + hover hint */}
       <div style={{
         position: 'absolute', bottom: 8, left: 10, right: 10,
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        fontFamily: 'var(--sans)', fontSize: 9,
+        fontFamily: 'var(--sans)', fontSize: 12,
         color: 'var(--muted)', letterSpacing: '.04em',
       }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
@@ -155,7 +145,7 @@ export default function MiniMap() {
           </span>
         </span>
         <span className="hover-hint" style={{
-          fontSize: 8, letterSpacing: '.18em', textTransform: 'uppercase',
+          fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase',
           color: 'var(--orange)', opacity: 0.8,
         }}>
           Hover pins ↗
