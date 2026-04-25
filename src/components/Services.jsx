@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 // Services data is inlined here — Notion fetch overwrites services.json on build
 const services = [
   {
@@ -23,7 +25,7 @@ const services = [
   {
     name: 'Overnight Stay',
     badge: 'Overnight',
-    desc: 'Your dog stays home. I handle the rest — even the cat.',
+    desc: 'Your dog stays home. I handle the rest — even the cat 🐱',
     price: '$160',
     note: 'flat · no extras · full 24 hrs',
     badgeColor: 'var(--blue)',
@@ -31,6 +33,193 @@ const services = [
     featured: false,
   },
 ]
+
+const BOOK_URL = 'https://www.timetopet.com/portal/create/create-account'
+const CARD_HEIGHT = 280
+
+function ServiceCard({ s }) {
+  const [flipped, setFlipped] = useState(false)
+
+  return (
+    <div
+      onClick={() => setFlipped(f => !f)}
+      style={{
+        position: 'relative',
+        height: `${CARD_HEIGHT}px`,
+        cursor: 'pointer',
+        perspective: '1000px',
+      }}
+    >
+      {/* "Most booked" badge sits above the card */}
+      {s.featured && (
+        <span style={{
+          position: 'absolute',
+          top: -11,
+          left: '20px',
+          background: s.accent,
+          color: '#fff',
+          fontSize: '9px',
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          padding: '3px 10px',
+          borderRadius: '99px',
+          whiteSpace: 'nowrap',
+          fontWeight: 700,
+          zIndex: 10,
+        }}>
+          ★ Most booked
+        </span>
+      )}
+
+      {/* Flip container */}
+      <div style={{
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        transformStyle: 'preserve-3d',
+        transition: 'transform 750ms cubic-bezier(.4,.2,.2,1)',
+        transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+      }}>
+
+        {/* FRONT */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          background: 'var(--card)',
+          border: '0.5px solid var(--border)',
+          borderLeft: `2px solid ${s.accent}`,
+          borderRadius: '10px',
+          padding: '28px 24px',
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
+          {/* Badge pill — stays at top */}
+          <div style={{ textAlign: 'center', marginBottom: '8px' }}>
+            <span style={{
+              display: 'inline-block',
+              fontSize: '11px',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              padding: '5px 14px',
+              borderRadius: '20px',
+              background: `color-mix(in srgb, ${s.badgeColor} 14%, transparent)`,
+              color: s.badgeColor,
+            }}>
+              {s.badge}
+            </span>
+          </div>
+
+          {/* Name — centered in remaining space */}
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <div style={{
+              fontFamily: 'var(--serif)',
+              fontSize: '26px',
+              fontWeight: 400,
+              color: 'var(--charcoal)',
+              lineHeight: 1.2,
+              textAlign: 'center',
+            }}>
+              {s.name}
+            </div>
+          </div>
+
+          {/* Tap hint — stays at bottom */}
+          <div style={{
+            textAlign: 'center',
+            fontSize: '11px',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: s.accent,
+            fontFamily: "'IBM Plex Mono', monospace",
+            marginTop: '8px',
+          }}>
+            Tap to learn more →
+          </div>
+        </div>
+
+        {/* BACK */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          transform: 'rotateY(180deg)',
+          background: 'var(--card)',
+          border: '0.5px solid var(--border)',
+          borderLeft: `2px solid ${s.accent}`,
+          borderRadius: '10px',
+          padding: '28px 24px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+        }}>
+          {/* Price + note */}
+          <div style={{ marginBottom: '16px', textAlign: 'center' }}>
+            <p style={{
+              fontFamily: 'var(--serif)',
+              fontSize: '42px',
+              fontWeight: 400,
+              color: 'var(--charcoal)',
+              lineHeight: 1,
+            }}>
+              {s.price}
+            </p>
+            <p style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '6px' }}>
+              {s.note}
+            </p>
+          </div>
+
+          {/* Description */}
+          <p style={{
+            fontSize: '14px',
+            color: 'var(--charcoal)',
+            lineHeight: 1.75,
+            marginBottom: 'auto',
+            fontFamily: "'IBM Plex Mono', monospace",
+            textAlign: 'left',
+            alignSelf: 'flex-start',
+            width: '100%',
+          }}>
+            {s.desc}
+          </p>
+
+          {/* Book CTA */}
+          <a
+            href={BOOK_URL}
+            target="_blank"
+            rel="noreferrer"
+            onClick={e => e.stopPropagation()}
+            style={{
+              display: 'block',
+              width: '100%',
+              textAlign: 'center',
+              background: s.accent,
+              color: '#0A0806',
+              padding: '12px 0',
+              borderRadius: '7px',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '12px',
+              fontWeight: 700,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+            }}
+          >
+            Book This →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  )
+}
 
 export default function Services() {
   return (
@@ -48,99 +237,12 @@ export default function Services() {
         color: 'var(--charcoal)',
         marginBottom: '28px',
       }}>
-        Pick what best <em style={{ color: 'var(--orange)' }}>fits your dog.</em>
+        Pick what best <span style={{ color: 'var(--orange)' }}>fits your dog.</span>
       </h2>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px', marginBottom: '20px' }}>
         {services.map((s, i) => (
-          <article key={i} style={{
-            position: 'relative',
-            background: 'var(--card)',
-            border: '0.5px solid var(--border)',
-            borderLeft: `2px solid ${s.accent}`,
-            borderRadius: '10px',
-            padding: '22px 20px 20px',
-            display: 'flex',
-            flexDirection: 'column',
-          }}>
-
-            {/* Floating "★ Most booked" badge — centered at top */}
-            {s.featured && (
-              <span style={{
-                position: 'absolute',
-                top: -11,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                background: s.accent,
-                color: '#fff',
-                fontSize: '9px',
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                padding: '3px 10px',
-                borderRadius: '99px',
-                whiteSpace: 'nowrap',
-                fontWeight: 700,
-              }}>
-                ★ Most booked
-              </span>
-            )}
-
-            {/* Inner badge pill */}
-            <span style={{
-              display: 'inline-block',
-              fontSize: '10px',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              padding: '4px 10px',
-              borderRadius: '20px',
-              marginBottom: '14px',
-              alignSelf: 'flex-start',
-              background: `color-mix(in srgb, ${s.badgeColor} 14%, transparent)`,
-              color: s.badgeColor,
-            }}>
-              {s.badge}
-            </span>
-
-            {/* Service name */}
-            <p style={{
-              fontFamily: 'var(--serif)',
-              fontSize: '20px',
-              fontWeight: 400,
-              color: 'var(--charcoal)',
-              marginBottom: '8px',
-              lineHeight: 1.2,
-            }}>
-              {s.name}
-            </p>
-
-            {/* Description */}
-            <p style={{
-              fontSize: '12px',
-              color: 'var(--muted)',
-              lineHeight: 1.65,
-              marginBottom: '20px',
-              minHeight: '40px',
-            }}>
-              {s.desc}
-            </p>
-
-            {/* Price + note */}
-            <div style={{ marginTop: 'auto' }}>
-              <p style={{
-                fontFamily: 'var(--serif)',
-                fontSize: '44px',
-                fontWeight: 400,
-                color: 'var(--charcoal)',
-                lineHeight: 1,
-              }}>
-                {s.price}
-              </p>
-              <p style={{ fontSize: '11px', color: 'var(--faint)', marginTop: '4px' }}>
-                {s.note}
-              </p>
-            </div>
-
-          </article>
+          <ServiceCard key={i} s={s} />
         ))}
       </div>
 

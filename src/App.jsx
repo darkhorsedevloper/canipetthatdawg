@@ -17,6 +17,7 @@ import CTA from './components/CTA'
 import ContactTerminal from './components/ContactTerminal'
 import DawgOfTheDay from './components/DawgOfTheDay'
 import PawTrail from './components/PawTrail'
+import EveryVisit from './components/EveryVisit'
 
 const ColorStripe = () => (
   <div style={{ height: '3px', display: 'flex', width: '100%' }}>
@@ -41,6 +42,7 @@ export default function App() {
       <TrustBar />
       <PhotoStrips />
       <Services />
+      <EveryVisit />
       <Why />
       <About />
       <CredsBento />

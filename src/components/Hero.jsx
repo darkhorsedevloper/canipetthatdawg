@@ -137,7 +137,15 @@ export default function Hero() {
           fontFamily: "'IBM Plex Mono', monospace",
           whiteSpace: 'pre-line',
         }}>
-          {hero.subheadline}
+          <a
+            href="https://www.fearfreehappyhomes.com/"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--green)', textDecoration: 'none', borderBottom: '1px solid var(--green)' }}
+          >
+            Fear Free
+          </a>
+          {hero.subheadline.replace('Fear Free', '')}
         </p>
 
         {/* Buttons */}
