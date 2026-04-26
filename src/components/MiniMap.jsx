@@ -2,15 +2,16 @@ import { MapContainer, TileLayer, CircleMarker, Tooltip, Circle, Marker } from '
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
-// Center shifted east + south to fit all neighborhoods including Buckhead + Decatur
-const CENTER = [33.775, -84.370]
+// True midpoint of all neighborhoods: lat (33.726–33.858), lng (-84.445–84.296)
+const CENTER = [33.792, -84.375]
 const HQ     = [33.785, -84.445]
 const GREEN  = '#5A9E72'   // slightly brighter so dots pop on both light + dark tiles
 const ORANGE = '#C4892A'
 
+// tip: 'bottom' for dots near top edge so tooltip doesn't get clipped
 const neighborhoods = [
-  { name: 'Buckhead',       pos: [33.838, -84.385] },
-  { name: 'Brookhaven',     pos: [33.858, -84.338] },
+  { name: 'Buckhead',       pos: [33.838, -84.385], tip: 'bottom' },
+  { name: 'Brookhaven',     pos: [33.858, -84.338], tip: 'bottom' },
   { name: 'Berkeley Park',  pos: [33.790, -84.415] },
   { name: 'Midtown',        pos: [33.784, -84.383] },
   { name: 'Va-Highland',    pos: [33.781, -84.363] },
@@ -81,7 +82,7 @@ export default function MiniMap() {
               weight: 2,
             }}
           >
-            <Tooltip direction="top" offset={[0, -10]} opacity={1}>
+            <Tooltip direction={n.tip || 'top'} offset={[0, n.tip === 'bottom' ? 10 : -10]} opacity={1}>
               <strong>{n.name}</strong>
               <br />
               <span style={{ fontSize: '10px', opacity: 0.65, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
