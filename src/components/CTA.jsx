@@ -1,45 +1,182 @@
+import { useState } from 'react'
+
 const STEPS = [
   {
     number: '01',
     label: 'Create an account',
     desc: 'Sign up free on Time To Pet. Takes about 2 minutes — no commitment yet.',
-    cta: 'Create account →',
+    cta: 'Create account',
     href: 'https://www.timetopet.com/portal/create/create-account',
     bg: '#C4892A',
     text: '#0A0806',
-    subtext: 'rgba(10,8,6,0.6)',
   },
   {
     number: '02',
     label: 'Schedule a meet & greet',
     desc: 'A free 30-min intro so your dog and I can get acquainted before the first walk.',
-    cta: 'Book a meet & greet →',
+    cta: 'Book a meet & greet',
     href: 'https://www.timetopet.com/portal/create/create-account',
     bg: '#4A7C5E',
     text: '#0A0806',
-    subtext: 'rgba(10,8,6,0.55)',
   },
   {
     number: '03',
     label: 'Choose your service',
     desc: "Pick the walk, drop-in, or overnight that fits your dog's week.",
-    cta: 'View services →',
+    cta: 'View services',
     href: '#services',
     bg: '#3A6B8A',
     text: '#EDE5D2',
-    subtext: 'rgba(237,229,210,0.65)',
   },
   {
     number: '04',
     label: 'Follow along',
     desc: 'Photo reports after every visit. Follow on Instagram for daily dawg content.',
-    cta: 'Follow @canipet_that_dawg_llc →',
+    cta: 'Follow @canipet_that_dawg_llc',
     href: 'https://instagram.com/canipet_that_dawg_llc',
     bg: '#EDE5D2',
     text: '#2A2520',
-    subtext: 'rgba(42,37,32,0.55)',
   },
 ]
+
+const CARD_HEIGHT = 280
+
+function StepCard({ step }) {
+  const [flipped, setFlipped] = useState(false)
+  const darkText = step.text === '#0A0806' || step.text === '#2A2520'
+
+  return (
+    <div
+      onClick={() => setFlipped(f => !f)}
+      style={{
+        position: 'relative',
+        height: `${CARD_HEIGHT}px`,
+        cursor: 'pointer',
+        perspective: '1000px',
+      }}
+    >
+      {/* Step number badge */}
+      <span style={{
+        position: 'absolute',
+        top: -11,
+        left: '20px',
+        background: step.bg,
+        color: step.text,
+        fontSize: '9px',
+        letterSpacing: '0.14em',
+        textTransform: 'uppercase',
+        padding: '3px 10px',
+        borderRadius: '99px',
+        whiteSpace: 'nowrap',
+        fontWeight: 700,
+        zIndex: 10,
+        fontFamily: "'IBM Plex Mono', monospace",
+      }}>
+        {step.number}
+      </span>
+
+      {/* Flip container */}
+      <div style={{
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        transformStyle: 'preserve-3d',
+        transition: 'transform 750ms cubic-bezier(.4,.2,.2,1)',
+        transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+      }}>
+
+        {/* FRONT */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          background: 'var(--card)',
+          border: '0.5px solid var(--border)',
+          borderLeft: `2px solid ${step.bg}`,
+          borderRadius: '10px',
+          padding: '28px 24px',
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{
+              fontFamily: 'var(--serif)',
+              fontSize: '26px',
+              fontWeight: 400,
+              color: 'var(--charcoal)',
+              lineHeight: 1.2,
+              textAlign: 'center',
+            }}>
+              {step.label}
+            </div>
+          </div>
+
+          <div style={{
+            textAlign: 'center',
+            fontSize: '11px',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: step.bg,
+            fontFamily: "'IBM Plex Mono', monospace",
+            marginTop: '8px',
+          }}>
+            Tap to learn more →
+          </div>
+        </div>
+
+        {/* BACK */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          transform: 'rotateY(180deg)',
+          background: step.bg,
+          borderRadius: '10px',
+          padding: '28px 24px',
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
+          <p style={{
+            fontSize: '14px',
+            color: darkText ? 'rgba(10,8,6,0.8)' : 'rgba(237,229,210,0.85)',
+            lineHeight: 1.75,
+            fontFamily: "'IBM Plex Mono', monospace",
+            flex: 1,
+          }}>
+            {step.desc}
+          </p>
+
+          <a
+            href={step.href}
+            target={step.href.startsWith('http') ? '_blank' : undefined}
+            rel={step.href.startsWith('http') ? 'noreferrer' : undefined}
+            onClick={e => e.stopPropagation()}
+            style={{
+              display: 'block',
+              width: '100%',
+              textAlign: 'center',
+              background: darkText ? 'rgba(10,8,6,0.15)' : 'rgba(237,229,210,0.15)',
+              border: `1.5px solid ${step.text}`,
+              color: step.text,
+              padding: '12px 0',
+              borderRadius: '7px',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '12px',
+              fontWeight: 700,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+              marginTop: '20px',
+            }}
+          >
+            {step.cta} →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  )
+}
 
 export default function CTA() {
   return (
@@ -76,7 +213,7 @@ export default function CTA() {
           fontSize: '15px',
           color: 'rgba(226,217,198,0.55)',
           fontFamily: "'IBM Plex Mono', monospace",
-          marginBottom: '40px',
+          marginBottom: '48px',
           lineHeight: 1.6,
         }}>
           Made to fit your dog's idea of a good day.
@@ -84,62 +221,7 @@ export default function CTA() {
 
         <div className="cta-steps-grid">
           {STEPS.map((step) => (
-            <a
-              key={step.number}
-              href={step.href}
-              target={step.href.startsWith('http') ? '_blank' : undefined}
-              rel={step.href.startsWith('http') ? 'noreferrer' : undefined}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '28px 24px',
-                borderRadius: '4px',
-                background: step.bg,
-                textDecoration: 'none',
-                cursor: 'pointer',
-              }}
-            >
-              <span style={{
-                fontSize: '11px',
-                fontFamily: "'IBM Plex Mono', monospace",
-                letterSpacing: '0.18em',
-                color: step.subtext,
-                marginBottom: '14px',
-                fontWeight: 700,
-              }}>
-                {step.number}
-              </span>
-              <p style={{
-                fontSize: '17px',
-                fontFamily: 'var(--serif)',
-                fontWeight: 400,
-                color: step.text,
-                marginBottom: '10px',
-                lineHeight: 1.2,
-              }}>
-                {step.label}
-              </p>
-              <p style={{
-                fontSize: '13px',
-                color: step.subtext,
-                lineHeight: 1.65,
-                fontFamily: "'IBM Plex Mono', monospace",
-                flex: 1,
-                marginBottom: '20px',
-              }}>
-                {step.desc}
-              </p>
-              <span style={{
-                fontSize: '11px',
-                fontFamily: "'IBM Plex Mono', monospace",
-                letterSpacing: '0.1em',
-                color: step.text,
-                textTransform: 'uppercase',
-                fontWeight: 700,
-              }}>
-                {step.cta}
-              </span>
-            </a>
+            <StepCard key={step.number} step={step} />
           ))}
         </div>
 
