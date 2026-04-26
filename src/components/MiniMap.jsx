@@ -1,152 +1,125 @@
-import { useState } from 'react'
+import { MapContainer, TileLayer, CircleMarker, Tooltip, Circle } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
+
+const HQ = [33.785, -84.445]
+const GREEN  = '#4A7C5E'
+const ORANGE = '#C4892A'
+const MUTED  = '#9A9087'
 
 const neighborhoods = [
-  // North of HQ
-  { name: 'Buckhead',      x: 158, y: 62 },
-  { name: 'Brookhaven',    x: 202, y: 70,  outside: true },
-  { name: 'Berkeley Park', x: 132, y: 104 },
-  // East / Intown
-  { name: 'Midtown',       x: 178, y: 112 },
-  { name: 'Va-Highland',   x: 210, y: 108 },
-  { name: 'Old 4th Ward',  x: 186, y: 130 },
-  { name: 'Inman Park',    x: 204, y: 144 },
-  { name: 'Cabbagetown',   x: 192, y: 160 },
-  { name: 'Reynoldstown',  x: 216, y: 166 },
-  { name: 'Kirkwood',      x: 238, y: 156, outside: true },
-  { name: 'Decatur',       x: 254, y: 138, outside: true },
-  // South / Southeast
-  { name: 'Grant Park',    x: 174, y: 178 },
-  { name: 'Summerhill',    x: 158, y: 188 },
-  { name: 'East Atlanta',  x: 210, y: 188, outside: true },
-  // West / Southwest
-  { name: 'West End',      x: 112, y: 180 },
-  { name: 'Adair Park',    x: 130, y: 196 },
-  { name: 'Mozley Park',   x: 86,  y: 158 },
-  { name: 'Grove Park',    x: 72,  y: 124 },
+  { name: 'Buckhead',       pos: [33.838, -84.385] },
+  { name: 'Brookhaven',     pos: [33.858, -84.338], outside: true },
+  { name: 'Berkeley Park',  pos: [33.790, -84.415] },
+  { name: 'Midtown',        pos: [33.784, -84.383] },
+  { name: 'Va-Highland',    pos: [33.781, -84.363] },
+  { name: 'Old 4th Ward',   pos: [33.757, -84.370] },
+  { name: 'Inman Park',     pos: [33.749, -84.355] },
+  { name: 'Cabbagetown',    pos: [33.742, -84.367] },
+  { name: 'Reynoldstown',   pos: [33.740, -84.347] },
+  { name: 'Kirkwood',       pos: [33.745, -84.332], outside: true },
+  { name: 'Decatur',        pos: [33.774, -84.296], outside: true },
+  { name: 'Grant Park',     pos: [33.732, -84.376] },
+  { name: 'Summerhill',     pos: [33.726, -84.383] },
+  { name: 'East Atlanta',   pos: [33.727, -84.342], outside: true },
+  { name: 'West End',       pos: [33.734, -84.416] },
+  { name: 'Adair Park',     pos: [33.728, -84.407] },
+  { name: 'Mozley Park',    pos: [33.750, -84.430] },
+  { name: 'Grove Park',     pos: [33.762, -84.442] },
 ]
 
 export default function MiniMap() {
-  const [hovered, setHovered] = useState(null)
-  const hoveredN = hovered != null ? neighborhoods[hovered] : null
-
   return (
-    <div style={{
-      position: 'relative', width: '100%', aspectRatio: '1.1',
-      background: 'var(--card)',
-      overflow: 'hidden',
-    }}>
-      <svg viewBox="0 0 280 240" style={{ width: '100%', height: '100%', display: 'block' }}>
-        <defs>
-          <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-            <path d="M 24 0 L 0 0 0 24" fill="none" stroke="var(--border)" strokeWidth="0.5"/>
-          </pattern>
-        </defs>
-        <rect width="280" height="240" fill="url(#grid)" />
+    <div style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden' }}>
+      <MapContainer
+        center={HQ}
+        zoom={12}
+        scrollWheelZoom={false}
+        dragging={false}
+        zoomControl={false}
+        doubleClickZoom={false}
+        touchZoom={false}
+        keyboard={false}
+        boxZoom={false}
+        attributionControl={false}
+        style={{ height: '280px', width: '100%' }}
+      >
+        <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
 
         {/* Service radius ring */}
-        <circle cx="140" cy="140" r="80"
-          fill="var(--orange)" fillOpacity="0.06"
-          stroke="var(--orange)" strokeWidth="1" strokeDasharray="3 4" strokeOpacity="0.55"/>
+        <Circle
+          center={HQ}
+          radius={12000}
+          pathOptions={{
+            color: ORANGE,
+            fillColor: ORANGE,
+            fillOpacity: 0.06,
+            weight: 1.5,
+            dashArray: '4 5',
+            opacity: 0.55,
+          }}
+        />
 
-        {/* Neighborhood dots — hoverable */}
-        {neighborhoods.map((n, i) => {
-          const active = hovered === i
-          return (
-            <g key={i} style={{ cursor: 'pointer' }}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(cur => cur === i ? null : cur)}>
-              <circle cx={n.x} cy={n.y} r="10" fill="transparent"/>
-              {active && (
-                <circle cx={n.x} cy={n.y} r="7"
-                  fill={n.outside ? 'var(--muted)' : 'var(--green)'} opacity="0.22"/>
-              )}
-              <circle cx={n.x} cy={n.y}
-                r={active ? 3.6 : 2.6}
-                fill={n.outside ? 'var(--muted)' : 'var(--green)'}
-                opacity={n.outside ? 0.7 : 1}
-                style={{ transition: 'r 120ms' }}/>
-            </g>
-          )
-        })}
+        {/* Neighborhood dots */}
+        {neighborhoods.map((n, i) => (
+          <CircleMarker
+            key={i}
+            center={n.pos}
+            radius={6}
+            pathOptions={{
+              color: 'transparent',
+              fillColor: n.outside ? MUTED : GREEN,
+              fillOpacity: n.outside ? 0.65 : 1,
+              weight: 0,
+            }}
+          >
+            <Tooltip direction="top" offset={[0, -8]} opacity={1}>
+              <strong>{n.name}</strong>
+              <br />
+              <span style={{ fontSize: '10px', opacity: 0.7, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                {n.outside ? 'On request' : 'Served weekly'}
+              </span>
+            </Tooltip>
+          </CircleMarker>
+        ))}
 
-        {/* HQ pin — always labeled */}
-        <g transform="translate(140,140)">
-          <circle r="18" fill="var(--orange)" opacity="0.16"/>
-          <circle r="9"  fill="var(--orange)" opacity="0.32"/>
-          <circle r="4.5" fill="var(--orange)"/>
-          <g transform="translate(11,-4)">
-            <rect x="-2" y="-8" width="88" height="14" rx="3" fill="var(--orange)"/>
-            <text x="42" y="2" textAnchor="middle"
-              fill="#0A0806"
-              style={{ fontFamily: 'var(--sans)', fontSize: 7, letterSpacing: '.1em', textTransform: 'uppercase', fontWeight: 700 }}>
-              HQ · Riverside
-            </text>
-          </g>
-        </g>
+        {/* HQ marker */}
+        <CircleMarker
+          center={HQ}
+          radius={10}
+          pathOptions={{
+            color: ORANGE,
+            fillColor: ORANGE,
+            fillOpacity: 1,
+            weight: 0,
+          }}
+        >
+          <Tooltip direction="right" offset={[12, 0]} opacity={1} permanent>
+            <strong>HQ · Riverside</strong>
+          </Tooltip>
+        </CircleMarker>
+      </MapContainer>
 
-        {/* Hover tooltip */}
-        {hoveredN && (() => {
-          const tw = 86
-          let tx = hoveredN.x - tw / 2
-          if (tx < 4) tx = 4
-          if (tx + tw > 276) tx = 276 - tw
-          const above = hoveredN.y > 40
-          const ty = above ? hoveredN.y - 28 : hoveredN.y + 10
-          return (
-            <g style={{ pointerEvents: 'none' }}>
-              <rect x={tx} y={ty} width={tw} height={20} rx={3} fill="var(--charcoal)"/>
-              <text x={tx + tw / 2} y={ty + 10} textAnchor="middle"
-                fill="var(--bg)"
-                style={{ fontFamily: 'var(--sans)', fontSize: 8, fontWeight: 600, letterSpacing: '.04em' }}>
-                {hoveredN.name}
-              </text>
-              <text x={tx + tw / 2} y={ty + 17} textAnchor="middle"
-                fill="var(--bg)" opacity="0.6"
-                style={{ fontFamily: 'var(--sans)', fontSize: 6, letterSpacing: '.14em', textTransform: 'uppercase' }}>
-                {hoveredN.outside ? 'On request' : 'Served weekly'}
-              </text>
-              <path
-                d={above
-                  ? `M ${hoveredN.x - 3},${ty + 20} L ${hoveredN.x + 3},${ty + 20} L ${hoveredN.x},${ty + 23} Z`
-                  : `M ${hoveredN.x - 3},${ty} L ${hoveredN.x + 3},${ty} L ${hoveredN.x},${ty - 3} Z`}
-                fill="var(--charcoal)"/>
-            </g>
-          )
-        })()}
-
-        {/* Compass */}
-        <g transform="translate(22,30)">
-          <circle r="10" fill="var(--card)" stroke="var(--border)"/>
-          <path d="M 0,-7 L 2,0 L 0,7 L -2,0 Z" fill="var(--orange)"/>
-          <text x="0" y="-13" textAnchor="middle"
-            fill="var(--muted)"
-            style={{ fontFamily: 'var(--sans)', fontSize: 6.5, letterSpacing: '.1em', fontWeight: 700 }}>
-            N
-          </text>
-        </g>
-      </svg>
-
-
-      {/* Legend + hover hint */}
+      {/* Legend */}
       <div style={{
-        position: 'absolute', bottom: 8, left: 10, right: 10,
+        position: 'absolute', bottom: 8, left: 10, right: 10, zIndex: 1000,
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         fontFamily: 'var(--sans)', fontSize: 12,
         color: 'var(--muted)', letterSpacing: '.04em',
+        pointerEvents: 'none',
       }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--green)' }}/>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: GREEN }} />
             Served
           </span>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--muted)', opacity: 0.6 }}/>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: MUTED, opacity: 0.6 }} />
             On request
           </span>
         </span>
         <span className="hover-hint" style={{
           fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase',
-          color: 'var(--orange)', opacity: 0.8,
+          color: ORANGE, opacity: 0.8,
         }}>
           Hover pins ↗
         </span>
