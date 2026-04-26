@@ -1,49 +1,51 @@
 import { useState, useEffect } from 'react'
 import hero from '../data/hero.json'
 
-function useTypewriter(text, speed = 38, pauseAfter = 1800, delay = 400) {
+const PHRASES = ['Dog Walking', 'Adventure Hikes', 'Overnight Stays', 'Atlanta, GA']
+
+function useCyclingTypewriter(phrases, speed = 38, pauseAfter = 1800) {
   const [displayed, setDisplayed] = useState('')
   const [done, setDone] = useState(false)
+  const [index, setIndex] = useState(0)
 
   useEffect(() => {
     let i = 0
     let timeout
+    let interval
 
-    function type() {
+    function type(phraseIndex) {
+      const text = phrases[phraseIndex]
       setDone(false)
       setDisplayed('')
       i = 0
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         i++
         setDisplayed(text.slice(0, i))
         if (i >= text.length) {
           clearInterval(interval)
           setDone(true)
           timeout = setTimeout(() => {
-            type()
+            const next = (phraseIndex + 1) % phrases.length
+            setIndex(next)
+            type(next)
           }, pauseAfter)
         }
       }, speed)
-      return interval
     }
 
-    let interval
-    const start = setTimeout(() => {
-      interval = type()
-    }, delay)
+    type(index)
 
     return () => {
-      clearTimeout(start)
       clearTimeout(timeout)
       clearInterval(interval)
     }
-  }, [text, speed, pauseAfter, delay])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return { displayed, done }
 }
 
 export default function Hero() {
-  const { displayed, done } = useTypewriter(hero.eyebrow)
+  const { displayed, done } = useCyclingTypewriter(PHRASES)
 
   return (
     <section style={{
