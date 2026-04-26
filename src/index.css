@@ -295,8 +295,10 @@ img { display: block; max-width: 100%; }
 
 /* MiniMap hover hint — irrelevant on touch devices */
 .hover-hint { display: none; }
+.mobile-neighborhood-strip { display: block; }
 @media (min-width: 640px) {
   .hover-hint { display: inline; }
+  .mobile-neighborhood-strip { display: none; }
 }
 
 /* Leaflet tooltip — match brand */
