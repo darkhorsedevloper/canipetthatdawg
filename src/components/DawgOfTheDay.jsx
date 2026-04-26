@@ -1,9 +1,15 @@
 import DAWG from '../data/dawg.json'
+import prissyPhoto from '../assets/Prissy PP.jpeg'
+
+const PHOTOS = {
+  'Priscilla': prissyPhoto,
+}
 
 export default function DawgOfTheDay() {
   const d = new Date()
   const dog = DAWG[(d.getDate() + d.getMonth()) % DAWG.length]
   const label = d.toLocaleDateString(undefined, { month: 'long', day: 'numeric' })
+  const photo = PHOTOS[dog.name]
 
   return (
     <section className="section-pad" style={{
@@ -19,31 +25,50 @@ export default function DawgOfTheDay() {
         alignItems: 'center',
       }}>
 
-        {/* Portrait placeholder */}
+        {/* Portrait */}
         <div style={{
           aspectRatio: '1',
-          background: 'var(--hero-bg)',
           borderRadius: '8px',
-          border: '0.5px solid var(--border)',
-          display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center', gap: '10px',
-          backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 12px, transparent 12px 24px)',
+          border: `1.5px solid ${dog.color}`,
+          overflow: 'hidden',
+          background: 'var(--hero-bg)',
+          position: 'relative',
         }}>
-          <div style={{
-            width: '90px', height: '90px', borderRadius: '50%',
-            border: `2px solid ${dog.color}`,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '40px',
-          }}>
-            🐕
-          </div>
-          <p style={{
-            fontFamily: 'var(--sans)', fontSize: '10px',
-            letterSpacing: '0.12em', textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.4)',
-          }}>
-            {dog.name} — portrait
-          </p>
+          {photo ? (
+            <img
+              src={photo}
+              alt={dog.name}
+              style={{
+                position: 'absolute', inset: 0,
+                width: '100%', height: '100%',
+                objectFit: 'cover', objectPosition: 'center',
+                display: 'block',
+              }}
+            />
+          ) : (
+            <div style={{
+              width: '100%', height: '100%',
+              display: 'flex', flexDirection: 'column',
+              alignItems: 'center', justifyContent: 'center', gap: '10px',
+              backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 12px, transparent 12px 24px)',
+            }}>
+              <div style={{
+                width: '90px', height: '90px', borderRadius: '50%',
+                border: `2px solid ${dog.color}`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '40px',
+              }}>
+                🐕
+              </div>
+              <p style={{
+                fontFamily: 'var(--sans)', fontSize: '10px',
+                letterSpacing: '0.12em', textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.4)',
+              }}>
+                {dog.name} — portrait
+              </p>
+            </div>
+          )}
         </div>
 
         <div>
