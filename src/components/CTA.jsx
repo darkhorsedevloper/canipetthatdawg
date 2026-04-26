@@ -1,8 +1,8 @@
 const STEPS = [
   {
-    number: '01',
+    number: '',
     label: 'Create an account',
-    desc: 'Sign up free on Time To Pet. Takes about 2 minutes — no commitment yet.',
+    desc: 'Sign up free on Time To Pet.',
     cta: 'Create account →',
     href: 'https://www.timetopet.com/portal/create/create-account',
     bg: '#C4892A',
@@ -12,7 +12,7 @@ const STEPS = [
   {
     number: '02',
     label: 'Schedule a meet & greet',
-    desc: 'A free 30-min intro so your dog and I can get acquainted before the first walk.',
+    desc: 'A free 30-min intro so your dog and I can get acquainted before the first session.',
     cta: 'Book a meet & greet →',
     href: 'https://www.timetopet.com/portal/create/create-account',
     bg: '#4A7C5E',
@@ -99,16 +99,18 @@ export default function CTA() {
                 cursor: 'pointer',
               }}
             >
-              <span style={{
-                fontSize: '11px',
-                fontFamily: "'IBM Plex Mono', monospace",
-                letterSpacing: '0.18em',
-                color: step.subtext,
-                marginBottom: '14px',
-                fontWeight: 700,
-              }}>
-                {step.number}
-              </span>
+              {step.number && (
+                <span style={{
+                  fontSize: '11px',
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  letterSpacing: '0.18em',
+                  color: step.subtext,
+                  marginBottom: '14px',
+                  fontWeight: 700,
+                }}>
+                  {step.number}
+                </span>
+              )}
               <p style={{
                 fontSize: '17px',
                 fontFamily: 'var(--serif)',
