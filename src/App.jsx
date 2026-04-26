@@ -18,7 +18,6 @@ import ContactTerminal from './components/ContactTerminal'
 import DawgOfTheDay from './components/DawgOfTheDay'
 import PawTrail from './components/PawTrail'
 import EveryVisit from './components/EveryVisit'
-import MiniCTA from './components/MiniCTA'
 
 const ColorStripe = () => (
   <div style={{ height: '3px', display: 'flex', width: '100%' }}>
@@ -46,13 +45,11 @@ export default function App() {
       <CTA />
       <EveryVisit />
       <Why />
-      <MiniCTA label="Convinced?" linkText="Schedule a meet & greet" href="https://www.timetopet.com/portal/create/create-account" />
       <About />
       <CredsBento />
       <FieldNotes />
       <ReviewTicker />
       <DawgOfTheDay />
-      <MiniCTA label="Ready to book?" linkText="Create your free account on Time To Pet" href="https://www.timetopet.com/portal/create/create-account" />
       <ContactTerminal />
       <Footer />
       <PawTrail />
