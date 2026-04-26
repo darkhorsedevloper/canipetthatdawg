@@ -42,6 +42,7 @@ export default function App() {
       <TrustBar />
       <PhotoStrips />
       <Services />
+      <CTA />
       <EveryVisit />
       <Why />
       <About />
@@ -49,7 +50,6 @@ export default function App() {
       <FieldNotes />
       <ReviewTicker />
       <DawgOfTheDay />
-      <CTA />
       <ContactTerminal />
       <Footer />
       <PawTrail />
