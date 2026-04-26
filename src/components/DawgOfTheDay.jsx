@@ -25,14 +25,15 @@ export default function DawgOfTheDay() {
         alignItems: 'center',
       }}>
 
-        {/* Portrait */}
+        {/* Portrait — paddingBottom trick for reliable square on mobile */}
         <div style={{
-          aspectRatio: '1',
+          position: 'relative',
+          width: '100%',
+          paddingBottom: '100%',
           borderRadius: '8px',
           border: `1.5px solid ${dog.color}`,
           overflow: 'hidden',
           background: 'var(--hero-bg)',
-          position: 'relative',
         }}>
           {photo ? (
             <img
@@ -41,13 +42,13 @@ export default function DawgOfTheDay() {
               style={{
                 position: 'absolute', inset: 0,
                 width: '100%', height: '100%',
-                objectFit: 'cover', objectPosition: 'center',
+                objectFit: 'cover', objectPosition: 'top',
                 display: 'block',
               }}
             />
           ) : (
             <div style={{
-              width: '100%', height: '100%',
+              position: 'absolute', inset: 0,
               display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center', gap: '10px',
               backgroundImage: 'repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 12px, transparent 12px 24px)',

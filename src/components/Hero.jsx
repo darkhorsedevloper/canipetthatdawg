@@ -92,12 +92,13 @@ export default function Hero() {
 
       <div className="hero-content">
 
-        {/* Eyebrow */}
+        {/* Eyebrow — fixed height prevents layout shift as text types */}
         <div style={{
           fontSize: '12px', letterSpacing: '0.18em', textTransform: 'uppercase',
           color: 'var(--green)', marginBottom: '18px',
           display: 'flex', alignItems: 'center', gap: '10px',
           fontFamily: "'IBM Plex Mono', monospace",
+          minHeight: '16px', whiteSpace: 'nowrap', overflow: 'hidden',
         }}>
           <span style={{ display: 'block', width: '24px', height: '1px', background: 'var(--green)', flexShrink: 0 }}/>
           {displayed}

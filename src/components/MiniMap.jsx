@@ -137,11 +137,12 @@ export default function MiniMap() {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            padding: '10px 14px',
+            padding: '0 14px',
             background: 'var(--card)',
             borderTop: '0.5px solid var(--border)',
             textDecoration: 'none',
-            minHeight: '40px',
+            height: '44px',
+            overflow: 'hidden',
           }}
         >
           <span style={{
