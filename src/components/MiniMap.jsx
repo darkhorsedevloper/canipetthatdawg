@@ -74,12 +74,12 @@ export default function MiniMap() {
           <CircleMarker
             key={i}
             center={n.pos}
-            radius={7}
+            radius={4}
             pathOptions={{
               color: '#fff',
               fillColor: GREEN,
               fillOpacity: 1,
-              weight: 2,
+              weight: 1.5,
             }}
           >
             <Tooltip direction={n.tip || 'top'} offset={[0, n.tip === 'bottom' ? 10 : -10]} opacity={1}>
@@ -95,12 +95,12 @@ export default function MiniMap() {
         {/* HQ dot */}
         <CircleMarker
           center={HQ}
-          radius={10}
+          radius={6}
           pathOptions={{
             color: '#fff',
             fillColor: ORANGE,
             fillOpacity: 1,
-            weight: 2,
+            weight: 1.5,
           }}
         >
           <Tooltip direction="top" offset={[0, -12]} opacity={1}>
