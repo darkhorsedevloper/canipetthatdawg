@@ -123,17 +123,6 @@ export default function MiniMap() {
         Hover pins ↗
       </div>
 
-      {/* Legend — bottom left only */}
-      <div style={{
-        position: 'absolute', bottom: 8, left: 10, zIndex: 1000,
-        display: 'flex', alignItems: 'center', gap: 6,
-        fontFamily: 'var(--sans)', fontSize: 12,
-        color: 'var(--muted)', letterSpacing: '.04em',
-        pointerEvents: 'none',
-      }}>
-        <span style={{ width: 7, height: 7, borderRadius: '50%', background: GREEN, flexShrink: 0 }} />
-        Within 10 mi · Atlanta, GA
-      </div>
     </div>
   )
 }
