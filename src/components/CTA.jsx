@@ -1,5 +1,37 @@
-import actions from '../data/cta.json'
-import cta from '../data/cta-content.json'
+const STEPS = [
+  {
+    number: '01',
+    label: 'Create an account',
+    desc: 'Sign up free on Time To Pet. Takes about 2 minutes — no commitment yet.',
+    cta: 'Create account →',
+    href: 'https://www.timetopet.com/portal/create/create-account',
+    color: '#C4892A',
+  },
+  {
+    number: '02',
+    label: 'Schedule a meet & greet',
+    desc: 'A free 30-min intro so your dog and I can get acquainted before the first walk.',
+    cta: 'Book a meet & greet →',
+    href: 'https://www.timetopet.com/portal/create/create-account',
+    color: '#4A7C5E',
+  },
+  {
+    number: '03',
+    label: 'Choose your service',
+    desc: 'Pick the walk, drop-in, or overnight that fits your dog\'s week.',
+    cta: 'View services →',
+    href: '#services',
+    color: '#3A6B8A',
+  },
+  {
+    number: '04',
+    label: 'Follow along',
+    desc: 'Photo reports after every visit. Follow on Instagram for daily dawg content.',
+    cta: 'Follow @canipet_that_dawg_llc →',
+    href: 'https://instagram.com/canipet_that_dawg_llc',
+    color: '#EDE5D2',
+  },
+]
 
 export default function CTA() {
   return (
@@ -9,74 +41,98 @@ export default function CTA() {
       borderBottom: '0.5px solid rgba(196,137,42,0.3)',
       padding: '64px 24px',
     }}>
-
       <div style={{ maxWidth: '720px', margin: '0 auto' }}>
 
         <p style={{
           fontSize: '12px', letterSpacing: '0.22em', textTransform: 'uppercase',
-          color: 'var(--green)', marginBottom: '24px',
+          color: 'var(--green)', marginBottom: '16px',
           display: 'flex', alignItems: 'center', gap: '12px',
+          fontFamily: "'IBM Plex Mono', monospace",
         }}>
           <span style={{ display: 'block', width: '24px', height: '1px', background: 'var(--green)' }} />
-          {cta.eyebrow}
+          Atlanta · Now Accepting Clients
         </p>
 
-        <h2 className="cta-heading" style={{
+        <h2 style={{
           fontFamily: 'var(--serif)',
           fontWeight: 400,
+          fontSize: 'clamp(34px, 5vw, 56px)',
           lineHeight: 1.05,
           color: '#EDE5D2',
-          marginBottom: '20px',
-        }}>
-          {cta.headline.split('\n').map((line, i, arr) => (
-            <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
-          ))}{' '}
-          <span style={{ color: 'var(--orange)' }}>{cta.headlineAccent}</span>
-        </h2>
-
-        <p style={{
-          fontSize: '17px',
-          lineHeight: 1.75,
-          color: 'rgba(226,217,198,0.65)',
-          maxWidth: '460px',
           marginBottom: '48px',
         }}>
-          {cta.subheadline}
-        </p>
+          Getting started <span style={{ color: 'var(--orange)' }}>is simple.</span>
+        </h2>
 
-        <div className="cta-buttons">
-          {actions.map((a) => (
+        {/* 4 steps */}
+        <div className="cta-steps-grid">
+          {STEPS.map((step) => (
             <a
-              key={a.label}
-              href={a.href}
-              {...(a.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+              key={step.number}
+              href={step.href}
+              target={step.href.startsWith('http') ? '_blank' : undefined}
+              rel={step.href.startsWith('http') ? 'noreferrer' : undefined}
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center',
-                padding: '22px 20px',
-                borderRadius: '2px',
-                background: a.color,
-                border: 'none',
+                padding: '28px 24px',
+                borderRadius: '4px',
+                border: '0.5px solid rgba(237,229,210,0.1)',
+                background: 'rgba(237,229,210,0.04)',
                 textDecoration: 'none',
+                transition: 'border-color 200ms, background 200ms',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = step.color
+                e.currentTarget.style.background = 'rgba(237,229,210,0.07)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(237,229,210,0.1)'
+                e.currentTarget.style.background = 'rgba(237,229,210,0.04)'
               }}
             >
               <span style={{
-                fontSize: '14px',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
+                fontSize: '11px',
+                fontFamily: "'IBM Plex Mono', monospace",
+                letterSpacing: '0.18em',
+                color: step.color,
+                marginBottom: '14px',
                 fontWeight: 700,
-                color: a.color === '#EDE5D2' ? '#2A2520' : '#0A0806',
-                marginBottom: '5px',
               }}>
-                {a.label}
+                {step.number}
               </span>
-              <span style={{
-                fontSize: '12px',
-                color: a.color === '#EDE5D2' ? 'rgba(42,37,32,0.55)' : 'rgba(10,8,6,0.5)',
-                letterSpacing: '0.04em',
+
+              <p style={{
+                fontSize: '17px',
+                fontFamily: 'var(--serif)',
+                fontWeight: 400,
+                color: '#EDE5D2',
+                marginBottom: '10px',
+                lineHeight: 1.2,
               }}>
-                {a.sub}
+                {step.label}
+              </p>
+
+              <p style={{
+                fontSize: '13px',
+                color: 'rgba(226,217,198,0.55)',
+                lineHeight: 1.65,
+                fontFamily: "'IBM Plex Mono', monospace",
+                flex: 1,
+                marginBottom: '20px',
+              }}>
+                {step.desc}
+              </p>
+
+              <span style={{
+                fontSize: '11px',
+                fontFamily: "'IBM Plex Mono', monospace",
+                letterSpacing: '0.1em',
+                color: step.color,
+                textTransform: 'uppercase',
+              }}>
+                {step.cta}
               </span>
             </a>
           ))}
