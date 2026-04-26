@@ -2,11 +2,12 @@ import { MapContainer, TileLayer, CircleMarker, Tooltip, Circle, Marker } from '
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
-const HQ = [33.785, -84.445]
-const GREEN  = '#4A7C5E'
+// Center shifted east + south to fit all neighborhoods including Buckhead + Decatur
+const CENTER = [33.775, -84.370]
+const HQ     = [33.785, -84.445]
+const GREEN  = '#5A9E72'   // slightly brighter so dots pop on both light + dark tiles
 const ORANGE = '#C4892A'
 
-// All neighborhoods within ~10 miles of 30318 — all green
 const neighborhoods = [
   { name: 'Buckhead',       pos: [33.838, -84.385] },
   { name: 'Brookhaven',     pos: [33.858, -84.338] },
@@ -28,7 +29,6 @@ const neighborhoods = [
   { name: 'Grove Park',     pos: [33.762, -84.442] },
 ]
 
-// Orange pill label — replaces the broken permanent Tooltip
 const hqIcon = L.divIcon({
   className: 'hq-label',
   html: 'HQ · Riverside',
@@ -40,8 +40,8 @@ export default function MiniMap() {
   return (
     <div style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden' }}>
       <MapContainer
-        center={HQ}
-        zoom={12}
+        center={CENTER}
+        zoom={11}
         scrollWheelZoom={false}
         dragging={false}
         zoomControl={false}
@@ -50,7 +50,7 @@ export default function MiniMap() {
         keyboard={false}
         boxZoom={false}
         attributionControl={false}
-        style={{ height: '280px', width: '100%' }}
+        style={{ height: '300px', width: '100%' }}
       >
         <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
 
@@ -68,7 +68,7 @@ export default function MiniMap() {
           }}
         />
 
-        {/* Neighborhood dots — all green, all within 10 mi */}
+        {/* Neighborhood dots */}
         {neighborhoods.map((n, i) => (
           <CircleMarker
             key={i}
@@ -78,7 +78,7 @@ export default function MiniMap() {
               color: '#fff',
               fillColor: GREEN,
               fillOpacity: 1,
-              weight: 1.5,
+              weight: 2,
             }}
           >
             <Tooltip direction="top" offset={[0, -10]} opacity={1}>
@@ -91,7 +91,7 @@ export default function MiniMap() {
           </CircleMarker>
         ))}
 
-        {/* HQ orange dot */}
+        {/* HQ dot */}
         <CircleMarker
           center={HQ}
           radius={10}
@@ -99,7 +99,7 @@ export default function MiniMap() {
             color: '#fff',
             fillColor: ORANGE,
             fillOpacity: 1,
-            weight: 1.5,
+            weight: 2,
           }}
         >
           <Tooltip direction="top" offset={[0, -12]} opacity={1}>
@@ -107,28 +107,31 @@ export default function MiniMap() {
           </Tooltip>
         </CircleMarker>
 
-        {/* HQ pill label — no white box, just styled text */}
+        {/* HQ pill label */}
         <Marker position={HQ} icon={hqIcon} interactive={false} />
       </MapContainer>
 
-      {/* Legend */}
+      {/* Hover hint — top right, away from map labels */}
+      <div className="hover-hint" style={{
+        position: 'absolute', top: 8, right: 10, zIndex: 1000,
+        fontFamily: 'var(--sans)', fontSize: 10,
+        letterSpacing: '.18em', textTransform: 'uppercase',
+        color: ORANGE, opacity: 0.8,
+        pointerEvents: 'none',
+      }}>
+        Hover pins ↗
+      </div>
+
+      {/* Legend — bottom left only */}
       <div style={{
-        position: 'absolute', bottom: 8, left: 10, right: 10, zIndex: 1000,
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        position: 'absolute', bottom: 8, left: 10, zIndex: 1000,
+        display: 'flex', alignItems: 'center', gap: 6,
         fontFamily: 'var(--sans)', fontSize: 12,
         color: 'var(--muted)', letterSpacing: '.04em',
         pointerEvents: 'none',
       }}>
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-          <span style={{ width: 6, height: 6, borderRadius: '50%', background: GREEN }} />
-          Served weekly · Atlanta 30318 · within 10 mi
-        </span>
-        <span className="hover-hint" style={{
-          fontSize: 11, letterSpacing: '.18em', textTransform: 'uppercase',
-          color: ORANGE, opacity: 0.8,
-        }}>
-          Hover pins ↗
-        </span>
+        <span style={{ width: 7, height: 7, borderRadius: '50%', background: GREEN, flexShrink: 0 }} />
+        Within 10 mi · Atlanta, GA
       </div>
     </div>
   )
