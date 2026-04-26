@@ -175,6 +175,58 @@ In Notion, use ` | ` (space-pipe-space) as a newline delimiter in rich text fiel
 
 Always join all rich_text spans: `.map(t => t.plain_text).join('')` — Notion can split a single logical field into multiple text runs.
 
+### Real Map with Leaflet (MiniMap.jsx)
+
+Uses `react-leaflet` + `leaflet` (both installed). CartoDB Positron tiles — free, no API key. Key patterns:
+
+- Tiles require `import 'leaflet/dist/leaflet.css'`
+- Dark mode tile inversion: `[data-mode="dark"] .leaflet-tile { filter: invert(1) hue-rotate(180deg) brightness(0.75) saturate(0.5); }`
+- Leaflet Tooltip styling via `.leaflet-tooltip` CSS class (dark bg, IBM Plex Mono font)
+- HQ label uses `L.divIcon` with a `.hq-label` CSS class — avoids the default white Tooltip box that Leaflet's `permanent` prop creates
+- Tooltips near the top edge of the map must use `direction="bottom"` to avoid being clipped by `overflow: hidden`
+- Map is fully static (`dragging={false}`, `zoomControl={false}`, etc.) — purely visual with hover interaction
+- Neighborhood dots: `CircleMarker` with white stroke (`color: '#fff'`, `weight: 1.5`) so they're visible on both light and dark tiles. Green hardcoded as `#5A9E72` (slightly brighter than `--green` for tile contrast)
+
+**Mobile-specific pattern** — rotating neighborhood strip:
+```jsx
+const [active, setActive] = useState(0)
+useEffect(() => {
+  const id = setInterval(() => setActive(i => (i + 1) % items.length), 2500)
+  return () => clearInterval(id)
+}, [])
+```
+Strip shown via `.mobile-neighborhood-strip { display: block }`, hidden at 640px+. Each item is an `<a>` to Google Maps. Progress dots use width transition (`4px` → `14px`) to indicate active item. Same pill-dot pattern used in PhotoStrips carousel.
+
+### Photo Carousel (PhotoStrips.jsx — mobile)
+
+Scroll-snap carousel on mobile, 3-col grid on desktop:
+- `.photo-carousel { display: block }` / `display: none` at 640px+
+- `.photo-strips-grid { display: none !important }` / `display: grid !important` at 640px+
+- Scroll snap: `scrollSnapType: 'x mandatory'` on container, `scrollSnapAlign: 'start'` on each item
+- Active dot tracked via `onScroll` → `Math.round(scrollLeft / offsetWidth)`
+- Dot indicator: width animates between `6px` (inactive) and `20px` (active) with `border-radius: 3px`
+
+### ReviewTicker
+
+- Entire ticker wrapped in `<a href="https://g.page/r/CS7eaMrwENHeEBM/review">` — clicking opens Google Business review page
+- Speed: `animation: 'ticker 20s linear infinite'`
+- Content from `reviews.json` (Notion). Currently has one entry: Google review CTA prompt
+
+### FieldNotes (no posts yet)
+
+Simple Substack callout, no post list. Links to `https://substack.com/@petthatdawg`. When posts exist, re-wire the post list from `blog.json`.
+
+### CSS Utility Classes (index.css)
+
+| Class | Mobile | Desktop (640px+) |
+|-------|--------|-----------------|
+| `.photo-carousel` | `display: block` | `display: none` |
+| `.photo-strips-grid` | `display: none !important` | `display: grid !important` |
+| `.mobile-neighborhood-strip` | `display: block` | `display: none` |
+| `.hover-hint` | `display: none` | `display: inline` |
+| `.service-area-label` | `display: none` | `display: block` |
+| `.bento-bottom` | `grid-template-columns: 1fr` | `grid-template-columns: 2fr 1fr` |
+
 ## Common Patterns to Follow
 
 - Section backgrounds alternate between `--bg` and `--card`/`--panel` for visual rhythm

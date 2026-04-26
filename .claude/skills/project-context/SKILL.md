@@ -70,7 +70,7 @@ All fetched by `scripts/fetch-notion.js`, output to `src/data/`.
 
 **Important:** Always join ALL rich_text runs, not just `[0]`. The fetch script uses `.map(t => t.plain_text).join('')` — Notion sometimes splits a single field into multiple text spans.
 
-**Podcasts DB issue:** Not accessible to the canipetthatdawg-site integration. Fetch script handles as soft failure — existing podcasts.json used as fallback. Fix: In Notion, open Podcasts DB → ••• → Connections → add canipetthatdawg-site.
+**Podcasts DB:** Now connected. Fetch pulls Pet Sitter Confessional (petsitterconfessional.com) with initials "PSC".
 
 ## Component Map (src/components/)
 
@@ -88,13 +88,13 @@ Page order: Nav → Hero → TrustBar → PhotoStrips → Services → EveryVisi
 | DawgOfTheDay.jsx | dawg.json | Rotates by (date + month) % dogs.length |
 | ReviewTicker.jsx | reviews.json | Scrolling quotes ticker |
 | CredsBento.jsx | books.json + podcasts.json | Fear Free seal SVG, PSI/PSA stacked card, Time To Pet card (all three use `darkCard` style with `--hero-bg` bg and `--border-bold` border), reading list, podcasts |
-| About.jsx | about.json | MiniMap + bio; label "Atlanta 30318 · within 10 mi"; top bar font size 12px |
-| FieldNotes.jsx | blog.json | Links to Substack |
+| About.jsx | about.json | MiniMap + bio; top bar shows "Service Area" (left) + "Within a 10 mile radius of 30318" (right, hidden on mobile via `.service-area-label`) |
+| FieldNotes.jsx | Hardcoded | Substack callout only — no post list. Links to substack.com/@petthatdawg |
 | CTA.jsx | cta.json + cta-content.json | Bottom CTA section |
 | ContactTerminal.jsx | Hardcoded | Multi-step contact form terminal |
 | Footer.jsx | Hardcoded | Brand: "Can I Pet That **Dawg?**" (orange on "Dawg?"); Instagram, Substack, Time To Pet |
 | PawTrail.jsx | Hardcoded | Decorative scrolling paw banner |
-| MiniMap.jsx | Hardcoded | Atlanta service area SVG map; no radius chip; legend font 12px |
+| MiniMap.jsx | Hardcoded | Real Leaflet map (CartoDB Positron tiles); 18 green CircleMarker dots for neighborhoods; orange HQ dot + `.hq-label` DivIcon pill; orange dashed radius ring; hover tooltips on desktop; rotating neighborhood strip on mobile (`.mobile-neighborhood-strip`) cycles every 2.5s with progress dots, each tappable to Google Maps |
 | MapShowcase.jsx | Hardcoded | Leaflet map style previewer |
 
 ## Known Pending Issues
