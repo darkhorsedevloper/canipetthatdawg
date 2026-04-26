@@ -98,7 +98,7 @@ export default function Hero() {
           color: 'var(--green)', marginBottom: '18px',
           display: 'flex', alignItems: 'center', gap: '10px',
           fontFamily: "'IBM Plex Mono', monospace",
-          minHeight: '16px', whiteSpace: 'nowrap', overflow: 'hidden',
+          minHeight: '16px',
         }}>
           <span style={{ display: 'block', width: '24px', height: '1px', background: 'var(--green)', flexShrink: 0 }}/>
           {displayed}
