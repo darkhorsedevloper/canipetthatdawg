@@ -41,65 +41,7 @@ const STEPS = [
   },
 ]
 
-import { useState, useRef } from 'react'
-
-function StepContent(step) {
-  return (
-    <>
-      <span style={{
-        fontSize: '11px',
-        fontFamily: "'IBM Plex Mono', monospace",
-        letterSpacing: '0.18em',
-        color: step.subtext,
-        marginBottom: '14px',
-        fontWeight: 700,
-      }}>
-        {step.number}
-      </span>
-      <p style={{
-        fontSize: '17px',
-        fontFamily: 'var(--serif)',
-        fontWeight: 400,
-        color: step.text,
-        marginBottom: '10px',
-        lineHeight: 1.2,
-      }}>
-        {step.label}
-      </p>
-      <p style={{
-        fontSize: '13px',
-        color: step.subtext,
-        lineHeight: 1.65,
-        fontFamily: "'IBM Plex Mono', monospace",
-        flex: 1,
-        marginBottom: '20px',
-      }}>
-        {step.desc}
-      </p>
-      <span style={{
-        fontSize: '11px',
-        fontFamily: "'IBM Plex Mono', monospace",
-        letterSpacing: '0.1em',
-        color: step.text,
-        textTransform: 'uppercase',
-        fontWeight: 700,
-      }}>
-        {step.cta}
-      </span>
-    </>
-  )
-}
-
 export default function CTA() {
-  const [active, setActive] = useState(0)
-  const carouselRef = useRef(null)
-
-  function onScroll() {
-    if (!carouselRef.current) return
-    const i = Math.round(carouselRef.current.scrollLeft / carouselRef.current.offsetWidth)
-    setActive(i)
-  }
-
   return (
     <section style={{
       background: 'var(--hero-bg)',
@@ -140,73 +82,6 @@ export default function CTA() {
           Made to fit your dog's idea of a good day.
         </p>
 
-        {/* Mobile carousel */}
-        <div className="cta-carousel">
-          <div
-            ref={carouselRef}
-            onScroll={onScroll}
-            style={{
-              display: 'flex',
-              overflowX: 'scroll',
-              scrollSnapType: 'x mandatory',
-              scrollBehavior: 'smooth',
-              WebkitOverflowScrolling: 'touch',
-              msOverflowStyle: 'none',
-              scrollbarWidth: 'none',
-              gap: '12px',
-              paddingRight: '24px',
-            }}
-          >
-            {STEPS.map((step) => (
-              <a
-                key={step.number}
-                href={step.href}
-                target={step.href.startsWith('http') ? '_blank' : undefined}
-                rel={step.href.startsWith('http') ? 'noreferrer' : undefined}
-                style={{
-                  minWidth: '85%',
-                  scrollSnapAlign: 'start',
-                  flexShrink: 0,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  padding: '28px 24px',
-                  borderRadius: '4px',
-                  background: step.bg,
-                  textDecoration: 'none',
-                  cursor: 'pointer',
-                }}
-              >
-                {StepContent(step)}
-              </a>
-            ))}
-          </div>
-
-          {/* Dots */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', padding: '16px 0 4px' }}>
-            {STEPS.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  carouselRef.current?.scrollTo({ left: carouselRef.current.offsetWidth * i, behavior: 'smooth' })
-                  setActive(i)
-                }}
-                style={{
-                  width: i === active ? '20px' : '6px',
-                  height: '6px',
-                  borderRadius: '3px',
-                  background: i === active ? 'var(--orange)' : 'rgba(237,229,210,0.25)',
-                  border: 'none',
-                  padding: 0,
-                  cursor: 'pointer',
-                  transition: 'width 200ms, background 200ms',
-                }}
-                aria-label={STEPS[i].label}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Desktop grid */}
         <div className="cta-steps-grid">
           {STEPS.map((step) => (
             <a
@@ -224,7 +99,46 @@ export default function CTA() {
                 cursor: 'pointer',
               }}
             >
-              {StepContent(step)}
+              <span style={{
+                fontSize: '11px',
+                fontFamily: "'IBM Plex Mono', monospace",
+                letterSpacing: '0.18em',
+                color: step.subtext,
+                marginBottom: '14px',
+                fontWeight: 700,
+              }}>
+                {step.number}
+              </span>
+              <p style={{
+                fontSize: '17px',
+                fontFamily: 'var(--serif)',
+                fontWeight: 400,
+                color: step.text,
+                marginBottom: '10px',
+                lineHeight: 1.2,
+              }}>
+                {step.label}
+              </p>
+              <p style={{
+                fontSize: '13px',
+                color: step.subtext,
+                lineHeight: 1.65,
+                fontFamily: "'IBM Plex Mono', monospace",
+                flex: 1,
+                marginBottom: '20px',
+              }}>
+                {step.desc}
+              </p>
+              <span style={{
+                fontSize: '11px',
+                fontFamily: "'IBM Plex Mono', monospace",
+                letterSpacing: '0.1em',
+                color: step.text,
+                textTransform: 'uppercase',
+                fontWeight: 700,
+              }}>
+                {step.cta}
+              </span>
             </a>
           ))}
         </div>

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 // Services data is inlined here — Notion fetch overwrites services.json on build
 const services = [
@@ -220,15 +220,6 @@ function ServiceCard({ s }) {
 }
 
 export default function Services() {
-  const [active, setActive] = useState(0)
-  const carouselRef = useRef(null)
-
-  function onScroll() {
-    if (!carouselRef.current) return
-    const i = Math.round(carouselRef.current.scrollLeft / carouselRef.current.offsetWidth)
-    setActive(i)
-  }
-
   return (
     <section id="services" className="section-pad" style={{ borderBottom: '0.5px solid var(--border)' }}>
 
@@ -247,62 +238,7 @@ export default function Services() {
         Pick what best <span style={{ color: 'var(--orange)' }}>fits your dog.</span>
       </h2>
 
-      {/* Mobile carousel */}
-      <div className="services-carousel">
-        <div
-          ref={carouselRef}
-          onScroll={onScroll}
-          style={{
-            display: 'flex',
-            overflowX: 'scroll',
-            scrollSnapType: 'x mandatory',
-            scrollBehavior: 'smooth',
-            WebkitOverflowScrolling: 'touch',
-            msOverflowStyle: 'none',
-            scrollbarWidth: 'none',
-            gap: '12px',
-            paddingRight: '24px',
-          }}
-        >
-          {services.map((s, i) => (
-            <div key={i} style={{
-              minWidth: '85%',
-              scrollSnapAlign: 'start',
-              flexShrink: 0,
-              paddingTop: s.featured ? '14px' : '0',
-            }}>
-              <ServiceCard s={s} />
-            </div>
-          ))}
-        </div>
-
-        {/* Dots */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', padding: '14px 0 4px' }}>
-          {services.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                carouselRef.current?.scrollTo({ left: carouselRef.current.offsetWidth * i, behavior: 'smooth' })
-                setActive(i)
-              }}
-              style={{
-                width: i === active ? '20px' : '6px',
-                height: '6px',
-                borderRadius: '3px',
-                background: i === active ? 'var(--orange)' : 'var(--border-bold)',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-                transition: 'width 200ms, background 200ms',
-              }}
-              aria-label={services[i].name}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Desktop grid */}
-      <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px', marginBottom: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px', marginBottom: '20px' }}>
         {services.map((s, i) => (
           <ServiceCard key={i} s={s} />
         ))}
