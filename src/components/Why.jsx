@@ -19,7 +19,7 @@ export default function Why() {
       </h2>
 
       {/* Always visible — first 2 */}
-      <div className="why-grid" style={{ marginBottom: '0' }}>
+      <div className="why-grid">
         {visible.map((item, i) => (
           <div key={i}>
             <div style={{ width: '24px', height: '2px', borderRadius: '1px', background: item.bar, marginBottom: '14px' }} />
@@ -29,12 +29,8 @@ export default function Why() {
         ))}
       </div>
 
-      {/* Collapsible — remaining items */}
-      <div style={{
-        overflow: 'hidden',
-        maxHeight: open ? '400px' : '0',
-        transition: 'max-height 400ms ease',
-      }}>
+      {/* Collapsible — last 2 */}
+      {open && (
         <div className="why-grid" style={{ marginTop: '32px' }}>
           {hidden.map((item, i) => (
             <div key={i}>
@@ -44,7 +40,7 @@ export default function Why() {
             </div>
           ))}
         </div>
-      </div>
+      )}
 
       {/* Toggle */}
       <button
@@ -65,13 +61,7 @@ export default function Why() {
           color: 'var(--orange)',
         }}
       >
-        <span style={{
-          display: 'inline-block',
-          transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
-          transition: 'transform 300ms',
-          fontSize: '14px',
-          lineHeight: 1,
-        }}>+</span>
+        <span style={{ fontSize: '16px', lineHeight: 1, fontWeight: 300 }}>{open ? '−' : '+'}</span>
         {open ? 'View less' : 'View more'}
       </button>
 
