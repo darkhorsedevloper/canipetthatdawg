@@ -99,18 +99,18 @@ export default function CTA() {
                 cursor: 'pointer',
               }}
             >
-              {step.number && (
-                <span style={{
-                  fontSize: '11px',
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  letterSpacing: '0.18em',
-                  color: step.subtext,
-                  marginBottom: '14px',
-                  fontWeight: 700,
-                }}>
-                  {step.number}
-                </span>
-              )}
+              <span style={{
+                fontSize: '11px',
+                fontFamily: "'IBM Plex Mono', monospace",
+                letterSpacing: '0.18em',
+                color: step.subtext,
+                marginBottom: '14px',
+                fontWeight: 700,
+                display: 'block',
+                minHeight: '14px',
+              }}>
+                {step.number}
+              </span>
               <p style={{
                 fontSize: '17px',
                 fontFamily: 'var(--serif)',
