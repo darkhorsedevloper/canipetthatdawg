@@ -5,7 +5,9 @@ const STEPS = [
     desc: 'Sign up free on Time To Pet. Takes about 2 minutes — no commitment yet.',
     cta: 'Create account →',
     href: 'https://www.timetopet.com/portal/create/create-account',
-    color: '#C4892A',
+    bg: '#C4892A',
+    text: '#0A0806',
+    subtext: 'rgba(10,8,6,0.6)',
   },
   {
     number: '02',
@@ -13,15 +15,19 @@ const STEPS = [
     desc: 'A free 30-min intro so your dog and I can get acquainted before the first walk.',
     cta: 'Book a meet & greet →',
     href: 'https://www.timetopet.com/portal/create/create-account',
-    color: '#4A7C5E',
+    bg: '#4A7C5E',
+    text: '#0A0806',
+    subtext: 'rgba(10,8,6,0.55)',
   },
   {
     number: '03',
     label: 'Choose your service',
-    desc: 'Pick the walk, drop-in, or overnight that fits your dog\'s week.',
+    desc: "Pick the walk, drop-in, or overnight that fits your dog's week.",
     cta: 'View services →',
     href: '#services',
-    color: '#3A6B8A',
+    bg: '#3A6B8A',
+    text: '#EDE5D2',
+    subtext: 'rgba(237,229,210,0.65)',
   },
   {
     number: '04',
@@ -29,7 +35,9 @@ const STEPS = [
     desc: 'Photo reports after every visit. Follow on Instagram for daily dawg content.',
     cta: 'Follow @canipet_that_dawg_llc →',
     href: 'https://instagram.com/canipet_that_dawg_llc',
-    color: '#EDE5D2',
+    bg: '#EDE5D2',
+    text: '#2A2520',
+    subtext: 'rgba(42,37,32,0.55)',
   },
 ]
 
@@ -59,10 +67,20 @@ export default function CTA() {
           fontSize: 'clamp(34px, 5vw, 56px)',
           lineHeight: 1.05,
           color: '#EDE5D2',
-          marginBottom: '48px',
+          marginBottom: '12px',
         }}>
           Getting started <span style={{ color: 'var(--orange)' }}>is simple.</span>
         </h2>
+
+        <p style={{
+          fontSize: '15px',
+          color: 'rgba(226,217,198,0.55)',
+          fontFamily: "'IBM Plex Mono', monospace",
+          marginBottom: '40px',
+          lineHeight: 1.6,
+        }}>
+          Made to fit your dog's idea of a good day.
+        </p>
 
         {/* 4 steps */}
         <div className="cta-steps-grid">
@@ -77,26 +95,16 @@ export default function CTA() {
                 flexDirection: 'column',
                 padding: '28px 24px',
                 borderRadius: '4px',
-                border: '0.5px solid rgba(237,229,210,0.1)',
-                background: 'rgba(237,229,210,0.04)',
+                background: step.bg,
                 textDecoration: 'none',
-                transition: 'border-color 200ms, background 200ms',
                 cursor: 'pointer',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = step.color
-                e.currentTarget.style.background = 'rgba(237,229,210,0.07)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = 'rgba(237,229,210,0.1)'
-                e.currentTarget.style.background = 'rgba(237,229,210,0.04)'
               }}
             >
               <span style={{
                 fontSize: '11px',
                 fontFamily: "'IBM Plex Mono', monospace",
                 letterSpacing: '0.18em',
-                color: step.color,
+                color: step.subtext,
                 marginBottom: '14px',
                 fontWeight: 700,
               }}>
@@ -107,7 +115,7 @@ export default function CTA() {
                 fontSize: '17px',
                 fontFamily: 'var(--serif)',
                 fontWeight: 400,
-                color: '#EDE5D2',
+                color: step.text,
                 marginBottom: '10px',
                 lineHeight: 1.2,
               }}>
@@ -116,7 +124,7 @@ export default function CTA() {
 
               <p style={{
                 fontSize: '13px',
-                color: 'rgba(226,217,198,0.55)',
+                color: step.subtext,
                 lineHeight: 1.65,
                 fontFamily: "'IBM Plex Mono', monospace",
                 flex: 1,
@@ -129,8 +137,9 @@ export default function CTA() {
                 fontSize: '11px',
                 fontFamily: "'IBM Plex Mono', monospace",
                 letterSpacing: '0.1em',
-                color: step.color,
+                color: step.text,
                 textTransform: 'uppercase',
+                fontWeight: 700,
               }}>
                 {step.cta}
               </span>
