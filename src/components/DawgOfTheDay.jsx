@@ -117,9 +117,6 @@ export default function DawgOfTheDay() {
 
       <style>{`
         @keyframes dotd-blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        @media (max-width: 640px) {
-          .dotd-grid { grid-template-columns: 1fr !important; }
-        }
       `}</style>
 
     </section>

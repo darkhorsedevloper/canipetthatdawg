@@ -385,3 +385,8 @@ img { display: block; max-width: 100%; }
 
 /* Hide scrollbar inside carousel */
 .photo-carousel div::-webkit-scrollbar { display: none; }
+
+/* DawgOfTheDay — stack portrait + text on mobile */
+@media (max-width: 640px) {
+  .dotd-grid { grid-template-columns: 1fr !important; }
+}
