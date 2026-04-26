@@ -10,7 +10,7 @@ export default function About() {
       <div style={{ display: 'flex', flexDirection: 'column', background: 'var(--card)', borderBottom: '0.5px solid var(--border)' }}>
         <div style={{ padding: '10px 14px', background: 'var(--panel)', borderBottom: '0.5px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <p style={{ fontSize: '12px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)' }}>Service Area</p>
-          <p style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.08em' }}>Within a 10 mile radius of 30318</p>
+          <p className="service-area-label" style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.08em' }}>Within a 10 mile radius of 30318</p>
         </div>
         <div style={{ padding: '16px' }}>
           <MiniMap />
