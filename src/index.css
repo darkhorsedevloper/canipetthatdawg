@@ -332,8 +332,13 @@ img { display: block; max-width: 100%; }
   50%       { opacity: 0; }
 }
 
-/* Photo strips — stack on mobile, 3-col on desktop */
-.photo-strips-grid { grid-template-columns: 1fr; }
+/* Photo strips — carousel on mobile, 3-col grid on desktop */
+.photo-carousel { display: block; }
+.photo-strips-grid { display: none !important; }
 @media (min-width: 640px) {
-  .photo-strips-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .photo-carousel { display: none; }
+  .photo-strips-grid { display: grid !important; grid-template-columns: 1fr 1fr 1fr; }
 }
+
+/* Hide scrollbar inside carousel */
+.photo-carousel div::-webkit-scrollbar { display: none; }
