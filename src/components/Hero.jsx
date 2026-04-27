@@ -188,14 +188,6 @@ export default function Hero() {
 
         </div>
 
-        <p style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: '13px',
-          color: 'rgba(226,217,198,0.55)',
-        }}>
-          {hero.quote} — {hero.quoteAttribution}
-        </p>
-
       </div>
     </section>
   )
