@@ -41,8 +41,8 @@ export default function App() {
       <Hero />
       <TrustBar />
       <PhotoStrips />
-      <Services />
       <CTA />
+      <Services />
       <EveryVisit />
       <Why />
       <About />
