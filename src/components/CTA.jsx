@@ -19,16 +19,6 @@ const STEPS = [
     text: '#0A0806',
     subtext: 'rgba(10,8,6,0.55)',
   },
-  {
-    number: '03',
-    label: 'Choose your service',
-    desc: "Pick the walk, drop-in, or overnight that fits your dog's week.",
-    cta: 'View services →',
-    href: '#services',
-    bg: '#3A6B8A',
-    text: '#EDE5D2',
-    subtext: 'rgba(237,229,210,0.65)',
-  },
 ]
 
 export default function CTA() {
