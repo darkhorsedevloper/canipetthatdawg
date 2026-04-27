@@ -2,6 +2,7 @@ import books from '../data/books.json'
 import pods from '../data/podcasts.json'
 import psiLogo from '../assets/PSI Logo.png'
 import ttpLogo from '../assets/TimetoPet.png'
+import psaLogo from '../assets/PSA.png'
 
 const card = {
   borderRadius: '10px',
@@ -74,8 +75,8 @@ export default function CredsBento() {
             <img src={psiLogo} alt="Pet Sitters International" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
           </div>
           <div style={{ flex: 1, padding: '18px 18px' }}>
-            <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '5px', fontFamily: "'IBM Plex Mono', monospace" }}>Insured &amp; Bonded</p>
-            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3 }}>Pet Sitters<br/>Associates</p>
+            <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Insured &amp; Bonded</p>
+            <img src={psaLogo} alt="Pet Sitters Associates" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
           </div>
         </div>
 
