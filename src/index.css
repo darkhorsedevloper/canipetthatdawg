@@ -398,5 +398,5 @@ img { display: block; max-width: 100%; }
   gap: 12px;
 }
 @media (min-width: 640px) {
-  .cta-steps-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cta-steps-grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 }
