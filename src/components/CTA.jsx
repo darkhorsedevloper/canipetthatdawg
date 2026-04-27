@@ -1,7 +1,7 @@
 const STEPS = [
   {
     number: '',
-    label: 'Fill out',
+    label: 'Fill out new client form and schedule your free meet & greet!',
     desc: 'Sign up free on Time To Pet.',
     cta: 'Create account →',
     href: 'https://www.timetopet.com/portal/create/create-account',
