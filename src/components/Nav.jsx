@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const links = ['Services', 'About', 'Field Notes']
+const links = ['Services', 'About', 'Blog']
 
 // Sliding paw pill — dark mode toggle
 function ModeSwitch({ dark, onToggle }) {
