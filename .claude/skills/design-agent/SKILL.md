@@ -11,18 +11,18 @@ You are a design advisor and design system enforcer for the Can I Pet That Dawg 
 
 ### Colors
 
-Always use CSS variables — never hardcode hex values.
+Always use CSS variables — never hardcode hex values in components (exception: CTA.jsx step cards use hardcoded hex for their solid backgrounds since they intentionally override the theme).
 
 | Variable | Light | Dark | Use |
 |----------|-------|------|-----|
 | `--bg` | #F4EFE6 | #1A1613 | Page background |
 | `--card` | #EBE5D8 | #221D19 | Card/surface background |
-| `--panel` | #EDE8DC | — | Subtle panel background |
+| `--panel` | #EDE8DC | #1F1A16 | Subtle panel background |
 | `--charcoal` | #2A2520 | #EDE5D2 | Primary text |
 | `--hero-bg` | #1E1A15 | #100D0B | Hero section background, dark cards |
 | `--orange` | #C4892A | #E8A547 | Accent, CTAs, highlights |
 | `--green` | #4A7C5E | #6DA888 | Secondary accent |
-| `--blue` | #3A6B8A | — | Tertiary accent |
+| `--blue` | #3A6B8A | #6FA5C7 | Tertiary accent |
 | `--border` | rgba(42,37,32,0.1) | rgba(237,229,210,0.08) | Subtle borders |
 | `--border-bold` | rgba(42,37,32,0.22) | rgba(237,229,210,0.18) | Emphasized borders |
 
@@ -44,15 +44,15 @@ Always use CSS variables — never hardcode hex values.
 - Mobile-first — start with mobile layout, use `@media (min-width: 640px)` to expand
 - Minimum touch targets: **44px** for interactive elements on mobile
 - Hide decorative/non-essential elements below 480px (e.g. hero placeholder image)
-- 1-column layouts below 360px for dense sections (e.g. CTA)
-- `overflow-x: hidden; max-width: 100%` on both `html` and `body` — always required to prevent horizontal scroll
+- 1-column layouts below 360px for dense sections
+- `overflow-x: hidden; max-width: 100%` on both `html` and `body` — always required
 
 ### Dark Mode
 
 - Applied via `[data-mode="dark"]` attribute on `<html>`
 - All color values must have dark mode overrides in index.css
 - Color transitions: 700ms
-- Never use `prefers-color-scheme` media query — always use `data-mode`
+- Never use `prefers-color-scheme` — always use `data-mode`
 
 ## Brand Principles
 
@@ -69,17 +69,17 @@ When asked to design or review a new component or section:
 2. **Check mobile** — does it work at 360px, 480px, and 640px+?
 3. **Check dark mode** — do all colors switch correctly?
 4. **Check brand fit** — does it feel warm, professional, and trustworthy?
-5. **Flag violations** — call out any hardcoded colors, italic text, missing touch targets, or dark mode gaps
+5. **Flag violations** — call out hardcoded colors, italic text, missing touch targets, dark mode gaps
 6. **Suggest alternatives** — when something doesn't fit, propose what does and why
 
-Current component order:
-Nav → Hero → TrustBar → PhotoStrips → Services → EveryVisit → Why → DawgOfTheDay → ReviewTicker → CredsBento → About → FieldNotes → CTA → ContactTerminal → Footer
+**Current page order:**
+Nav → Hero → TrustBar → PhotoStrips → Services → CTA → EveryVisit → Why → About → CredsBento → FieldNotes → ReviewTicker → DawgOfTheDay → ContactTerminal → Footer
 
 ## Established Component Patterns
 
 ### Card Variants
 
-**Dark card** (used in CredsBento top row — Fear Free, PSI/PSA, Time To Pet):
+**Dark card** (CredsBento top row — Fear Free, PSI/PSA, Time To Pet):
 ```js
 const darkCard = {
   borderRadius: '10px',
@@ -88,7 +88,7 @@ const darkCard = {
 }
 ```
 
-**Light card** (used in CredsBento bottom row — books, podcasts):
+**Light card** (CredsBento bottom row — books, podcasts):
 ```js
 const lightCard = {
   borderRadius: '10px',
@@ -97,142 +97,194 @@ const lightCard = {
 }
 ```
 
-All three top CredsBento cards (Fear Free, PSI/PSA, Time To Pet) use `darkCard` + `padding: '22px 18px'` + `minHeight: 170` + flex column + `justifyContent: space-between`. This creates consistent height and vertical rhythm across the bento grid.
+**Solid color CTA cards** (CTA.jsx step cards) — exception to CSS variable rule. Each card is a full solid color (orange, green, blue, cream) with text contrasted against it. Used intentionally for the onboarding funnel to make each step visually distinct.
 
-### Flip Cards (Services.jsx)
+### Flip Cards (Services.jsx + pattern)
 
-Cards flip on click using CSS 3D transforms. Key implementation details:
-- Container: `perspective: 1000px`; inner wrapper: `transform-style: preserve-3d`; transition: `750ms cubic-bezier(0.4,0.2,0.2,1)`
-- Both faces: `position: absolute; inset: 0; backfaceVisibility: hidden`
-- Back face rotated: `rotateY(180deg)` initially, flipped to `rotateY(0deg)` when active
+Cards flip on click using CSS 3D transforms:
+- Container: `perspective: 1000px`
+- Inner wrapper: `transformStyle: 'preserve-3d'`, `transition: '750ms cubic-bezier(0.4,0.2,0.2,1)'`
+- Both faces: `position: absolute; inset: 0; backfaceVisibility: hidden; WebkitBackfaceVisibility: hidden`
+- Back face: `transform: 'rotateY(180deg)'` initially
 
-**Centering text on the front face** — `alignItems: center` on a flex column can fight `width: 100%` and cause centering issues. The reliable fix is `display: table-cell`:
+**Front face centering pattern:**
 ```js
-// Outer wrapper — fills the card
-{ display: 'flex', flexDirection: 'column', height: '100%' }
-// Name area — expands to fill available space
-{ flex: 1, display: 'table', width: '100%' }
-// Text cell — perfectly centered vertically + horizontally
-{ display: 'table-cell', verticalAlign: 'middle', textAlign: 'center' }
+// Outer — fills available card space
+{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }
+// Name div — centered text
+{ fontFamily: 'var(--serif)', fontSize: '26px', textAlign: 'center' }
 ```
 
-### Typewriter Animation (Hero.jsx eyebrow)
+**Back face Book button:**
+```js
+{
+  display: 'block', width: '100%', textAlign: 'center',
+  background: s.accent, color: '#0A0806',
+  padding: '12px 0', borderRadius: '7px',
+  fontFamily: "'IBM Plex Mono', monospace",
+  fontSize: '12px', fontWeight: 700, letterSpacing: '0.12em',
+  textTransform: 'uppercase', textDecoration: 'none',
+}
+```
 
-Loops continuously — types out text, pauses, then restarts. 38ms/char, 1800ms pause, 400ms initial delay. Blinking green cursor rendered via `@keyframes blink` in index.css.
+### Cycling Typewriter (Hero.jsx eyebrow)
+
+Cycles through short phrases one at a time — critical to avoid mobile layout bounce. Each phrase must fit on a single line on the narrowest supported screen.
 
 ```js
-function useTypewriter(text, speed = 38, pauseAfter = 1800, delay = 400) {
+const PHRASES = ['Dog Walking', 'Adventure Hikes', 'Overnight Stays', 'Atlanta, GA']
+
+function useCyclingTypewriter(phrases, speed = 38, pauseAfter = 1800) {
   const [displayed, setDisplayed] = useState('')
   const [done, setDone] = useState(false)
+  const [index, setIndex] = useState(0)
+
   useEffect(() => {
-    let i = 0, timeout
-    function type() {
+    let i = 0, timeout, interval
+
+    function type(phraseIndex) {
+      const text = phrases[phraseIndex]
       setDone(false); setDisplayed(''); i = 0
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         i++; setDisplayed(text.slice(0, i))
         if (i >= text.length) {
           clearInterval(interval); setDone(true)
-          timeout = setTimeout(() => { type() }, pauseAfter)
+          timeout = setTimeout(() => {
+            const next = (phraseIndex + 1) % phrases.length
+            setIndex(next); type(next)
+          }, pauseAfter)
         }
       }, speed)
-      return interval
     }
-    let interval
-    const start = setTimeout(() => { interval = type() }, delay)
-    return () => { clearTimeout(start); clearTimeout(timeout); clearInterval(interval) }
-  }, [text, speed, pauseAfter, delay])
+
+    type(index)
+    return () => { clearTimeout(timeout); clearInterval(interval) }
+  }, []) // intentional empty deps — self-contained cycle
+  
   return { displayed, done }
 }
 ```
 
-Cursor: `<span style={{ opacity: done ? 0 : 1, ...blinkStyle }}>|</span>` — hides during the pause so it doesn't linger at the end.
+Eyebrow container: `minHeight: '16px'` prevents layout shift when phrase resets. Do NOT add `overflow: hidden` or `whiteSpace: nowrap` — these clip the text.
 
-### Aspect-Ratio Image Containers (PhotoStrips.jsx)
+### Aspect-Ratio Image Containers
 
-`aspectRatio: 1` is unreliable on older mobile browsers. Use the padding trick instead:
+`aspectRatio: 1` is unreliable on older mobile browsers. Always use the padding trick:
 ```js
 // Outer container
 { position: 'relative', width: '100%', paddingBottom: '100%', overflow: 'hidden' }
-// Image
+// Image (or content)
 { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }
 ```
-
-PhotoStrips uses `.photo-strips-grid` CSS class defined in index.css:
-- Mobile: `grid-template-columns: 1fr` (single full-width column)
-- 640px+: `grid-template-columns: repeat(3, 1fr)`
+Used in: PhotoStrips.jsx, DawgOfTheDay.jsx.
 
 ### Section Eyebrow Pattern
 
-Small all-caps label above section headings, always in a brand accent color:
 ```js
 { fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase',
   color: 'var(--green)', fontFamily: "'IBM Plex Mono', monospace", marginBottom: '10px' }
 ```
+With optional green line accent:
+```jsx
+<p style={{ display: 'flex', alignItems: 'center', gap: '12px', ...eyebrowStyle }}>
+  <span style={{ display: 'block', width: '24px', height: '1px', background: 'var(--green)' }} />
+  Section Label
+</p>
+```
 
-### Notion Multi-Line Fields
+### Why Section (Collapsible)
 
-In Notion, use ` | ` (space-pipe-space) as a newline delimiter in rich text fields. The fetch script converts these to `\n`. Components must use `whiteSpace: 'pre-line'` to render the line breaks.
+All 4 items hidden by default behind a "View more" toggle:
+```jsx
+const [open, setOpen] = useState(false)
 
-Always join all rich_text spans: `.map(t => t.plain_text).join('')` — Notion can split a single logical field into multiple text runs.
+<button onClick={() => setOpen(o => !o)}>
+  <span>{open ? '−' : '+'}</span>
+  {open ? 'View less' : 'View more'}
+</button>
+
+{open && (
+  <div className="why-grid">
+    {items.map((item, i) => (...))}
+  </div>
+)}
+```
+Use `{open && (...)}` conditional render — NOT `max-height` animation (unreliable on mobile).
+
+### DawgOfTheDay Portrait
+
+Photo map pattern for multiple dogs:
+```js
+import prissyPhoto from '../assets/Prissy PP.jpeg'
+const PHOTOS = { 'Priscilla': prissyPhoto }
+const photo = PHOTOS[dog.name] // falls back to placeholder emoji if not found
+```
+Portrait container uses `paddingBottom: 100%` pattern. `objectPosition: 'top'` for Priscilla's photo.
 
 ### Real Map with Leaflet (MiniMap.jsx)
 
-Uses `react-leaflet` + `leaflet` (both installed). CartoDB Positron tiles — free, no API key. Key patterns:
-
-- Tiles require `import 'leaflet/dist/leaflet.css'`
+- `react-leaflet` + `leaflet`, CartoDB Positron tiles (free, no API key)
+- Requires `import 'leaflet/dist/leaflet.css'`
 - Dark mode tile inversion: `[data-mode="dark"] .leaflet-tile { filter: invert(1) hue-rotate(180deg) brightness(0.75) saturate(0.5); }`
-- Leaflet Tooltip styling via `.leaflet-tooltip` CSS class (dark bg, IBM Plex Mono font)
-- HQ label uses `L.divIcon` with a `.hq-label` CSS class — avoids the default white Tooltip box that Leaflet's `permanent` prop creates
-- Tooltips near the top edge of the map must use `direction="bottom"` to avoid being clipped by `overflow: hidden`
-- Map is fully static (`dragging={false}`, `zoomControl={false}`, etc.) — purely visual with hover interaction
-- Neighborhood dots: `CircleMarker` with white stroke (`color: '#fff'`, `weight: 1.5`) so they're visible on both light and dark tiles. Green hardcoded as `#5A9E72` (slightly brighter than `--green` for tile contrast)
+- HQ label: `L.divIcon` with `.hq-label` CSS class (avoids white Tooltip box from `permanent` prop)
+- Tooltips near top map edge: use `direction="bottom"` to avoid clipping
+- Map is static: `dragging={false}`, `zoomControl={false}`, etc.
 
-**Mobile-specific pattern** — rotating neighborhood strip:
+**Mobile rotating strip pattern:**
 ```jsx
 const [active, setActive] = useState(0)
 useEffect(() => {
   const id = setInterval(() => setActive(i => (i + 1) % items.length), 2500)
   return () => clearInterval(id)
 }, [])
+// Strip <a> must have fixed height: 44px; overflow: hidden — prevents bounce from text length changes
 ```
-Strip shown via `.mobile-neighborhood-strip { display: block }`, hidden at 640px+. Each item is an `<a>` to Google Maps. Progress dots use width transition (`4px` → `14px`) to indicate active item. Same pill-dot pattern used in PhotoStrips carousel.
 
-### Photo Carousel (PhotoStrips.jsx — mobile)
+### Photo Carousel (mobile)
 
-Scroll-snap carousel on mobile, 3-col grid on desktop:
-- `.photo-carousel { display: block }` / `display: none` at 640px+
-- `.photo-strips-grid { display: none !important }` / `display: grid !important` at 640px+
-- Scroll snap: `scrollSnapType: 'x mandatory'` on container, `scrollSnapAlign: 'start'` on each item
-- Active dot tracked via `onScroll` → `Math.round(scrollLeft / offsetWidth)`
-- Dot indicator: width animates between `6px` (inactive) and `20px` (active) with `border-radius: 3px`
+```jsx
+// Container
+{ display: 'flex', overflowX: 'scroll', scrollSnapType: 'x mandatory',
+  WebkitOverflowScrolling: 'touch', msOverflowStyle: 'none', scrollbarWidth: 'none' }
+// Each slide
+{ minWidth: '100%', scrollSnapAlign: 'start', flexShrink: 0 }
+// Track active slide
+Math.round(scrollLeft / offsetWidth)
+// Dot indicator (active vs inactive)
+{ width: active ? '20px' : '6px', height: '6px', borderRadius: '3px',
+  background: active ? 'var(--orange)' : 'var(--border-bold)',
+  transition: 'width 200ms, background 200ms' }
+```
 
 ### ReviewTicker
 
-- Entire ticker wrapped in `<a href="https://g.page/r/CS7eaMrwENHeEBM/review">` — clicking opens Google Business review page
-- Speed: `animation: 'ticker 20s linear infinite'`
-- Content from `reviews.json` (Notion). Currently has one entry: Google review CTA prompt
+- Wrapped in `<a href="https://g.page/r/CS7eaMrwENHeEBM/review" target="_blank">` — entire bar is clickable
+- `animation: 'ticker 20s linear infinite'`
+- Duplicate array for seamless loop: `[...quotes, ...quotes]`, translateX(-50%)
 
-### FieldNotes (no posts yet)
+### FieldNotes
 
-Simple Substack callout, no post list. Links to `https://substack.com/@petthatdawg`. When posts exist, re-wire the post list from `blog.json`.
+Currently Substack-only callout (no posts written yet). Links to `https://substack.com/@petthatdawg`. When posts exist, re-wire the post list from `blog.json`.
 
-### CSS Utility Classes (index.css)
+### Layout Bounce Prevention
 
-| Class | Mobile | Desktop (640px+) |
-|-------|--------|-----------------|
-| `.photo-carousel` | `display: block` | `display: none` |
-| `.photo-strips-grid` | `display: none !important` | `display: grid !important` |
-| `.mobile-neighborhood-strip` | `display: block` | `display: none` |
-| `.hover-hint` | `display: none` | `display: inline` |
-| `.service-area-label` | `display: none` | `display: block` |
-| `.bento-bottom` | `grid-template-columns: 1fr` | `grid-template-columns: 2fr 1fr` |
+Sources of mobile bounce and their fixes:
+1. **Typewriter wrapping** — use `useCyclingTypewriter` with short phrases, not one long string
+2. **Rotating strip text** — fix `height: 44px; overflow: hidden` on the strip container
+3. **Aspect ratio containers** — use `paddingBottom: 100%` not `aspectRatio: 1`
+4. **Collapsible sections** — use `{open && (...)}` not `max-height` animation
+
+### CredsBento Grid
+
+`.bento-bottom` CSS class handles the responsive grid. **Never add inline `gridTemplateColumns`** to that div — it overrides the CSS media query. Only set `gap` and `className` inline:
+```jsx
+<div style={{ gap: '10px' }} className="bento-bottom">
+```
 
 ## Common Patterns to Follow
 
-- Section backgrounds alternate between `--bg` and `--card`/`--panel` for visual rhythm
-- Orange (`--orange`) is the primary CTA color — use it sparingly and intentionally
-- Cards use `--card` background with `--border` or `--border-bold` borders
-- Hero always uses `--hero-bg` (dark in both modes) for contrast
-- Scrolling tickers (TrustBar, ReviewTicker, PawTrail) are a site motif — new animated elements should feel consistent with these
-- Section headings follow the pattern: small eyebrow (10px mono, letter-spaced, colored) → `<h2>` (IBM Plex Mono, `clamp(26px, 4vw, 42px)`, weight 400, `--charcoal`) → optional orange accent on last word
-- Feature callouts that need to stand on their own (e.g., GPS tracking, Report Card) work best as a dedicated section with two cards side-by-side rather than buried in another section
+- Section backgrounds alternate: `--bg` → `--card`/`--panel` → `--hero-bg` for visual rhythm
+- Orange (`--orange`) is the primary CTA color — use sparingly and intentionally
+- Scrolling tickers (TrustBar, ReviewTicker, PawTrail) are a site motif
+- Section headings: small eyebrow (10px mono) → `<h2>` (IBM Plex Mono, clamp, weight 400) → optional orange accent on last word/phrase
+- Feature callouts work best as dedicated 2-card sections rather than buried in larger sections
