@@ -1,5 +1,6 @@
 import books from '../data/books.json'
 import pods from '../data/podcasts.json'
+import psiLogo from '../assets/PSI Logo.png'
 
 const card = {
   borderRadius: '10px',
@@ -70,9 +71,9 @@ export default function CredsBento() {
 
         {/* PSI + PSA stacked */}
         <div style={{ ...darkCard, overflow: 'hidden', display: 'flex', flexDirection: 'column', minHeight: 170 }}>
-          <div style={{ flex: 1, padding: '18px 18px', borderBottom: '0.5px solid rgba(237,229,210,0.1)' }}>
-            <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '5px', fontFamily: "'IBM Plex Mono', monospace" }}>Member</p>
-            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3 }}>Pet Sitters<br/>International</p>
+          <div style={{ flex: 1, padding: '18px 18px', borderBottom: '0.5px solid rgba(237,229,210,0.1)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Member</p>
+            <img src={psiLogo} alt="Pet Sitters International" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
           </div>
           <div style={{ flex: 1, padding: '18px 18px' }}>
             <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '5px', fontFamily: "'IBM Plex Mono', monospace" }}>Insured &amp; Bonded</p>
