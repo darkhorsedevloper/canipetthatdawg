@@ -203,7 +203,7 @@ export default function ContactTerminal() {
         Contact
       </p>
       <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 400, color: 'var(--charcoal)', marginBottom: '22px', lineHeight: 1.2 }}>
-        Open a <em style={{ color: 'var(--orange)' }}>line.</em>
+        Have Questions? <span style={{ color: 'var(--orange)' }}>Open a line.</span>
       </h2>
 
       <div
