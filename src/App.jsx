@@ -34,7 +34,7 @@ export default function App() {
   }, [])
   usePetCursor()
   return (
-    <div data-mode={dark ? 'dark' : 'light'} style={{ maxWidth: '960px', margin: '0 auto', overflowX: 'hidden' }}>
+    <div data-mode={dark ? 'dark' : 'light'} style={{ maxWidth: '960px', margin: '0 auto' }}>
       <div style={{ height: '24px' }} />
       <ColorStripe />
       <Nav dark={dark} onToggleDark={() => setDark(d => !d)} />
