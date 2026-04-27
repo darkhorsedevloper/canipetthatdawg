@@ -73,10 +73,12 @@ export default function CredsBento() {
           <div style={{ flex: 1, padding: '18px 18px', borderBottom: '0.5px solid rgba(237,229,210,0.1)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Member</p>
             <img src={psiLogo} alt="Pet Sitters International" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '8px' }}>Pet Sitters<br/>International</p>
           </div>
           <div style={{ flex: 1, padding: '18px 18px' }}>
             <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Insured &amp; Bonded</p>
             <img src={psaLogo} alt="Pet Sitters Associates" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '8px' }}>Pet Sitters<br/>Associates</p>
           </div>
         </div>
 
@@ -85,6 +87,7 @@ export default function CredsBento() {
           <div>
             <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Platform</p>
             <img src={ttpLogo} alt="Time To Pet" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '8px' }}>Time To Pet</p>
           </div>
         </div>
 
