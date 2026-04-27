@@ -39,8 +39,8 @@ export default function CredsBento() {
 
         {/* Fear Free */}
         <div style={{ ...darkCard, padding: '14px 16px', minHeight: 110, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <div style={{ position: 'absolute', top: 10, right: 10, width: 60, height: 60 }}>
-            <img src={fearFreeLogo} alt="Fear Free Certified Professional" style={{ width: '60px', height: '60px', objectFit: 'contain' }} />
+          <div style={{ position: 'absolute', top: 10, right: 10, width: 70, height: 70 }}>
+            <img src={fearFreeLogo} alt="Fear Free Certified Professional" style={{ width: '70px', height: '70px', objectFit: 'contain' }} />
           </div>
           <div>
             <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '6px', fontFamily: "'IBM Plex Mono', monospace" }}>Certification</p>
