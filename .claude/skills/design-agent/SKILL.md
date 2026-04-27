@@ -73,7 +73,7 @@ When asked to design or review a new component or section:
 6. **Suggest alternatives** — when something doesn't fit, propose what does and why
 
 **Current page order:**
-Nav → Hero → TrustBar → PhotoStrips → Services → CTA → EveryVisit → Why → About → CredsBento → FieldNotes → ReviewTicker → DawgOfTheDay → ContactTerminal → Footer
+Nav → Hero → TrustBar → PhotoStrips → CTA → Services → EveryVisit → Why → About → CredsBento → FieldNotes → ReviewTicker → DawgOfTheDay → ContactTerminal → Footer
 
 ## Established Component Patterns
 
@@ -97,7 +97,7 @@ const lightCard = {
 }
 ```
 
-**Solid color CTA cards** (CTA.jsx step cards) — exception to CSS variable rule. Each card is a full solid color (orange, green, blue, cream) with text contrasted against it. Used intentionally for the onboarding funnel to make each step visually distinct.
+**Solid color CTA cards** (CTA.jsx step cards) — exception to CSS variable rule. Two cards: orange (#C4892A) for new clients ("Fill Out New Client Form"), green (#4A7C5E) for existing clients ("Existing Clients" / "Log in here"). Each card is a full `<a>` tag with hardcoded hex background and white/cream text. Arranged side-by-side on desktop (`.cta-steps-grid` → 1fr 1fr), stacked on mobile.
 
 ### Flip Cards (Services.jsx + pattern)
 
@@ -126,6 +126,24 @@ Cards flip on click using CSS 3D transforms:
   textTransform: 'uppercase', textDecoration: 'none',
 }
 ```
+
+### Nav Button Pattern
+
+Nav has two buttons, always in this order: **Book Now** (solid, primary) then **Log In** (ghost). Both use the `nav-book-btn` class. Log In overrides to transparent background with a bold border:
+
+```jsx
+{/* Book Now — solid */}
+<a href="https://www.timetopet.com/portal/create/create-account" target="_blank" rel="noreferrer" className="nav-book-btn">
+  Book Now
+</a>
+{/* Log In — ghost */}
+<a href="https://www.timetopet.com/portal" target="_blank" rel="noreferrer" className="nav-book-btn"
+  style={{ background: 'transparent', border: '1px solid var(--border-bold)', color: 'var(--charcoal)' }}>
+  Log In
+</a>
+```
+
+Both buttons appear on desktop and mobile. The hamburger menu is separate (mobile-only, positioned after the buttons).
 
 ### Cycling Typewriter (Hero.jsx eyebrow)
 
@@ -276,7 +294,9 @@ Sources of mobile bounce and their fixes:
 
 ### CredsBento Grid
 
-`.bento-bottom` CSS class handles the responsive grid. **Never add inline `gridTemplateColumns`** to that div — it overrides the CSS media query. Only set `gap` and `className` inline:
+**Top row** — 4 individual dark cards, one per credential: Fear Free, PSI, PSA, Time To Pet. Uses `repeat(auto-fit, minmax(200px, 1fr))` — wraps to 2 columns on narrow screens, 4 on wide. Each card: label (9px mono, accent color) → logo (70px) → name (15px serif, cream). No descriptive text — just label + logo + name.
+
+**Bottom row** — Reading List + Podcasts (light cards). `.bento-bottom` CSS class handles the responsive grid. **Never add inline `gridTemplateColumns`** to that div — it overrides the CSS media query. Only set `gap` and `className` inline:
 ```jsx
 <div style={{ gap: '10px' }} className="bento-bottom">
 ```

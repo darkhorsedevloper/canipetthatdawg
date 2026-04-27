@@ -74,33 +74,47 @@ All fetched by `scripts/fetch-notion.js`, output to `src/data/`.
 
 ## Component Map (src/components/)
 
-**Current page order:** Nav → Hero → TrustBar → PhotoStrips → Services → CTA → EveryVisit → Why → About → CredsBento → FieldNotes → ReviewTicker → DawgOfTheDay → ContactTerminal → Footer
+**Current page order:** Nav → Hero → TrustBar → PhotoStrips → CTA → Services → EveryVisit → Why → About → CredsBento → FieldNotes → ReviewTicker → DawgOfTheDay → ContactTerminal → Footer
 
 | Component | Data source | Notes |
 |-----------|-------------|-------|
-| Nav.jsx | Hardcoded | Brand: "Can I Pet That **Dawg?**" (orange on "Dawg?"); dark mode toggle (ModeSwitch pill), hamburger menu |
-| Hero.jsx | hero.json | Cycling typewriter on eyebrow — types each phrase individually to avoid mobile wrapping bounce. Subheadline uses `whiteSpace: pre-line`; "Fear Free" links to fearfreehappyhomes.com |
+| Nav.jsx | Hardcoded | Brand: "Can I Pet That **Dawg?**" (orange on "Dawg?"); dark mode toggle (ModeSwitch pill), hamburger menu; **Book Now** (solid, timetopet.com/portal/create/create-account) + **Log In** (ghost border, timetopet.com/portal) buttons in that order |
+| Hero.jsx | hero.json | Cycling typewriter on eyebrow. Subheadline uses `whiteSpace: pre-line`. "Fear Free" links to fearfreehappyhomes.com. No quote/quoteAttribution (removed). |
 | TrustBar.jsx | trustbar.json | Always-scrolling ticker |
-| PhotoStrips.jsx | Static assets | PP Kira Cute Down.JPEG, PP Kira Cute Summer.JPEG, PP Kira Cute.JPEG; scroll-snap carousel on mobile (`.photo-carousel`), 3-col grid on desktop (`.photo-strips-grid`); `paddingBottom: 100%` + `position: absolute; inset: 0` for reliable aspect ratio |
-| Services.jsx | Hardcoded | Flip cards — front: service name + badge + "Tap to learn more →", back: description + price + Book This button. 3D CSS transform with `preserve-3d`. BOOK_URL = timetopet.com/portal/create/create-account |
-| CTA.jsx | Hardcoded | "Getting started is simple." — 4 solid-color step cards in a 2×2 grid (`.cta-steps-grid`). Steps: 01 Create account (orange #C4892A), 02 Meet & greet (green #4A7C5E), 03 Choose service (blue #3A6B8A), 04 Follow along (cream #EDE5D2). All cards are `<a>` links. Card 01 hides its number label (empty string) but reserves the space via `minHeight: 14px` on the number span. |
-| EveryVisit.jsx | Hardcoded | Two feature cards: GPS Tracking (green) and Report Card (orange). References Time To Pet. |
-| Why.jsx | why.json | All 4 items hidden behind "View more" toggle. `useState(false)` + `{open && (...)}` conditional render. Button shows `+`/`−` and "View more"/"View less". |
-| About.jsx | about.json | MiniMap + bio; top bar: "Service Area" left + "Within a 10 mile radius of 30318" right (`.service-area-label` — hidden on mobile) |
-| CredsBento.jsx | books.json + podcasts.json | Fear Free seal SVG, PSI/PSA stacked card, Time To Pet card (all dark cards). `.bento-bottom` CSS class for responsive grid (1-col mobile, 2fr/1fr desktop) — no inline gridTemplateColumns on that div |
-| FieldNotes.jsx | Hardcoded | Substack-only callout. Links to substack.com/@petthatdawg. No post list. |
-| ReviewTicker.jsx | reviews.json | Scrolling quotes ticker; entire component wrapped in `<a href="https://g.page/r/CS7eaMrwENHeEBM/review">` so tapping opens Google Business. Speed: 20s. |
-| DawgOfTheDay.jsx | dawg.json | Rotates by `(date + month) % dogs.length`. PHOTOS map: `{ 'Priscilla': prissyPhoto }`. Portrait uses `paddingBottom: 100%` + `position: relative` outer / `position: absolute; inset: 0` inner. `objectPosition: 'top'` for Priscilla. `.dotd-grid` stacks to 1-col on mobile via index.css. |
-| ContactTerminal.jsx | Hardcoded | Multi-step contact form terminal |
-| Footer.jsx | Hardcoded | Brand: "Can I Pet That **Dawg?**"; Instagram, Substack, Time To Pet links |
+| PhotoStrips.jsx | Static assets | PP Kira Cute Down.JPEG, PP Kira Cute Summer.JPEG, PP Kira Cute.JPEG; scroll-snap carousel on mobile (`.photo-carousel`), 3-col grid on desktop (`.photo-strips-grid`) |
+| CTA.jsx | Hardcoded | "Getting started is simple." — 2 solid-color cards side by side on desktop, stacked on mobile (`.cta-steps-grid` → 1fr 1fr). Card 1: "Fill Out New Client Form" (orange, links to TTP create-account). Card 2: "Existing Clients" / "Log in here" (green, links to TTP create-account). Number span always rendered but empty on card 1 to preserve alignment. |
+| Services.jsx | Hardcoded | Flip cards — front: service name + badge + "Tap to learn more →", back: description + price + Book This button. BOOK_URL = timetopet.com/portal/create/create-account |
+| EveryVisit.jsx | Hardcoded | Two feature cards: GPS Tracking (green) and Report Card (orange) |
+| Why.jsx | why.json | All 4 items hidden behind "View more" toggle. `useState(false)` + `{open && (...)}` conditional render. |
+| About.jsx | about.json | MiniMap + bio; "Within a 10 mile radius of 30318" label (hidden on mobile) |
+| CredsBento.jsx | books.json + podcasts.json | **4 individual dark cards** (top row, auto-fit grid): Fear Free (official logo `Fear Free Cert.webp`), PSI (`PSI Logo.png`), PSA (`PSA.png`), Time To Pet (`TimetoPet.png`). Each card: label (9px mono, accent color) → logo (70px) → name (15px serif, cream). Bottom row: Reading List + Podcasts (light cards). `.bento-bottom` CSS class — no inline gridTemplateColumns. |
+| FieldNotes.jsx | Hardcoded | Substack-only callout. Links to substack.com/@petthatdawg |
+| ReviewTicker.jsx | reviews.json | Scrolling ticker wrapped in `<a href="https://g.page/r/CS7eaMrwENHeEBM/review">`. Speed: 20s. |
+| DawgOfTheDay.jsx | dawg.json | Rotates by `(date + month) % dogs.length`. PHOTOS map: `{ 'Priscilla': prissyPhoto }`. Portrait uses `paddingBottom: 100%` pattern. `.dotd-grid` stacks to 1-col on mobile. |
+| ContactTerminal.jsx | Hardcoded | Heading: "Have Questions? Open a line." Multi-step contact form terminal. |
+| Footer.jsx | Hardcoded | Brand: "Can I Pet That **Dawg?**"; Instagram, Substack, Time To Pet links. No tagline. |
 | PawTrail.jsx | Hardcoded | Decorative scrolling paw banner |
-| MiniMap.jsx | Hardcoded | Real Leaflet map (CartoDB Positron tiles); 18 green CircleMarker dots; orange HQ dot + `.hq-label` DivIcon pill; dashed radius ring; hover tooltips desktop; rotating neighborhood strip mobile (`.mobile-neighborhood-strip`) |
+| MiniMap.jsx | Hardcoded | Real Leaflet map; 18 green dots; orange HQ dot + `.hq-label`; rotating neighborhood strip on mobile |
+
+## Assets (src/assets/)
+
+| File | Used in |
+|------|---------|
+| `Fear Free Cert.webp` | CredsBento — Fear Free card |
+| `PSI Logo.png` | CredsBento — PSI card |
+| `PSA.png` | CredsBento — PSA card |
+| `TimetoPet.png` | CredsBento — Time To Pet card |
+| `Prissy PP.jpeg` | DawgOfTheDay — Priscilla's portrait |
+| `PP Kira Cute Down.JPEG` | PhotoStrips |
+| `PP Kira Cute Summer.JPEG` | PhotoStrips |
+| `PP Kira Cute.JPEG` | PhotoStrips |
+| `hero.png` | Unused placeholder |
 
 ## Known Pending Issues
 
 1. **Services.jsx still hardcoded** — services.json gets overwritten by Notion on every build but Services.jsx doesn't import it.
 2. **Hero photo placeholder** — still a dashed box. Real photo of Crickett + Kira on trail needed.
-3. **CTA no longer uses Notion** — cta.json and cta-content.json are fetched but not used. CTA is fully hardcoded with the 4-step flow.
+3. **CTA Existing Clients URL** — currently links to create-account URL; should link to the actual Time To Pet login page when confirmed.
 
 ## Responsive Design
 
@@ -109,7 +123,6 @@ Single breakpoint: **640px**. Mobile-first throughout.
 - `overflow-x: hidden; max-width: 100%` on both `html` and `body`
 - Hamburger & footer icons: 44px minimum touch targets
 - Hero placeholder: hidden below 480px
-- CTA: 1-col below 360px (`.cta-buttons` fallback)
 
 ## CSS Utility Classes (index.css)
 
@@ -128,11 +141,12 @@ Single breakpoint: **640px**. Mobile-first throughout.
 
 - No italic anywhere — enforced via CSS
 - Dark mode via `data-mode` attribute on root element
-- `--border-bold` for dark card borders in CredsBento
-- Services data inlined to avoid Notion build step overwriting it
 - Brand name written as "Can I Pet That Dawg?" everywhere — question mark is part of the brand
-- Hero eyebrow cycles phrases individually (`useCyclingTypewriter`) instead of one long string — prevents mobile layout bounce from text wrapping mid-type
-- Why section: ALL 4 items hidden by default, revealed by "View more" toggle — not just the last 2
-- DawgOfTheDay portrait: `paddingBottom: 100%` pattern (not `aspectRatio: 1`) for mobile reliability
-- CredsBento `.bento-bottom`: never use inline `gridTemplateColumns` — CSS class handles the responsive switch
-- CTA is a "Getting Started" funnel, not a generic booking section — 4 steps guide the user through the signup journey
+- Hero eyebrow cycles phrases individually (`useCyclingTypewriter`) — prevents mobile bounce
+- "Walk Hard" / "Lead steady." fully removed from Hero and Footer
+- Why section: ALL 4 items hidden by default behind "View more"
+- DawgOfTheDay portrait: `paddingBottom: 100%` pattern for mobile reliability
+- CredsBento top cards: each credential gets its own card; logos standardised to 70px; all descriptive text removed — just label + logo + name
+- CTA is a 2-card funnel: new clients → fill out form; existing clients → log in
+- Nav has both Book Now (primary) and Log In (ghost) buttons, in that order
+- ContactTerminal heading: "Have Questions? Open a line."
