@@ -1,5 +1,6 @@
 import books from '../data/books.json'
 import pods from '../data/podcasts.json'
+import fearFreeLogo from '../assets/Fear Free Cert.webp'
 import psiLogo from '../assets/PSI Logo.png'
 import ttpLogo from '../assets/TimetoPet.png'
 import psaLogo from '../assets/PSA.png'
@@ -39,28 +40,7 @@ export default function CredsBento() {
         {/* Fear Free */}
         <div style={{ ...darkCard, padding: '22px 18px', minHeight: 170, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div style={{ position: 'absolute', top: 14, right: 14, width: 84, height: 84 }}>
-            <svg viewBox="0 0 100 100" width="84" height="84" aria-label="Fear Free Certified Professional">
-              <defs>
-                <path id="ff-top" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0" fill="none"/>
-                <path id="ff-bot" d="M 50,50 m -32,0 a 32,32 0 1,0 64,0" fill="none"/>
-              </defs>
-              <circle cx="50" cy="50" r="48" fill="none" stroke="var(--orange)" strokeWidth="1.2"/>
-              <circle cx="50" cy="50" r="44" fill="none" stroke="var(--orange)" strokeWidth="0.6" opacity="0.6"/>
-              <circle cx="50" cy="50" r="27" fill="var(--orange)"/>
-              <g fill="var(--hero-bg)" transform="translate(50 50)">
-                <ellipse cx="0"  cy="4"  rx="7"   ry="6"/>
-                <ellipse cx="-8" cy="-5" rx="2.6" ry="3.4"/>
-                <ellipse cx="-3" cy="-9" rx="2.3" ry="3.2"/>
-                <ellipse cx="3"  cy="-9" rx="2.3" ry="3.2"/>
-                <ellipse cx="8"  cy="-5" rx="2.6" ry="3.4"/>
-              </g>
-              <text fill="var(--orange)" fontFamily="'IBM Plex Mono', monospace" fontSize="6.4" letterSpacing="1.3" fontWeight="700">
-                <textPath href="#ff-top" startOffset="50%" textAnchor="middle">FEAR FREE CERTIFIED</textPath>
-              </text>
-              <text fill="var(--orange)" fontFamily="'IBM Plex Mono', monospace" fontSize="5.2" letterSpacing="1.6" fontWeight="500">
-                <textPath href="#ff-bot" startOffset="50%" textAnchor="middle">★   PROFESSIONAL   ★</textPath>
-              </text>
-            </svg>
+            <img src={fearFreeLogo} alt="Fear Free Certified Professional" style={{ width: '84px', height: '84px', objectFit: 'contain' }} />
           </div>
           <div>
             <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Certification</p>
