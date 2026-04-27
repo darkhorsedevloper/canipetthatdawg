@@ -65,9 +65,6 @@ export default function CredsBento() {
             <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Certification</p>
             <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3 }}>Fear Free<br/>Certified</p>
           </div>
-          <p style={{ fontSize: '11px', color: 'rgba(237,229,210,0.5)', lineHeight: 1.6, maxWidth: '130px', marginTop: '10px' }}>
-            Trained to reduce stress &amp; read behavioral signals.
-          </p>
         </div>
 
         {/* PSI + PSA stacked */}
@@ -75,7 +72,6 @@ export default function CredsBento() {
           <div style={{ flex: 1, padding: '18px 18px', borderBottom: '0.5px solid rgba(237,229,210,0.1)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Member</p>
             <img src={psiLogo} alt="Pet Sitters International" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
-            <p style={{ fontSize: '10px', color: 'rgba(237,229,210,0.45)', lineHeight: 1.5, marginTop: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Adherence to Pet Care Industry Standards</p>
           </div>
           <div style={{ flex: 1, padding: '18px 18px' }}>
             <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '5px', fontFamily: "'IBM Plex Mono', monospace" }}>Insured &amp; Bonded</p>
@@ -89,9 +85,6 @@ export default function CredsBento() {
             <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Platform</p>
             <img src={ttpLogo} alt="Time To Pet" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
           </div>
-          <p style={{ fontSize: '10px', color: 'rgba(237,229,210,0.45)', lineHeight: 1.5, marginTop: '10px', fontFamily: "'IBM Plex Mono', monospace" }}>
-            Scheduling, GPS tracking, and report cards — all in one place.
-          </p>
         </div>
 
       </div>
