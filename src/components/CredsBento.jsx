@@ -38,14 +38,10 @@ export default function CredsBento() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', marginBottom: '10px' }}>
 
         {/* Fear Free */}
-        <div style={{ ...darkCard, padding: '14px 16px', minHeight: 110, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <div style={{ position: 'absolute', top: 10, right: 10, width: 70, height: 70 }}>
-            <img src={fearFreeLogo} alt="Fear Free Certified Professional" style={{ width: '70px', height: '70px', objectFit: 'contain' }} />
-          </div>
-          <div>
-            <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '6px', fontFamily: "'IBM Plex Mono', monospace" }}>Certification</p>
-            <p style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: '#EDE5D2', lineHeight: 1.3 }}>Fear Free<br/>Certified</p>
-          </div>
+        <div style={{ ...darkCard, padding: '14px 16px', minHeight: 110, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '6px', fontFamily: "'IBM Plex Mono', monospace" }}>Certification</p>
+          <img src={fearFreeLogo} alt="Fear Free Certified Professional" style={{ width: '70px', height: '70px', objectFit: 'contain' }} />
+          <p style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '6px' }}>Fear Free<br/>Certified</p>
         </div>
 
         {/* PSI */}
