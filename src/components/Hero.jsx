@@ -186,6 +186,26 @@ export default function Hero() {
             {hero.secondaryLabel} ↓
           </a>
 
+          {/* Log In */}
+          <a
+            href="https://www.timetopet.com/portal"
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              border: '1.5px solid rgba(237,229,210,0.35)',
+              borderRadius: '8px',
+              padding: '14px 28px',
+              background: 'rgba(18,14,11,0.55)',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '12px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase',
+              color: '#EDE5D2',
+              textDecoration: 'none',
+            }}
+          >
+            Log In
+          </a>
+
         </div>
 
       </div>
