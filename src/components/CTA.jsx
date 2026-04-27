@@ -11,9 +11,9 @@ const STEPS = [
   },
   {
     number: '02',
-    label: 'Schedule a meet & greet',
-    desc: 'A free 30-min intro so your dog and I can get acquainted before the first session.',
-    cta: 'Book a meet & greet →',
+    label: 'Existing Clients',
+    desc: 'Log in here',
+    cta: 'Log in →',
     href: 'https://www.timetopet.com/portal/create/create-account',
     bg: '#4A7C5E',
     text: '#0A0806',
