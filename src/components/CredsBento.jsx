@@ -38,36 +38,36 @@ export default function CredsBento() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', marginBottom: '10px' }}>
 
         {/* Fear Free */}
-        <div style={{ ...darkCard, padding: '22px 18px', minHeight: 170, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <div style={{ position: 'absolute', top: 14, right: 14, width: 84, height: 84 }}>
-            <img src={fearFreeLogo} alt="Fear Free Certified Professional" style={{ width: '84px', height: '84px', objectFit: 'contain' }} />
+        <div style={{ ...darkCard, padding: '14px 16px', minHeight: 110, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div style={{ position: 'absolute', top: 10, right: 10, width: 60, height: 60 }}>
+            <img src={fearFreeLogo} alt="Fear Free Certified Professional" style={{ width: '60px', height: '60px', objectFit: 'contain' }} />
           </div>
           <div>
-            <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Certification</p>
-            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3 }}>Fear Free<br/>Certified</p>
+            <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '6px', fontFamily: "'IBM Plex Mono', monospace" }}>Certification</p>
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: '#EDE5D2', lineHeight: 1.3 }}>Fear Free<br/>Certified</p>
           </div>
         </div>
 
         {/* PSI + PSA stacked */}
-        <div style={{ ...darkCard, overflow: 'hidden', display: 'flex', flexDirection: 'column', minHeight: 170 }}>
-          <div style={{ flex: 1, padding: '18px 18px', borderBottom: '0.5px solid rgba(237,229,210,0.1)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Member</p>
-            <img src={psiLogo} alt="Pet Sitters International" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
-            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '8px' }}>Pet Sitters<br/>International</p>
+        <div style={{ ...darkCard, overflow: 'hidden', display: 'flex', flexDirection: 'column', minHeight: 110 }}>
+          <div style={{ flex: 1, padding: '14px 16px', borderBottom: '0.5px solid rgba(237,229,210,0.1)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '6px', fontFamily: "'IBM Plex Mono', monospace" }}>Member</p>
+            <img src={psiLogo} alt="Pet Sitters International" style={{ width: '70px', height: 'auto', objectFit: 'contain' }} />
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '6px' }}>Pet Sitters<br/>International</p>
           </div>
-          <div style={{ flex: 1, padding: '18px 18px' }}>
-            <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Insured &amp; Bonded</p>
-            <img src={psaLogo} alt="Pet Sitters Associates" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
-            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '8px' }}>Pet Sitters<br/>Associates</p>
+          <div style={{ flex: 1, padding: '14px 16px' }}>
+            <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '6px', fontFamily: "'IBM Plex Mono', monospace" }}>Insured &amp; Bonded</p>
+            <img src={psaLogo} alt="Pet Sitters Associates" style={{ width: '70px', height: 'auto', objectFit: 'contain' }} />
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '6px' }}>Pet Sitters<br/>Associates</p>
           </div>
         </div>
 
         {/* Time To Pet */}
-        <div style={{ ...darkCard, padding: '22px 18px', minHeight: 170, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div style={{ ...darkCard, padding: '14px 16px', minHeight: 110, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
-            <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Platform</p>
-            <img src={ttpLogo} alt="Time To Pet" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
-            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '8px' }}>Time To Pet</p>
+            <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '6px', fontFamily: "'IBM Plex Mono', monospace" }}>Platform</p>
+            <img src={ttpLogo} alt="Time To Pet" style={{ width: '70px', height: 'auto', objectFit: 'contain' }} />
+            <p style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '6px' }}>Time To Pet</p>
           </div>
         </div>
 
