@@ -84,6 +84,11 @@ export default function Nav({ dark, onToggleDark }) {
           {/* Sliding paw mode switch */}
           <ModeSwitch dark={dark} onToggle={onToggleDark} />
 
+          {/* Log In */}
+          <a href="https://www.timetopet.com/portal" target="_blank" rel="noreferrer" className="nav-book-btn" style={{ background: 'transparent', border: '1px solid var(--border-bold)', color: 'var(--charcoal)' }}>
+            Log In
+          </a>
+
           {/* Book Now — always visible */}
           <a href="https://www.timetopet.com/portal/create/create-account" target="_blank" rel="noreferrer" className="nav-book-btn">
             Book Now
