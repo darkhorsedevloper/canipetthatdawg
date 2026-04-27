@@ -29,16 +29,6 @@ const STEPS = [
     text: '#EDE5D2',
     subtext: 'rgba(237,229,210,0.65)',
   },
-  {
-    number: '04',
-    label: 'Follow along',
-    desc: 'Photo reports after every visit. Follow on Instagram for daily dawg content.',
-    cta: 'Follow @canipet_that_dawg_llc →',
-    href: 'https://instagram.com/canipet_that_dawg_llc',
-    bg: '#EDE5D2',
-    text: '#2A2520',
-    subtext: 'rgba(42,37,32,0.55)',
-  },
 ]
 
 export default function CTA() {
