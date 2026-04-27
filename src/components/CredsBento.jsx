@@ -1,6 +1,7 @@
 import books from '../data/books.json'
 import pods from '../data/podcasts.json'
 import psiLogo from '../assets/PSI Logo.png'
+import ttpLogo from '../assets/TimetoPet.png'
 
 const card = {
   borderRadius: '10px',
@@ -86,9 +87,9 @@ export default function CredsBento() {
         <div style={{ ...darkCard, padding: '22px 18px', minHeight: 170, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '8px', fontFamily: "'IBM Plex Mono', monospace" }}>Platform</p>
-            <p style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: '#EDE5D2', lineHeight: 1.3 }}>Time To Pet</p>
+            <img src={ttpLogo} alt="Time To Pet" style={{ width: '90px', height: 'auto', objectFit: 'contain' }} />
           </div>
-          <p style={{ fontSize: '11px', color: 'rgba(237,229,210,0.5)', lineHeight: 1.6, maxWidth: '130px', marginTop: '10px' }}>
+          <p style={{ fontSize: '10px', color: 'rgba(237,229,210,0.45)', lineHeight: 1.5, marginTop: '10px', fontFamily: "'IBM Plex Mono', monospace" }}>
             Scheduling, GPS tracking, and report cards — all in one place.
           </p>
         </div>
