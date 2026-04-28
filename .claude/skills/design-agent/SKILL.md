@@ -45,7 +45,7 @@ Always use CSS variables — never hardcode hex values in components (exception:
 - Minimum touch targets: **44px** for interactive elements on mobile
 - Hide decorative/non-essential elements below 480px (e.g. hero placeholder image)
 - 1-column layouts below 360px for dense sections
-- `overflow-x: hidden; max-width: 100%` on both `html` and `body` — always required
+- `overflow-x: clip` on `html` — prevents horizontal scroll without breaking `position: sticky`. **Never use `overflow-x: hidden` on `html` or `body`** — it kills sticky positioning.
 
 ### Dark Mode
 
@@ -280,9 +280,9 @@ Math.round(scrollLeft / offsetWidth)
 - `animation: 'ticker 20s linear infinite'`
 - Duplicate array for seamless loop: `[...quotes, ...quotes]`, translateX(-50%)
 
-### FieldNotes
+### FieldNotes (Blog)
 
-Currently Substack-only callout (no posts written yet). Links to `https://substack.com/@petthatdawg`. When posts exist, re-wire the post list from `blog.json`.
+Nav link label is **"Blog"** (was "Field Notes"). Section id is `id="blog"`. Component file is still `FieldNotes.jsx` internally. Currently a Substack-only callout (no posts written yet) — links to `https://substack.com/@petthatdawg`. When posts exist, re-wire the post list from `blog.json`.
 
 ### Layout Bounce Prevention
 

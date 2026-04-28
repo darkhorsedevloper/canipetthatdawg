@@ -78,7 +78,7 @@ All fetched by `scripts/fetch-notion.js`, output to `src/data/`.
 
 | Component | Data source | Notes |
 |-----------|-------------|-------|
-| Nav.jsx | Hardcoded | Brand: "Can I Pet That **Dawg?**" (orange on "Dawg?"); dark mode toggle (ModeSwitch pill), hamburger menu; **Book Now** (solid, timetopet.com/portal/create/create-account) + **Log In** (ghost border, timetopet.com/portal) buttons in that order |
+| Nav.jsx | Hardcoded | Brand: "Can I Pet That **Dawg?**" (orange on "Dawg?"); dark mode toggle (ModeSwitch pill), hamburger menu; **Book Now** (solid, timetopet.com/portal/create/create-account) + **Log In** (ghost border, timetopet.com/portal) buttons in that order. Nav links: Services, About, **Blog** |
 | Hero.jsx | hero.json | Cycling typewriter on eyebrow. Subheadline uses `whiteSpace: pre-line`. "Fear Free" links to fearfreehappyhomes.com. No quote/quoteAttribution (removed). |
 | TrustBar.jsx | trustbar.json | Always-scrolling ticker |
 | PhotoStrips.jsx | Static assets | PP Kira Cute Down.JPEG, PP Kira Cute Summer.JPEG, PP Kira Cute.JPEG; scroll-snap carousel on mobile (`.photo-carousel`), 3-col grid on desktop (`.photo-strips-grid`) |
@@ -120,7 +120,7 @@ All fetched by `scripts/fetch-notion.js`, output to `src/data/`.
 
 Single breakpoint: **640px**. Mobile-first throughout.
 
-- `overflow-x: hidden; max-width: 100%` on both `html` and `body`
+- `overflow-x: clip` on `html` (not `hidden` — `hidden` breaks `position: sticky`)
 - Hamburger & footer icons: 44px minimum touch targets
 - Hero placeholder: hidden below 480px
 
