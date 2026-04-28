@@ -246,6 +246,7 @@ async function fetchBooks() {
   const items = response.results.map(page => ({
     title:  page.properties['Title']?.title?.[0]?.plain_text ?? '',
     author: page.properties['Author']?.rich_text?.[0]?.plain_text ?? '',
+    url:    page.properties['URL']?.url ?? null,
   }))
   writeFileSync(resolve(__dirname, '../src/data/books.json'), JSON.stringify(items, null, 2))
   console.log(`✅ Wrote ${items.length} books to src/data/books.json`)
