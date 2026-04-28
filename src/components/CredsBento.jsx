@@ -1,6 +1,7 @@
 import books from '../data/books.json'
 import pods from '../data/podcasts.json'
 import fearFreeLogo from '../assets/Fear Free Cert.webp'
+import fearFreePdf from '../assets/FearFreeCert.pdf'
 import psiLogo from '../assets/PSI Logo.png'
 import ttpLogo from '../assets/TimetoPet.png'
 import psaLogo from '../assets/PSA.png'
@@ -40,7 +41,9 @@ export default function CredsBento() {
         {/* Fear Free */}
         <div style={{ ...darkCard, padding: '14px 16px', minHeight: 110, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '6px', fontFamily: "'IBM Plex Mono', monospace" }}>Certification</p>
-          <img src={fearFreeLogo} alt="Fear Free Certified Professional" style={{ width: '70px', height: '70px', objectFit: 'contain' }} />
+          <a href={fearFreePdf} target="_blank" rel="noreferrer" style={{ display: 'inline-block' }}>
+            <img src={fearFreeLogo} alt="Fear Free Certified Professional" style={{ width: '70px', height: '70px', objectFit: 'contain' }} />
+          </a>
           <p style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '6px' }}>Fear Free<br/>Certified</p>
         </div>
 
