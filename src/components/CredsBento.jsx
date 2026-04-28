@@ -69,7 +69,9 @@ export default function CredsBento() {
         <div style={{ ...darkCard, padding: '14px 16px', minHeight: 110, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <p style={{ fontSize: '9px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '6px', fontFamily: "'IBM Plex Mono', monospace" }}>Platform</p>
-            <img src={ttpLogo} alt="Time To Pet" style={{ width: '70px', height: 'auto', objectFit: 'contain' }} />
+            <a href="https://www.timetopet.com/" target="_blank" rel="noreferrer" style={{ display: 'inline-block' }}>
+              <img src={ttpLogo} alt="Time To Pet" style={{ width: '70px', height: 'auto', objectFit: 'contain' }} />
+            </a>
             <p style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '6px' }}>Time To Pet</p>
           </div>
         </div>
