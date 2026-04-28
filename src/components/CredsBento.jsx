@@ -50,7 +50,9 @@ export default function CredsBento() {
         {/* PSI */}
         <div style={{ ...darkCard, padding: '14px 16px', minHeight: 110, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '6px', fontFamily: "'IBM Plex Mono', monospace" }}>Member</p>
-          <img src={psiLogo} alt="Pet Sitters International" style={{ width: '70px', height: 'auto', objectFit: 'contain' }} />
+          <a href="https://www.petsit.com/" target="_blank" rel="noreferrer" style={{ display: 'inline-block' }}>
+            <img src={psiLogo} alt="Pet Sitters International" style={{ width: '70px', height: 'auto', objectFit: 'contain' }} />
+          </a>
           <p style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '6px' }}>Pet Sitters<br/>International</p>
         </div>
 
