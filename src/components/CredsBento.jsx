@@ -5,6 +5,7 @@ import fearFreePdf from '../assets/FearFreeCert.pdf'
 import psiLogo from '../assets/PSI Logo.png'
 import ttpLogo from '../assets/TimetoPet.png'
 import psaLogo from '../assets/PSA.png'
+import psaCert from '../assets/psa_member_certificate_81150_3ED4170.pdf'
 
 const card = {
   borderRadius: '10px',
@@ -59,7 +60,9 @@ export default function CredsBento() {
         {/* PSA */}
         <div style={{ ...darkCard, padding: '14px 16px', minHeight: 110, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <p style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '6px', fontFamily: "'IBM Plex Mono', monospace" }}>Insured &amp; Bonded</p>
-          <img src={psaLogo} alt="Pet Sitters Associates" style={{ width: '70px', height: 'auto', objectFit: 'contain' }} />
+          <a href={psaCert} target="_blank" rel="noreferrer" style={{ display: 'inline-block' }}>
+            <img src={psaLogo} alt="Pet Sitters Associates" style={{ width: '70px', height: 'auto', objectFit: 'contain' }} />
+          </a>
           <p style={{ fontFamily: 'var(--serif)', fontSize: '15px', color: '#EDE5D2', lineHeight: 1.3, marginTop: '6px' }}>Pet Sitters<br/>Associates</p>
         </div>
 
