@@ -47,6 +47,166 @@ const services = [
 const BOOK_URL = 'https://www.timetopet.com/portal/create/create-account'
 const CARD_HEIGHT = 280
 
+function FeaturedServiceCard({ s }) {
+  const [flipped, setFlipped] = useState(false)
+
+  return (
+    <div
+      onClick={() => setFlipped(f => !f)}
+      className="featured-card-height"
+      style={{
+        position: 'relative',
+        cursor: 'pointer',
+        perspective: '1000px',
+        gridColumn: '1 / -1',
+      }}
+    >
+      <span style={{
+        position: 'absolute',
+        top: -11,
+        left: '20px',
+        background: s.accent,
+        color: '#fff',
+        fontSize: '9px',
+        letterSpacing: '0.14em',
+        textTransform: 'uppercase',
+        padding: '3px 10px',
+        borderRadius: '99px',
+        whiteSpace: 'nowrap',
+        fontWeight: 700,
+        zIndex: 10,
+      }}>
+        ★ Most booked
+      </span>
+
+      <div style={{
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        transformStyle: 'preserve-3d',
+        transition: 'transform 750ms cubic-bezier(.4,.2,.2,1)',
+        transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+      }}>
+
+        {/* FRONT */}
+        <div
+          className="featured-card-front"
+          style={{
+            background: 'var(--card)',
+            border: '0.5px solid var(--border)',
+            borderLeft: `2px solid ${s.accent}`,
+            borderRadius: '10px',
+            padding: '28px 36px',
+          }}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <span style={{
+              display: 'inline-block',
+              alignSelf: 'flex-start',
+              fontSize: '11px',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              padding: '5px 14px',
+              borderRadius: '20px',
+              background: `color-mix(in srgb, ${s.badgeColor} 14%, transparent)`,
+              color: s.badgeColor,
+            }}>
+              {s.badge}
+            </span>
+            <div style={{
+              fontFamily: 'var(--serif)',
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontWeight: 400,
+              color: 'var(--charcoal)',
+              lineHeight: 1.2,
+            }}>
+              {s.name}
+            </div>
+          </div>
+          <div style={{
+            fontSize: '11px',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: s.accent,
+            fontFamily: "'IBM Plex Mono', monospace",
+            marginTop: '16px',
+          }}>
+            Tap to learn more →
+          </div>
+        </div>
+
+        {/* BACK */}
+        <div
+          className="featured-card-back"
+          style={{
+            transform: 'rotateY(180deg)',
+            background: 'var(--card)',
+            border: '0.5px solid var(--border)',
+            borderLeft: `2px solid ${s.accent}`,
+            borderRadius: '10px',
+            padding: '28px 36px',
+          }}
+        >
+          <p style={{
+            fontSize: '14px',
+            color: 'var(--charcoal)',
+            lineHeight: 1.75,
+            fontFamily: "'IBM Plex Mono', monospace",
+            flex: 1,
+          }}>
+            {s.desc}
+          </p>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '8px',
+            flexShrink: 0,
+            marginTop: '16px',
+          }}>
+            <p style={{
+              fontFamily: 'var(--serif)',
+              fontSize: '48px',
+              fontWeight: 400,
+              color: 'var(--charcoal)',
+              lineHeight: 1,
+            }}>
+              {s.price}
+            </p>
+            <p style={{ fontSize: '12px', color: 'var(--muted)', textAlign: 'center' }}>
+              {s.note}
+            </p>
+            <a
+              href={BOOK_URL}
+              target="_blank"
+              rel="noreferrer"
+              onClick={e => e.stopPropagation()}
+              style={{
+                display: 'block',
+                textAlign: 'center',
+                background: s.accent,
+                color: '#0A0806',
+                padding: '12px 32px',
+                borderRadius: '7px',
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: '12px',
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Book This →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  )
+}
+
 function ServiceCard({ s }) {
   const [flipped, setFlipped] = useState(false)
 
@@ -60,27 +220,6 @@ function ServiceCard({ s }) {
         perspective: '1000px',
       }}
     >
-      {/* "Most booked" badge sits above the card */}
-      {s.featured && (
-        <span style={{
-          position: 'absolute',
-          top: -11,
-          left: '20px',
-          background: s.accent,
-          color: '#fff',
-          fontSize: '9px',
-          letterSpacing: '0.14em',
-          textTransform: 'uppercase',
-          padding: '3px 10px',
-          borderRadius: '99px',
-          whiteSpace: 'nowrap',
-          fontWeight: 700,
-          zIndex: 10,
-        }}>
-          ★ Most booked
-        </span>
-      )}
-
       {/* Flip container */}
       <div style={{
         width: '100%',
@@ -248,8 +387,9 @@ export default function Services() {
         Pick what best <span style={{ color: 'var(--orange)' }}>fits your dog.</span>
       </h2>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px', marginBottom: '20px' }}>
-        {services.map((s, i) => (
+      <div className="services-grid">
+        <FeaturedServiceCard s={services[0]} />
+        {services.slice(1).map((s, i) => (
           <ServiceCard key={i} s={s} />
         ))}
       </div>

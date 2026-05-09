@@ -398,3 +398,30 @@ img { display: block; max-width: 100%; }
 @media (min-width: 640px) {
   .cta-steps-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
 }
+
+/* Services grid — featured full-width top, 3-col below */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (min-width: 640px) {
+  .services-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.featured-card-height { height: 280px; }
+.featured-card-front,
+.featured-card-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+@media (min-width: 640px) {
+  .featured-card-height { height: 200px; }
+  .featured-card-front { flex-direction: row; align-items: center; justify-content: space-between; }
+  .featured-card-back { flex-direction: row; align-items: center; gap: 48px; }
+}
