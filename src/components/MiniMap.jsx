@@ -3,10 +3,12 @@ import { MapContainer, TileLayer, CircleMarker, Tooltip, Circle, Marker } from '
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
-const CENTER = [33.792, -84.375]
-const HQ     = [33.785, -84.445]
-const GREEN  = '#5A9E72'
-const ORANGE = '#C4892A'
+const CENTER     = [33.792, -84.375]
+const HQ         = [33.785, -84.445]
+const GREEN      = '#5A9E72'
+const ORANGE     = '#C4892A'
+const TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
+const TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_matter/{z}/{x}/{y}{r}.png'
 
 const neighborhoods = [
   { name: 'Buckhead',       pos: [33.838, -84.385], tip: 'bottom' },
@@ -42,6 +44,17 @@ function googleMapsUrl(n) {
 
 export default function MiniMap() {
   const [active, setActive] = useState(0)
+  const [isDark, setIsDark] = useState(
+    () => document.documentElement.getAttribute('data-mode') === 'dark'
+  )
+
+  useEffect(() => {
+    const obs = new MutationObserver(() => {
+      setIsDark(document.documentElement.getAttribute('data-mode') === 'dark')
+    })
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-mode'] })
+    return () => obs.disconnect()
+  }, [])
 
   // Rotate through neighborhoods every 2.5s on mobile
   useEffect(() => {
@@ -67,9 +80,9 @@ export default function MiniMap() {
           keyboard={false}
           boxZoom={false}
           attributionControl={false}
-          style={{ height: '300px', width: '100%' }}
+          style={{ height: '320px', width: '100%' }}
         >
-          <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
+          <TileLayer key={isDark ? 'dark' : 'light'} url={isDark ? TILE_DARK : TILE_LIGHT} />
 
           <Circle
             center={HQ}
