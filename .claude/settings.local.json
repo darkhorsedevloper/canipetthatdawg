@@ -50,7 +50,14 @@
       "Bash(node -e ' *)",
       "Bash(echo \"PID: $!\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
-      "Bash(node scripts/fetch-notion.js)"
+      "Bash(node scripts/fetch-notion.js)",
+      "Skill(schedule)",
+      "Skill(schedule:*)",
+      "Bash(python3 scripts/make_flyer.py)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(python3 -c \"import pdf2image; print\\('pdf2image ok'\\)\")",
+      "Bash(npm run *)",
+      "Read(//tmp/**)"
     ]
   }
 }
