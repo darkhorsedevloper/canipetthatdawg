@@ -22,7 +22,7 @@ export default function About() {
 
         {/* Photo — sits above bio */}
         <div style={{
-          width: '100%', aspectRatio: '16/9',
+          position: 'relative', paddingBottom: '56.25%',
           borderRadius: '6px', overflow: 'hidden',
           marginBottom: '24px',
           border: '0.5px solid var(--border)',
@@ -30,7 +30,7 @@ export default function About() {
           <img
             src={breePhoto}
             alt="Crickett with a dog"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
           />
         </div>
 
