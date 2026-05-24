@@ -1,5 +1,6 @@
 import MiniMap from './MiniMap'
 import aboutData from '../data/about.json'
+import breePhoto from '../assets/bree-dachshund.jpeg'
 
 const { content, tags } = aboutData
 
@@ -18,6 +19,21 @@ export default function About() {
       </div>
 
       <div style={{ padding: '36px 28px', background: 'var(--bg)' }}>
+
+        {/* Photo — sits above bio */}
+        <div style={{
+          width: '100%', aspectRatio: '16/9',
+          borderRadius: '6px', overflow: 'hidden',
+          marginBottom: '24px',
+          border: '0.5px solid var(--border)',
+        }}>
+          <img
+            src={breePhoto}
+            alt="Crickett with a dog"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
+          />
+        </div>
+
         <p style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '14px' }}>
           About
         </p>
