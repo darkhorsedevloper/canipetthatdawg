@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import hero from '../data/hero.json'
+import heroPhoto from '../assets/bree-curly-kiss.jpeg'
 
 const PHRASES = ['Dog Walking', 'Adventure Hikes', 'Overnight Stays', 'Atlanta, GA']
 
@@ -75,21 +76,19 @@ export default function Hero() {
         ].join(', '),
       }}/>
 
-      {/* Photo placeholder — top right, hidden on small mobile */}
+      {/* Hero photo — Crickett + Prissy, top right */}
       <div className="hero-photo-placeholder" style={{
         position: 'absolute', top: 20, right: 20, zIndex: 1,
-        width: 140, height: 100,
-        border: '1px dashed rgba(255,255,255,0.2)',
-        borderRadius: '4px',
-        flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center', gap: 6,
-        fontSize: '9px', letterSpacing: '.14em', textTransform: 'uppercase',
-        color: 'rgba(255,255,255,0.45)',
+        width: 200, height: 280,
+        borderRadius: '6px', overflow: 'hidden',
+        border: '1px solid rgba(255,255,255,0.12)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
       }}>
-        <span>Hero photo</span>
-        <span style={{ fontSize: '8px', letterSpacing: '.08em', opacity: 0.7, textTransform: 'none', maxWidth: 120, textAlign: 'center', lineHeight: 1.4 }}>
-          Crickett + Kira — trail
-        </span>
+        <img
+          src={heroPhoto}
+          alt="Crickett with a dog"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+        />
       </div>
 
       <div className="hero-content">

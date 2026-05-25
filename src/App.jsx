@@ -6,6 +6,7 @@ import Nav from './components/Nav'
 import Hero from './components/Hero'
 import TrustBar from './components/TrustBar'
 import PhotoStrips from './components/PhotoStrips'
+import GalleryClothesline from './components/GalleryClothesline'
 import Services from './components/Services'
 import Why from './components/Why'
 import About from './components/About'
@@ -43,6 +44,7 @@ export default function App() {
       <PhotoStrips />
       <CTA />
       <Services />
+      <GalleryClothesline />
       <EveryVisit />
       <Why />
       <About />

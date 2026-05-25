@@ -57,7 +57,8 @@
       "mcp__Claude_in_Chrome__tabs_context_mcp",
       "Bash(python3 -c \"import pdf2image; print\\('pdf2image ok'\\)\")",
       "Bash(npm run *)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }
