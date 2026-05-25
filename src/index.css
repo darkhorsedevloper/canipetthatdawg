@@ -128,7 +128,10 @@ img { display: block; max-width: 100%; }
 .hero-content {
   position: relative;
   z-index: 1;
-  padding: 32px 24px 40px;
+  padding: 32px 114px 40px 24px; /* right side clears the 90px photo + 16px gap */
+}
+@media (min-width: 480px) {
+  .hero-content { padding: 32px 164px 40px 24px; /* clears 140px photo */ }
 }
 .hero-title {
   font-size: 34px;
@@ -285,10 +288,23 @@ img { display: block; max-width: 100%; }
   .cta-buttons { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* Hero photo placeholder — hide on small mobile, show on larger screens */
-.hero-photo-placeholder { display: none; }
+/* Hero photo — visible on all sizes, scaled per breakpoint */
+.hero-photo-placeholder {
+  display: block;
+  width: 90px !important;
+  height: 126px !important;
+}
 @media (min-width: 480px) {
-  .hero-photo-placeholder { display: flex; }
+  .hero-photo-placeholder {
+    width: 140px !important;
+    height: 196px !important;
+  }
+}
+@media (min-width: 640px) {
+  .hero-photo-placeholder {
+    width: 200px !important;
+    height: 280px !important;
+  }
 }
 
 /* MiniMap hover hint — irrelevant on touch devices */
