@@ -13,14 +13,43 @@ import p9  from '../assets/IMG_1076.jpg'
 import p10 from '../assets/IMG_1514.jpeg'
 import p11 from '../assets/bree-curly-kiss.jpeg'
 import p12 from '../assets/IMG_7253.jpeg'
+import p13 from '../assets/IMG_6978.jpeg'
+import p14 from '../assets/IMG_0123.jpeg'
+import p15 from '../assets/IMG_1598.jpeg'
+import p16 from '../assets/IMG_2908.jpeg'
+import p17 from '../assets/IMG_1237.jpg'
+import p18 from '../assets/IMG_4104.jpeg'
+import p19 from '../assets/IMG_4863.jpeg'
+import p20 from '../assets/IMG_6590.jpeg'
 
-const photos = [p11, p1, p7, p9, p2, p5, p3, p12, p6, p10, p4, p8]
-const ROT = [-3, 2, -1.5, 2.8, -2.2, 1.8, -2.8, 1.2, -1.8, 3.1, -2.5, 1.5]
+const photos = [
+  { src: p17, fit: 'cover' },
+  { src: p13, fit: 'contain' },
+  { src: p11, fit: 'cover' },
+  { src: p7,  fit: 'contain' },
+  { src: p2,  fit: 'cover' },
+  { src: p9,  fit: 'contain' },
+  { src: p5,  fit: 'cover' },
+  { src: p3,  fit: 'cover' },
+  { src: p12, fit: 'cover' },
+  { src: p6,  fit: 'cover' },
+  { src: p10, fit: 'cover' },
+  { src: p4,  fit: 'cover' },
+  { src: p8,  fit: 'cover' },
+  { src: p15, fit: 'cover' },
+  { src: p16, fit: 'cover' },
+  { src: p14, fit: 'cover' },
+  { src: p18, fit: 'cover' },
+  { src: p19, fit: 'cover' },
+  { src: p20, fit: 'cover' },
+]
+const ROT    = [-3, 2, -1.5, 2.8, -2.2, 1.8, -2.8, 1.2, -1.8, 3.1, -2.5, 1.5, 2.3, -1.8, -1.2, 2.7, -2.0, 1.6, -2.4]
+const WIDTHS = [140, 115, 155, 110, 150, 125, 160, 120, 145, 115, 155, 130, 110, 150, 120, 160, 135, 145, 120]
 const CLIP_COLORS = ['#C4892A', '#4A7C5E', '#6FA5C7', '#BDB4A3', '#E8A547']
 
 export default function GalleryClothesline() {
   return (
-    <section style={{ padding: '0 0 40px', background: 'var(--bg)', overflow: 'hidden' }}>
+    <section style={{ padding: '0 0 60px', background: 'var(--bg)', overflow: 'hidden' }}>
       <style>{`
         @keyframes sway {
           0%, 100% { transform: rotate(-2deg); }
@@ -54,47 +83,57 @@ export default function GalleryClothesline() {
           msOverflowStyle: 'none',
           WebkitOverflowScrolling: 'touch',
         }}>
-          {photos.map((src, i) => (
-            <div
-              key={i}
-              className="clothesline-card"
-              style={{
-                flexShrink: 0,
-                width: '130px',
-                transform: `rotate(${ROT[i]}deg)`,
-                transition: 'transform 200ms ease',
-                cursor: 'default',
-              }}
-            >
-              {/* Clip */}
-              <div style={{
-                width: '14px', height: '18px',
-                background: CLIP_COLORS[i % CLIP_COLORS.length],
-                border: '1px solid rgba(0,0,0,0.3)',
-                borderRadius: '2px',
-                margin: '0 auto',
-                position: 'relative',
-                top: '-1px',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.5)',
-              }} />
+          {photos.map(({ src, fit }, i) => {
+            const w = WIDTHS[i]
+            const containH = Math.round(w * 1.23)
+            return (
+              <div
+                key={i}
+                className="clothesline-card"
+                style={{
+                  flexShrink: 0,
+                  width: `${w}px`,
+                  transform: `rotate(${ROT[i]}deg)`,
+                  transition: 'transform 200ms ease',
+                  cursor: 'default',
+                }}
+              >
+                {/* Clip */}
+                <div style={{
+                  width: '14px', height: '18px',
+                  background: CLIP_COLORS[i % CLIP_COLORS.length],
+                  border: '1px solid rgba(0,0,0,0.3)',
+                  borderRadius: '2px',
+                  margin: '0 auto',
+                  position: 'relative',
+                  top: '-1px',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.5)',
+                }} />
 
-              {/* Polaroid */}
-              <div style={{
-                background: '#3A2F24',
-                padding: '7px 7px 20px',
-                border: '1px solid rgba(237,229,210,0.1)',
-                boxShadow: '0 6px 24px rgba(0,0,0,0.6)',
-              }}>
-                <div style={{ position: 'relative', paddingBottom: '100%', overflow: 'hidden', borderRadius: '3px' }}>
-                  <img src={src} alt="" style={{
-                    position: 'absolute', inset: 0,
-                    width: '100%', height: '100%',
-                    objectFit: 'cover', objectPosition: 'center top', display: 'block',
-                  }} />
+                {/* Polaroid */}
+                <div style={{
+                  background: '#3A2F24',
+                  padding: '7px 7px 20px',
+                  border: '1px solid rgba(237,229,210,0.1)',
+                  boxShadow: '0 6px 24px rgba(0,0,0,0.6)',
+                }}>
+                  {fit === 'contain' ? (
+                    <div style={{ borderRadius: '3px', overflow: 'hidden', height: `${containH}px` }}>
+                      <img src={src} alt="" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} />
+                    </div>
+                  ) : (
+                    <div style={{ position: 'relative', paddingBottom: '100%', overflow: 'hidden', borderRadius: '3px' }}>
+                      <img src={src} alt="" style={{
+                        position: 'absolute', inset: 0,
+                        width: '100%', height: '100%',
+                        objectFit: 'cover', objectPosition: 'center top', display: 'block',
+                      }} />
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
