@@ -6,8 +6,7 @@ const CENTER     = [33.792, -84.375]
 const HQ         = [33.785, -84.445]
 const GREEN      = '#5A9E72'
 const ORANGE     = '#C4892A'
-const TILE_LIGHT = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
-const TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_matter/{z}/{x}/{y}{r}.png'
+const TILE_URL = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
 
 const neighborhoods = [
   { name: 'Buckhead',       pos: [33.838, -84.385], tip: 'bottom' },
@@ -34,14 +33,9 @@ function googleMapsUrl(n) {
   return `https://www.google.com/maps/search/${encodeURIComponent(n.name + ', Atlanta, GA')}`
 }
 
-function isDarkMode() {
-  return document.documentElement.getAttribute('data-mode') === 'dark'
-}
-
 export default function MiniMap() {
   const mapRef   = useRef(null)
   const divRef   = useRef(null)
-  const tileRef  = useRef(null)
   const [active, setActive] = useState(0)
 
   useEffect(() => {
@@ -62,8 +56,7 @@ export default function MiniMap() {
     // Flex layout may not be computed yet at mount — force tile refresh after layout
     setTimeout(() => m.invalidateSize(), 50)
 
-    const dark = isDarkMode()
-    tileRef.current = L.tileLayer(dark ? TILE_DARK : TILE_LIGHT, { maxZoom: 18 }).addTo(m)
+    L.tileLayer(TILE_URL, { maxZoom: 18 }).addTo(m)
 
     // Service area circle
     L.circle(HQ, {
@@ -79,7 +72,7 @@ export default function MiniMap() {
         color: '#fff', fillColor: GREEN, fillOpacity: 1, weight: 1.5,
       })
         .bindTooltip(
-          `<strong>${n.name}</strong><br/><span style="font-size:10px;opacity:0.65;text-transform:uppercase;letter-spacing:0.1em">Served weekly</span>`,
+          `<strong>${n.name}</strong><br/><span style="font-size:10px;opacity:0.65;text-transform:uppercase;letter-spacing:0.1em">Areas served</span>`,
           { direction: n.tip || 'top', offset: [0, n.tip === 'bottom' ? 10 : -10] }
         )
         .addTo(m)
@@ -99,18 +92,7 @@ export default function MiniMap() {
       interactive: false,
     }).addTo(m)
 
-    // Watch for dark mode changes — guard so we only swap when mode actually changes
-    let currentDark = isDarkMode()
-    const obs = new MutationObserver(() => {
-      const nowDark = isDarkMode()
-      if (nowDark === currentDark) return
-      currentDark = nowDark
-      if (tileRef.current) m.removeLayer(tileRef.current)
-      tileRef.current = L.tileLayer(nowDark ? TILE_DARK : TILE_LIGHT, { maxZoom: 18 }).addTo(m)
-    })
-    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-mode'] })
-
-    return () => { obs.disconnect(); m.remove(); mapRef.current = null }
+    return () => { m.remove(); mapRef.current = null }
   }, [])
 
   // Rotate through neighborhoods every 2.5s on mobile
@@ -155,7 +137,7 @@ export default function MiniMap() {
             {neighborhoods[active].name}
           </span>
           <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.1em' }}>
-            Served weekly ↗
+            Areas served ↗
           </span>
         </a>
 

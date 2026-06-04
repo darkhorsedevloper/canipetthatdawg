@@ -221,6 +221,11 @@ img { display: block; max-width: 100%; }
 
 .about-map-wrap { height: 360px; }
 
+/* Dark mode map tile inversion — keeps dots/labels sharp on top */
+[data-mode="dark"] .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.85) saturate(0.6);
+}
+
 @media (min-width: 640px) {
   .about-grid { grid-template-columns: 1fr 1.3fr; }
   .about-photo { min-height: 260px; border-bottom: none; border-right: 0.5px solid var(--border); }
