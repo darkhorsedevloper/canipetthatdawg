@@ -13,7 +13,7 @@ export default function About() {
           <p style={{ fontSize: '12px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--green)' }}>Service Area</p>
           <p className="service-area-label" style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.08em' }}>Within a 10 mile radius of 30318</p>
         </div>
-        <div style={{ flex: 1, minHeight: 0 }}>
+        <div className="about-map-wrap">
           <MiniMap />
         </div>
       </div>
