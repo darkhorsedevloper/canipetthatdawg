@@ -6,7 +6,7 @@ const CENTER     = [33.792, -84.375]
 const HQ         = [33.785, -84.445]
 const GREEN      = '#5A9E72'
 const ORANGE     = '#C4892A'
-const TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
+const TILE_LIGHT = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
 const TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_matter/{z}/{x}/{y}{r}.png'
 
 const neighborhoods = [
@@ -35,7 +35,7 @@ function googleMapsUrl(n) {
 }
 
 function isDarkMode() {
-  return document.querySelector('[data-mode="dark"]') !== null
+  return document.documentElement.getAttribute('data-mode') === 'dark'
 }
 
 export default function MiniMap() {
@@ -109,11 +109,6 @@ export default function MiniMap() {
       tileRef.current = L.tileLayer(nowDark ? TILE_DARK : TILE_LIGHT, { maxZoom: 18 }).addTo(m)
     })
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-mode'] })
-    // Also watch the app wrapper div for data-mode changes
-    const appDiv = document.querySelector('[data-mode]')
-    if (appDiv && appDiv !== document.documentElement) {
-      obs.observe(appDiv, { attributes: true, attributeFilter: ['data-mode'] })
-    }
 
     return () => { obs.disconnect(); m.remove(); mapRef.current = null }
   }, [])
