@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { MapContainer, TileLayer, CircleMarker, Tooltip, Circle, Marker } from 'react-leaflet'
+import { useState, useEffect, useRef } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
@@ -8,7 +7,7 @@ const HQ         = [33.785, -84.445]
 const GREEN      = '#5A9E72'
 const ORANGE     = '#C4892A'
 const TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
-const TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_matter/{z}/{x}/{y}{r}.png'
+const TILE_DARK  = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
 
 const neighborhoods = [
   { name: 'Buckhead',       pos: [33.838, -84.385], tip: 'bottom' },
@@ -31,104 +30,107 @@ const neighborhoods = [
   { name: 'Grove Park',     pos: [33.762, -84.442] },
 ]
 
-const hqIcon = L.divIcon({
-  className: 'hq-label',
-  html: 'HQ · Riverside',
-  iconSize: null,
-  iconAnchor: [-14, 8],
-})
-
 function googleMapsUrl(n) {
   return `https://www.google.com/maps/search/${encodeURIComponent(n.name + ', Atlanta, GA')}`
 }
 
+function isDarkMode() {
+  return document.querySelector('[data-mode="dark"]') !== null
+}
+
 export default function MiniMap() {
+  const mapRef   = useRef(null)
+  const divRef   = useRef(null)
+  const tileRef  = useRef(null)
   const [active, setActive] = useState(0)
-  const [isDark, setIsDark] = useState(
-    () => document.documentElement.getAttribute('data-mode') === 'dark'
-  )
 
   useEffect(() => {
+    if (mapRef.current) return
+
+    const m = L.map(divRef.current, {
+      zoomControl: false,
+      scrollWheelZoom: false,
+      attributionControl: false,
+      dragging: false,
+      doubleClickZoom: false,
+      touchZoom: false,
+      keyboard: false,
+      boxZoom: false,
+    })
+    mapRef.current = m
+    m.setView(CENTER, 11)
+    // Flex layout may not be computed yet at mount — force tile refresh after layout
+    setTimeout(() => m.invalidateSize(), 50)
+
+    const dark = isDarkMode()
+    tileRef.current = L.tileLayer(dark ? TILE_DARK : TILE_LIGHT, { maxZoom: 18 }).addTo(m)
+
+    // Service area circle
+    L.circle(HQ, {
+      radius: 16000,
+      color: ORANGE, fillColor: ORANGE, fillOpacity: 0.06,
+      weight: 1.5, dashArray: '4 5', opacity: 0.55,
+    }).addTo(m)
+
+    // Neighborhood dots
+    neighborhoods.forEach(n => {
+      L.circleMarker(n.pos, {
+        radius: 4,
+        color: '#fff', fillColor: GREEN, fillOpacity: 1, weight: 1.5,
+      })
+        .bindTooltip(
+          `<strong>${n.name}</strong><br/><span style="font-size:10px;opacity:0.65;text-transform:uppercase;letter-spacing:0.1em">Served weekly</span>`,
+          { direction: n.tip || 'top', offset: [0, n.tip === 'bottom' ? 10 : -10] }
+        )
+        .addTo(m)
+    })
+
+    // HQ dot
+    L.circleMarker(HQ, {
+      radius: 6,
+      color: '#fff', fillColor: ORANGE, fillOpacity: 1, weight: 1.5,
+    })
+      .bindTooltip('<strong>HQ · Riverside</strong>', { direction: 'top', offset: [0, -12] })
+      .addTo(m)
+
+    // HQ label
+    L.marker(HQ, {
+      icon: L.divIcon({ className: 'hq-label', html: 'HQ · Riverside', iconSize: null, iconAnchor: [-14, 8] }),
+      interactive: false,
+    }).addTo(m)
+
+    // Watch for dark mode changes — guard so we only swap when mode actually changes
+    let currentDark = isDarkMode()
     const obs = new MutationObserver(() => {
-      setIsDark(document.documentElement.getAttribute('data-mode') === 'dark')
+      const nowDark = isDarkMode()
+      if (nowDark === currentDark) return
+      currentDark = nowDark
+      if (tileRef.current) m.removeLayer(tileRef.current)
+      tileRef.current = L.tileLayer(nowDark ? TILE_DARK : TILE_LIGHT, { maxZoom: 18 }).addTo(m)
     })
     obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-mode'] })
-    return () => obs.disconnect()
+    // Also watch the app wrapper div for data-mode changes
+    const appDiv = document.querySelector('[data-mode]')
+    if (appDiv && appDiv !== document.documentElement) {
+      obs.observe(appDiv, { attributes: true, attributeFilter: ['data-mode'] })
+    }
+
+    return () => { obs.disconnect(); m.remove(); mapRef.current = null }
   }, [])
 
   // Rotate through neighborhoods every 2.5s on mobile
   useEffect(() => {
-    const id = setInterval(() => {
-      setActive(i => (i + 1) % neighborhoods.length)
-    }, 2500)
+    const id = setInterval(() => setActive(i => (i + 1) % neighborhoods.length), 2500)
     return () => clearInterval(id)
   }, [])
 
   return (
-    <div style={{ borderRadius: '8px', overflow: 'hidden' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
 
       {/* Map */}
-      <div style={{ position: 'relative' }}>
-        <MapContainer
-          center={CENTER}
-          zoom={11}
-          scrollWheelZoom={false}
-          dragging={false}
-          zoomControl={false}
-          doubleClickZoom={false}
-          touchZoom={false}
-          keyboard={false}
-          boxZoom={false}
-          attributionControl={false}
-          style={{ height: '320px', width: '100%' }}
-        >
-          <TileLayer key={isDark ? 'dark' : 'light'} url={isDark ? TILE_DARK : TILE_LIGHT} />
+      <div style={{ position: 'relative', flex: 1, minHeight: '280px' }}>
+        <div ref={divRef} style={{ height: '100%', width: '100%' }} />
 
-          <Circle
-            center={HQ}
-            radius={16000}
-            pathOptions={{
-              color: ORANGE, fillColor: ORANGE, fillOpacity: 0.06,
-              weight: 1.5, dashArray: '4 5', opacity: 0.55,
-            }}
-          />
-
-          {neighborhoods.map((n, i) => (
-            <CircleMarker
-              key={i}
-              center={n.pos}
-              radius={4}
-              pathOptions={{
-                color: '#fff',
-                fillColor: GREEN,
-                fillOpacity: 1,
-                weight: 1.5,
-              }}
-            >
-              <Tooltip direction={n.tip || 'top'} offset={[0, n.tip === 'bottom' ? 10 : -10]} opacity={1}>
-                <strong>{n.name}</strong>
-                <br />
-                <span style={{ fontSize: '10px', opacity: 0.65, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                  Served weekly
-                </span>
-              </Tooltip>
-            </CircleMarker>
-          ))}
-
-          <CircleMarker
-            center={HQ}
-            radius={6}
-            pathOptions={{ color: '#fff', fillColor: ORANGE, fillOpacity: 1, weight: 1.5 }}
-          >
-            <Tooltip direction="top" offset={[0, -12]} opacity={1}>
-              <strong>HQ · Riverside</strong>
-            </Tooltip>
-          </CircleMarker>
-
-          <Marker position={HQ} icon={hqIcon} interactive={false} />
-        </MapContainer>
-
-        {/* Hover hint — desktop only, top right */}
         <div className="hover-hint" style={{
           position: 'absolute', top: 8, right: 10, zIndex: 1000,
           fontFamily: 'var(--sans)', fontSize: 10,
@@ -147,28 +149,14 @@ export default function MiniMap() {
           target="_blank"
           rel="noreferrer"
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '0 14px',
-            background: 'var(--card)',
+            display: 'flex', alignItems: 'center', gap: '8px',
+            padding: '0 14px', background: 'var(--card)',
             borderTop: '0.5px solid var(--border)',
-            textDecoration: 'none',
-            height: '44px',
-            overflow: 'hidden',
+            textDecoration: 'none', height: '44px', overflow: 'hidden',
           }}
         >
-          <span style={{
-            width: 8, height: 8, borderRadius: '50%',
-            background: GREEN, flexShrink: 0,
-          }} />
-          <span style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: '12px',
-            color: 'var(--charcoal)',
-            letterSpacing: '0.04em',
-            flex: 1,
-          }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: GREEN, flexShrink: 0 }} />
+          <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '12px', color: 'var(--charcoal)', letterSpacing: '0.04em', flex: 1 }}>
             {neighborhoods[active].name}
           </span>
           <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.1em' }}>
@@ -176,26 +164,15 @@ export default function MiniMap() {
           </span>
         </a>
 
-        {/* Progress dots */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '4px',
-          padding: '6px 0',
-          background: 'var(--card)',
-        }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', padding: '6px 0', background: 'var(--card)' }}>
           {neighborhoods.map((_, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
               style={{
-                width: i === active ? '14px' : '4px',
-                height: '4px',
-                borderRadius: '2px',
+                width: i === active ? '14px' : '4px', height: '4px', borderRadius: '2px',
                 background: i === active ? GREEN : 'var(--border-bold)',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
+                border: 'none', padding: 0, cursor: 'pointer',
                 transition: 'width 300ms, background 300ms',
               }}
               aria-label={neighborhoods[i].name}
