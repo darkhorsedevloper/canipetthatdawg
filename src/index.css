@@ -219,7 +219,7 @@ img { display: block; max-width: 100%; }
   border-bottom: 0.5px solid var(--border);
 }
 
-.about-map-wrap { height: 300px; }
+.about-map-wrap { height: 360px; }
 
 @media (min-width: 640px) {
   .about-grid { grid-template-columns: 1fr 1.3fr; }

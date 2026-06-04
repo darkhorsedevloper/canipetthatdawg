@@ -7,7 +7,7 @@ const HQ         = [33.785, -84.445]
 const GREEN      = '#5A9E72'
 const ORANGE     = '#C4892A'
 const TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
-const TILE_DARK  = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
+const TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_matter/{z}/{x}/{y}{r}.png'
 
 const neighborhoods = [
   { name: 'Buckhead',       pos: [33.838, -84.385], tip: 'bottom' },
