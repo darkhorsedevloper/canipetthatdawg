@@ -1,43 +1,23 @@
 import { useState } from 'react'
+import notionServices from '../data/services.json'
 
-const services = [
-  {
-    name: 'Walk + Field Session',
-    badge: 'Most booked',
-    desc: 'Movement, sniffing, and space to settle. Quality over quantity. No pack walks.',
-    price: '$60',
-    note: 'per session · 2 dog max · 75 min',
-    accent: 'var(--green)',
-    featured: true,
-  },
-  {
-    name: 'Adventure Hike',
-    badge: 'Premium',
-    desc: 'Real trails. No chaos. One handler, one pair of dogs, three unhurried hours.',
-    price: '$105',
-    note: 'per dog · 2 dog max · 3 hrs',
-    accent: 'var(--orange)',
-    featured: false,
-  },
-  {
-    name: 'Overnight Stay',
-    badge: 'Overnight',
-    desc: 'Your dog stays home. I handle the rest — even the cat 🐱',
-    price: '$115',
-    note: 'flat rate · no extras · full 24 hrs',
-    accent: 'var(--blue)',
-    featured: false,
-  },
-  {
-    name: 'Drop In',
-    badge: 'Customizable',
-    desc: 'Unhurried check-ins, built for your dog.',
-    price: '$40',
-    note: 'flat rate · choose what time works best for you',
-    accent: '#8A8278',
-    featured: false,
-  },
-]
+// Fallback accents by service name when Notion doesn't supply one
+const ACCENT_FALLBACKS = {
+  'Walk + Field Session': 'var(--green)',
+  'Adventure Hike':       'var(--orange)',
+  'Overnight Stay':       'var(--blue)',
+  'Drop In':              '#8A8278',
+}
+
+const stripMarkdown = (str) => str.replace(/\*\*/g, '').replace(/\*/g, '').trim()
+
+const services = notionServices.map(s => ({
+  ...s,
+  desc: stripMarkdown(s.desc || ''),
+  note: (s.note || '').trim(),
+  accent: s.accent || ACCENT_FALLBACKS[s.name] || 'var(--green)',
+  featured: (s.badge || '').toLowerCase().includes('most booked'),
+}))
 
 const BOOK_URL = 'https://www.timetopet.com/portal/create/create-account'
 
