@@ -12,21 +12,78 @@ const PIN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" 
 const STYLES = [
   {
     name: 'Voyager',
-    desc: 'Warm & editorial',
+    desc: 'Warm, detailed streets',
     url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
     attr: '© CARTO',
   },
   {
+    name: 'Voyager No Labels',
+    desc: 'Warm, label-free',
+    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png',
+    attr: '© CARTO',
+  },
+  {
     name: 'Positron',
-    desc: 'Ultra minimal',
+    desc: 'Ultra minimal, light',
     url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
     attr: '© CARTO',
   },
   {
+    name: 'Positron No Labels',
+    desc: 'Pure geography, no text',
+    url: 'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
+    attr: '© CARTO',
+  },
+  {
+    name: 'Dark Matter',
+    desc: 'Dark, moody, high contrast',
+    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    attr: '© CARTO',
+  },
+  {
+    name: 'Dark Matter No Labels',
+    desc: 'Dark, label-free',
+    url: 'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',
+    attr: '© CARTO',
+  },
+  {
     name: 'Stadia Smooth',
-    desc: 'Clean & modern',
+    desc: 'Clean & modern, light',
     url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
     attr: '© Stadia Maps',
+  },
+  {
+    name: 'Stadia Smooth Dark',
+    desc: 'Clean & modern, dark',
+    url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
+    attr: '© Stadia Maps',
+  },
+  {
+    name: 'Stadia Outdoors',
+    desc: 'Terrain, trails, contours',
+    url: 'https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png',
+    attr: '© Stadia Maps',
+  },
+  {
+    name: 'OSM Standard',
+    desc: 'Full detail, classic',
+    url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    attr: '© OpenStreetMap',
+    subdomains: '',
+  },
+  {
+    name: 'Esri Street',
+    desc: 'Detailed, full color',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+    attr: '© Esri',
+    subdomains: '',
+  },
+  {
+    name: 'Esri Topo',
+    desc: 'Topographic, terrain detail',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+    attr: '© Esri',
+    subdomains: '',
   },
 ]
 
@@ -45,7 +102,7 @@ function MapTile({ style }) {
       })
       mapRef.current = m
 
-      L.tileLayer(style.url, { subdomains: 'abcd', maxZoom: 14 }).addTo(m)
+      L.tileLayer(style.url, { subdomains: style.subdomains ?? 'abcd', maxZoom: 14 }).addTo(m)
       m.setView(CENTER, 10)
 
       L.circle(CENTER, {
