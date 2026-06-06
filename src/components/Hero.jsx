@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import hero from '../data/hero.json'
-import heroPhoto from '../assets/bree-curly-kiss.jpeg'
+import heroPhoto from '../assets/bree-curly-kiss.webp'
 
 const PHRASES = ['Dog Walking', 'Adventure Hikes', 'Overnight Stays', 'Atlanta, GA']
 

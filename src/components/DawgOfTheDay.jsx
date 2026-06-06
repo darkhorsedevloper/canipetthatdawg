@@ -1,5 +1,5 @@
 import DAWG from '../data/dawg.json'
-import prissyPhoto from '../assets/Prissy PP.jpeg'
+import prissyPhoto from '../assets/Prissy PP.webp'
 
 const PHOTOS = {
   'Priscilla': prissyPhoto,
@@ -36,7 +36,7 @@ export default function DawgOfTheDay() {
           background: 'var(--hero-bg)',
         }}>
           {photo ? (
-            <img
+            <img loading="lazy"
               src={photo}
               alt={dog.name}
               style={{

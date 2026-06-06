@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
-import photo1 from '../assets/PP Kira Cute Down.JPEG'
-import photo2 from '../assets/PP Kira Cute Summer.JPEG'
-import photo3 from '../assets/PP Kira Cute.JPEG'
+import photo1 from '../assets/PP Kira Cute Down.webp'
+import photo2 from '../assets/PP Kira Cute Summer.webp'
+import photo3 from '../assets/PP Kira Cute.webp'
 
 const slots = [
   { label: 'On the trail',   photo: photo1 },
@@ -45,7 +45,7 @@ export default function PhotoStrips() {
               paddingBottom: '100%',
               flexShrink: 0,
             }}>
-              <img
+              <img loading="lazy"
                 src={s.photo}
                 alt={s.label}
                 style={{
@@ -101,7 +101,7 @@ export default function PhotoStrips() {
             paddingBottom: '100%',
             overflow: 'hidden',
           }}>
-            <img
+            <img loading="lazy"
               src={s.photo}
               alt={s.label}
               style={{

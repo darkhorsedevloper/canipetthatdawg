@@ -1,26 +1,26 @@
 // Gallery — Clothesline
 // Polaroids hang from a rope with clips, sway on hover
 
-import p1  from '../assets/bree-curly-lying.jpeg'
-import p2  from '../assets/IMG_6604.jpeg'
-import p3  from '../assets/IMG_7167 2.jpeg'
-import p4  from '../assets/IMG_2176.jpeg'
-import p5  from '../assets/IMG_7968.jpeg'
-import p6  from '../assets/IMG_0018.jpeg'
-import p7  from '../assets/IMG_9585.jpeg'
-import p8  from '../assets/IMG_0639.JPG'
-import p9  from '../assets/IMG_1076.jpg'
-import p10 from '../assets/IMG_1514.jpeg'
-import p11 from '../assets/bree-curly-kiss.jpeg'
-import p12 from '../assets/IMG_7253.jpeg'
-import p13 from '../assets/IMG_6978.jpeg'
-import p14 from '../assets/IMG_0123.jpeg'
-import p15 from '../assets/IMG_1598.jpeg'
-import p16 from '../assets/IMG_2908.jpeg'
-import p17 from '../assets/IMG_1237.jpg'
-import p18 from '../assets/IMG_4104.jpeg'
-import p19 from '../assets/IMG_4863.jpeg'
-import p20 from '../assets/IMG_6590.jpeg'
+import p1  from '../assets/bree-curly-lying.webp'
+import p2  from '../assets/IMG_6604.webp'
+import p3  from '../assets/IMG_7167 2.webp'
+import p4  from '../assets/IMG_2176.webp'
+import p5  from '../assets/IMG_7968.webp'
+import p6  from '../assets/IMG_0018.webp'
+import p7  from '../assets/IMG_9585.webp'
+import p8  from '../assets/IMG_0639.webp'
+import p9  from '../assets/IMG_1076.webp'
+import p10 from '../assets/IMG_1514.webp'
+import p11 from '../assets/bree-curly-kiss.webp'
+import p12 from '../assets/IMG_7253.webp'
+import p13 from '../assets/IMG_6978.webp'
+import p14 from '../assets/IMG_0123.webp'
+import p15 from '../assets/IMG_1598.webp'
+import p16 from '../assets/IMG_2908.webp'
+import p17 from '../assets/IMG_1237.webp'
+import p18 from '../assets/IMG_4104.webp'
+import p19 from '../assets/IMG_4863.webp'
+import p20 from '../assets/IMG_6590.webp'
 
 const photos = [
   { src: p17, fit: 'cover' },
@@ -119,11 +119,11 @@ export default function GalleryClothesline() {
                 }}>
                   {fit === 'contain' ? (
                     <div style={{ borderRadius: '3px', overflow: 'hidden', height: `${containH}px` }}>
-                      <img src={src} alt="" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} />
+                      <img src={src} alt="" loading="lazy" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }} />
                     </div>
                   ) : (
                     <div style={{ position: 'relative', paddingBottom: '100%', overflow: 'hidden', borderRadius: '3px' }}>
-                      <img src={src} alt="" style={{
+                      <img src={src} alt="" loading="lazy" style={{
                         position: 'absolute', inset: 0,
                         width: '100%', height: '100%',
                         objectFit: 'cover', objectPosition: 'center top', display: 'block',

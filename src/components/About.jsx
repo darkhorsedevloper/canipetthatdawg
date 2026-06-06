@@ -1,6 +1,6 @@
 import MiniMap from './MiniMap'
 import aboutData from '../data/about.json'
-import breePhoto from '../assets/bree-dachshund.jpeg'
+import breePhoto from '../assets/bree-dachshund.webp'
 
 const { content, tags } = aboutData
 
@@ -27,7 +27,7 @@ export default function About() {
           marginBottom: '24px',
           border: '0.5px solid var(--border)',
         }}>
-          <img
+          <img loading="lazy"
             src={breePhoto}
             alt="Crickett with a dog"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
