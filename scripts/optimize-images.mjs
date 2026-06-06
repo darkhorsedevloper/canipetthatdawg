@@ -28,6 +28,7 @@ for (const file of files) {
     const needsResize = meta.width > MAX_WIDTH
 
     await sharp(src)
+      .rotate() // auto-correct EXIF orientation
       .resize(needsResize ? { width: MAX_WIDTH, withoutEnlargement: true } : undefined)
       .webp({ quality: WEBP_QUALITY })
       .toFile(dest)
