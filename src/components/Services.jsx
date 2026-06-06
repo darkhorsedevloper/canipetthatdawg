@@ -11,13 +11,15 @@ const ACCENT_FALLBACKS = {
 
 const stripMarkdown = (str) => str.replace(/\*\*/g, '').replace(/\*/g, '').trim()
 
-const services = notionServices.map(s => ({
-  ...s,
-  desc: stripMarkdown(s.desc || ''),
-  note: (s.note || '').trim(),
-  accent: s.accent || ACCENT_FALLBACKS[s.name] || 'var(--green)',
-  featured: (s.badge || '').toLowerCase().includes('most booked'),
-}))
+const services = notionServices
+  .filter(s => s.name && s.price)
+  .map(s => ({
+    ...s,
+    desc: stripMarkdown(s.desc || ''),
+    note: (s.note || '').trim(),
+    accent: s.accent || ACCENT_FALLBACKS[s.name] || 'var(--green)',
+    featured: (s.badge || '').toLowerCase().includes('most booked'),
+  }))
 
 const BOOK_URL = 'https://www.timetopet.com/portal/create/create-account'
 

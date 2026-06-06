@@ -2,7 +2,7 @@
   {
     "name": "Walk + Field Session",
     "badge": "Walk + Field Session · Most booked",
-    "desc": "**Dogs need movement, time to sniff, and room to just be dogs. That's what I focus on. No pack walks.I prioritize quality over quantity—giving dogs exercise, enrichment, and the space to move at their own pace. No pack walks..**",
+    "desc": "**Dogs need movement, time to sniff, and room to just be dogs. That's what I focus on. No pack walks.I prioritize quality over quantity—giving dogs exercise, enrichment, and the space to move at their own pace. **",
     "price": "$60",
     "note": "per session · 2 dog max · 75 minutes",
     "badgeColor": "var(--green)",
@@ -12,7 +12,7 @@
   {
     "name": "Adventure Hike",
     "badge": "Premium",
-    "desc": "Real trails. No chaos.",
+    "desc": "We spend our time exploring trails in and around Atlanta, giving dogs the opportunity to exercise and explore the outdoors. Adventures are GPS tracked, structured, and kept small so every dog gets the attention they deserve. Pick-up, drop-off, water, treats, and an all-around great time are included.",
     "price": "$105",
     "note": "per dog · 2 dog max ·3 hours",
     "badgeColor": "var(--orange)",
@@ -36,6 +36,16 @@
     "price": "$40",
     "note": "flat rate ·  choose what time works best for you ",
     "badgeColor": "var(--green)",
+    "accent": null,
+    "span": false
+  },
+  {
+    "name": "",
+    "badge": "",
+    "desc": "",
+    "price": "",
+    "note": "",
+    "badgeColor": "var(--muted)",
     "accent": null,
     "span": false
   }
