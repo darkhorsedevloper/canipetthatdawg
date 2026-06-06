@@ -1,4 +1,5 @@
-// Services data is inlined here — Notion fetch overwrites services.json on build
+import { useState } from 'react'
+
 const services = [
   {
     name: 'Walk + Field Session',
@@ -6,7 +7,6 @@ const services = [
     desc: 'Movement, sniffing, and space to settle. Quality over quantity. No pack walks.',
     price: '$60',
     note: 'per session · 2 dog max · 75 min',
-    badgeColor: 'var(--green)',
     accent: 'var(--green)',
     featured: true,
   },
@@ -16,7 +16,6 @@ const services = [
     desc: 'Real trails. No chaos. One handler, one pair of dogs, three unhurried hours.',
     price: '$105',
     note: 'per dog · 2 dog max · 3 hrs',
-    badgeColor: 'var(--orange)',
     accent: 'var(--orange)',
     featured: false,
   },
@@ -26,7 +25,6 @@ const services = [
     desc: 'Your dog stays home. I handle the rest — even the cat 🐱',
     price: '$115',
     note: 'flat rate · no extras · full 24 hrs',
-    badgeColor: 'var(--blue)',
     accent: 'var(--blue)',
     featured: false,
   },
@@ -36,114 +34,17 @@ const services = [
     desc: 'Unhurried check-ins, built for your dog.',
     price: '$40',
     note: 'flat rate · choose what time works best for you',
-    badgeColor: 'var(--orange)',
-    accent: 'var(--orange)',
+    accent: '#8A8278',
     featured: false,
   },
 ]
 
 const BOOK_URL = 'https://www.timetopet.com/portal/create/create-account'
-const CARD_HEIGHT = 280
 
-function FeaturedServiceCard({ s }) {
-  return (
-    <div
-      className="featured-card-height"
-      style={{
-        position: 'relative',
-        gridColumn: '1 / -1',
-      }}
-    >
-      <span style={{
-        position: 'absolute',
-        top: -11,
-        left: '20px',
-        background: s.accent,
-        color: '#fff',
-        fontSize: '9px',
-        letterSpacing: '0.14em',
-        textTransform: 'uppercase',
-        padding: '3px 10px',
-        borderRadius: '99px',
-        whiteSpace: 'nowrap',
-        fontWeight: 700,
-        zIndex: 10,
-      }}>
-        ★ Most booked
-      </span>
-
-      <div
-        className="featured-card-back"
-        style={{
-          background: 'var(--card)',
-          border: '0.5px solid var(--border)',
-          borderLeft: `2px solid ${s.accent}`,
-          borderRadius: '10px',
-          padding: '28px 36px',
-        }}
-      >
-        <p style={{
-          fontSize: '14px',
-          color: 'var(--charcoal)',
-          lineHeight: 1.75,
-          fontFamily: "'IBM Plex Mono', monospace",
-          flex: 1,
-        }}>
-          {s.desc}
-        </p>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '8px',
-          flexShrink: 0,
-          marginTop: '16px',
-        }}>
-          <p style={{
-            fontFamily: 'var(--serif)',
-            fontSize: '48px',
-            fontWeight: 400,
-            color: 'var(--charcoal)',
-            lineHeight: 1,
-          }}>
-            {s.price}
-          </p>
-          <p style={{ fontSize: '12px', color: 'var(--muted)', textAlign: 'center' }}>
-            {s.note}
-          </p>
-          <a
-            href={BOOK_URL}
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              display: 'block',
-              textAlign: 'center',
-              background: s.accent,
-              color: '#0A0806',
-              padding: '12px 32px',
-              borderRadius: '7px',
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: '12px',
-              fontWeight: 700,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            Book This →
-          </a>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function ServiceCard({ s }) {
+function ServiceCard({ s, open, onToggle }) {
   return (
     <div style={{
       position: 'relative',
-      height: `${CARD_HEIGHT}px`,
       background: 'var(--card)',
       border: '0.5px solid var(--border)',
       borderLeft: `2px solid ${s.accent}`,
@@ -151,22 +52,29 @@ function ServiceCard({ s }) {
       padding: '28px 24px',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
-      textAlign: 'center',
     }}>
-      <p style={{
-        fontSize: '14px',
-        color: 'var(--charcoal)',
-        lineHeight: 1.75,
-        fontFamily: "'IBM Plex Mono', monospace",
-        textAlign: 'left',
-        width: '100%',
-        flex: 1,
-      }}>
-        {s.desc}
-      </p>
+      {/* Most booked badge */}
+      {s.featured && (
+        <span style={{
+          position: 'absolute',
+          top: -11,
+          left: '20px',
+          background: s.accent,
+          color: '#fff',
+          fontSize: '9px',
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          padding: '3px 10px',
+          borderRadius: '99px',
+          whiteSpace: 'nowrap',
+          fontWeight: 700,
+        }}>
+          ★ Most booked
+        </span>
+      )}
 
-      <div style={{ marginTop: 'auto', marginBottom: '16px', textAlign: 'center', width: '100%' }}>
+      {/* Price + note */}
+      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
         <p style={{
           fontFamily: 'var(--serif)',
           fontSize: '42px',
@@ -181,6 +89,50 @@ function ServiceCard({ s }) {
         </p>
       </div>
 
+      {/* View more toggle + callout — grows to fill space */}
+      <div style={{ flex: 1 }}>
+        <button
+          onClick={onToggle}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: s.accent,
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: '11px',
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            padding: 0,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            marginBottom: '12px',
+          }}
+        >
+          {open ? '−' : '+'} {open ? 'View less' : 'View more'}
+        </button>
+
+        {open && (
+          <div style={{
+            background: `color-mix(in srgb, ${s.accent} 10%, transparent)`,
+            border: `1px solid color-mix(in srgb, ${s.accent} 30%, transparent)`,
+            borderRadius: '7px',
+            padding: '12px 14px',
+            marginBottom: '14px',
+          }}>
+            <p style={{
+              fontSize: '14px',
+              color: 'var(--charcoal)',
+              lineHeight: 1.75,
+              fontFamily: "'IBM Plex Mono', monospace",
+              margin: 0,
+            }}>
+              {s.desc}
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Book button — always at bottom */}
       <a
         href={BOOK_URL}
         target="_blank"
@@ -199,6 +151,7 @@ function ServiceCard({ s }) {
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
           textDecoration: 'none',
+          marginTop: 'auto',
         }}
       >
         Book This →
@@ -208,6 +161,10 @@ function ServiceCard({ s }) {
 }
 
 export default function Services() {
+  const [openIndex, setOpenIndex] = useState(null)
+
+  const handleToggle = (i) => setOpenIndex(prev => prev === i ? null : i)
+
   return (
     <section id="services" className="section-pad" style={{ borderBottom: '0.5px solid var(--border)' }}>
 
@@ -227,9 +184,8 @@ export default function Services() {
       </h2>
 
       <div className="services-grid">
-        <FeaturedServiceCard s={services[0]} />
-        {services.slice(1).map((s, i) => (
-          <ServiceCard key={i} s={s} />
+        {services.map((s, i) => (
+          <ServiceCard key={i} s={s} open={openIndex === i} onToggle={() => handleToggle(i)} />
         ))}
       </div>
 
