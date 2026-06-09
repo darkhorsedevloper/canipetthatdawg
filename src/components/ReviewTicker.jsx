@@ -145,7 +145,7 @@ export default function ReviewTicker() {
               textDecoration: 'none',
             }}
           >
-            Leave a review on Google →
+            🐶🐱 Leave a review on Google →
           </a>
         </div>
 
