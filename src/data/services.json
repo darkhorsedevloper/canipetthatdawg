@@ -2,7 +2,7 @@
   {
     "name": "Walk + Field Session",
     "badge": "Walk + Field Session · Most booked",
-    "desc": "**Dogs need movement, time to sniff, and room to just be dogs. That's what I focus on. No pack walks.I prioritize quality over quantity—giving dogs exercise, enrichment, and the space to move at their own pace. **",
+    "desc": "Dogs need movement, time to sniff, and room to just be dogs. That's what I focus on. No pack walks.I prioritize quality over quantity—giving dogs exercise, enrichment, and the space to move at their own pace. ",
     "price": "$60",
     "note": "per session · 2 dog max · 75 minutes",
     "badgeColor": "var(--green)",
@@ -32,7 +32,7 @@
   {
     "name": "Drop In",
     "badge": "Customizable 45 min Visits ",
-    "desc": "Unhurried check-ins, built for your dog",
+    "desc": "Drop-in visits are made to fit  your dog's routine and needs. Whether that's a potty break, a meal, medication, playtime, or just some company, I make sure they get the care and attention they deserve—without rushing through the visit.",
     "price": "$40",
     "note": "flat rate ·  choose what time works best for you ",
     "badgeColor": "var(--green)",

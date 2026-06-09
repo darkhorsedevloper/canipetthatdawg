@@ -34,6 +34,8 @@ function ServiceCard({ s, open, onToggle }) {
       padding: '28px 24px',
       display: 'flex',
       flexDirection: 'column',
+      height: '100%',
+      boxSizing: 'border-box',
     }}>
       {/* Most booked badge */}
       {s.featured && (
@@ -143,9 +145,13 @@ function ServiceCard({ s, open, onToggle }) {
 }
 
 export default function Services() {
-  const [openIndex, setOpenIndex] = useState(null)
+  const [openSet, setOpenSet] = useState(new Set())
 
-  const handleToggle = (i) => setOpenIndex(prev => prev === i ? null : i)
+  const handleToggle = (i) => setOpenSet(prev => {
+    const next = new Set(prev)
+    next.has(i) ? next.delete(i) : next.add(i)
+    return next
+  })
 
   return (
     <section id="services" className="section-pad" style={{ borderBottom: '0.5px solid var(--border)' }}>
@@ -167,7 +173,7 @@ export default function Services() {
 
       <div className="services-grid">
         {services.map((s, i) => (
-          <ServiceCard key={i} s={s} open={openIndex === i} onToggle={() => handleToggle(i)} />
+          <ServiceCard key={i} s={s} open={openSet.has(i)} onToggle={() => handleToggle(i)} />
         ))}
       </div>
 
