@@ -106,6 +106,7 @@ function ServiceCard({ s, open, onToggle }) {
               color: 'var(--charcoal)',
               lineHeight: 1.75,
               fontFamily: "'IBM Plex Mono', monospace",
+              whiteSpace: 'pre-line',
               margin: 0,
             }}>
               {s.desc}
