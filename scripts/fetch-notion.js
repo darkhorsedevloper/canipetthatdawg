@@ -194,6 +194,8 @@ async function fetchBlog() {
     return {
       title: page.properties['Title']?.title?.[0]?.plain_text ?? '',
       date,
+      url: page.properties['URL']?.url ?? page.properties['Substack URL']?.url ?? '',
+      excerpt: richText(page.properties['Excerpt'] ?? page.properties['Summary'] ?? null),
     }
   })
   writeFileSync(resolve(__dirname, '../src/data/blog.json'), JSON.stringify(items, null, 2))
