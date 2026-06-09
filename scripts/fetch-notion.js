@@ -36,7 +36,7 @@ function richText(prop) {
   return prop.rich_text.map(span => {
     const text = span.plain_text
     return span.annotations?.bold ? `**${text}**` : text
-  }).join('')
+  }).join('').replace(/\s*\|\s*/g, '\n')
 }
 
 const COLOR_MAP = {
