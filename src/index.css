@@ -425,7 +425,7 @@ img { display: block; max-width: 100%; }
   grid-template-columns: 1fr;
   gap: 12px;
   margin-bottom: 20px;
-  align-items: stretch;
+  align-items: start;
 }
 @media (min-width: 640px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
