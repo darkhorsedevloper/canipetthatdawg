@@ -169,7 +169,7 @@ export default function Services() {
         Pick what best <span style={{ color: 'var(--orange)' }}>fits your dog.</span>
       </h2>
 
-      <div className="services-grid">
+      <div className="services-grid" style={{ alignItems: openSet.size > 0 ? 'start' : 'stretch' }}>
         {services.map((s, i) => (
           <ServiceCard key={i} s={s} open={openSet.has(i)} onToggle={() => handleToggle(i)} />
         ))}
