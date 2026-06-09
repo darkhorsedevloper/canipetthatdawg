@@ -1,25 +1,33 @@
 import posts from '../data/blog.json'
+import section from '../data/field-notes.json'
 
 const SUBSTACK = 'https://substack.com/@petthatdawg'
-
 const livePosts = posts.filter(p => p.title)
 
 export default function FieldNotes() {
+  const label = section.label || 'Field Notes'
+  const heading = section.heading || 'From the journal.'
+  const desc = section.desc || ''
+  const ctaText = section.cta || 'Read on Substack →'
+  const ctaUrl = section.url || SUBSTACK
+
   return (
     <section id="blog" className="section-pad" style={{ borderTop: '0.5px solid var(--border)', borderBottom: '0.5px solid var(--border)' }}>
 
       <p style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--green)', marginBottom: '10px', fontFamily: "'IBM Plex Mono', monospace" }}>
-        Field Notes
+        {label}
       </p>
 
       <h2 style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 'clamp(26px, 4vw, 42px)', fontWeight: 400, color: 'var(--charcoal)', marginBottom: '16px', lineHeight: 1.2 }}>
-        From the{' '}
-        <span style={{ color: 'var(--orange)' }}>journal.</span>
+        {heading.replace(/\.$/, '').split('.')[0]}
+        {heading.includes('.') && <span style={{ color: 'var(--orange)' }}>.</span>}
       </h2>
 
-      <p style={{ fontFamily: "'Space Mono', monospace", fontSize: '14px', color: 'var(--muted)', lineHeight: 1.8, marginBottom: '24px', maxWidth: '480px' }}>
-        Notes on dog behavior, Fear Free handling, life on the trail, and what I'm learning on the job. Published on Substack.
-      </p>
+      {desc && (
+        <p style={{ fontFamily: "'Space Mono', monospace", fontSize: '14px', color: 'var(--muted)', lineHeight: 1.8, marginBottom: '24px', maxWidth: '480px', whiteSpace: 'pre-line' }}>
+          {desc}
+        </p>
+      )}
 
       {livePosts.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginBottom: '28px' }}>
@@ -40,12 +48,7 @@ export default function FieldNotes() {
                 color: 'var(--charcoal)',
               }}
             >
-              <span style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: '14px',
-                lineHeight: 1.4,
-                flex: 1,
-              }}>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '14px', lineHeight: 1.4, flex: 1 }}>
                 {post.title}
                 {post.excerpt && (
                   <span style={{ display: 'block', fontSize: '12px', color: 'var(--muted)', marginTop: '4px', fontFamily: "'Space Mono', monospace" }}>
@@ -62,7 +65,7 @@ export default function FieldNotes() {
       )}
 
       <a
-        href={SUBSTACK}
+        href={ctaUrl}
         target="_blank"
         rel="noreferrer"
         style={{
@@ -72,7 +75,7 @@ export default function FieldNotes() {
           color: 'var(--orange)', borderBottom: '1px solid var(--orange)', paddingBottom: '2px',
         }}
       >
-        Read on Substack →
+        {ctaText}
       </a>
 
     </section>

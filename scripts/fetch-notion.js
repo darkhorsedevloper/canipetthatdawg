@@ -90,9 +90,17 @@ async function fetchHero() {
     const value = raw.replace(/ \| /g, '\n')
     if (field) hero[field] = value
   })
-  const outPath = resolve(__dirname, '../src/data/hero.json')
-  writeFileSync(outPath, JSON.stringify(hero, null, 2))
+  // Split out fieldNotes* keys into their own file
+  const fieldNotes = {}
+  const heroOnly = {}
+  Object.entries(hero).forEach(([k, v]) => {
+    if (k.startsWith('fieldNotes')) fieldNotes[k.replace('fieldNotes', '').toLowerCase()] = v
+    else heroOnly[k] = v
+  })
+  writeFileSync(resolve(__dirname, '../src/data/hero.json'), JSON.stringify(heroOnly, null, 2))
+  writeFileSync(resolve(__dirname, '../src/data/field-notes.json'), JSON.stringify(fieldNotes, null, 2))
   console.log('✅ Wrote hero to src/data/hero.json')
+  console.log('✅ Wrote field notes section to src/data/field-notes.json')
 }
 
 async function fetchTrustBar() {
