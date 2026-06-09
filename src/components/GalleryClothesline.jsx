@@ -21,6 +21,12 @@ import p17 from '../assets/IMG_1237.webp'
 import p18 from '../assets/IMG_4104.webp'
 import p19 from '../assets/IMG_4863.webp'
 import p20 from '../assets/IMG_6590.webp'
+import p21 from '../assets/IMG_1375.png'
+import p22 from '../assets/IMG_5470.jpeg'
+import p23 from '../assets/IMG_8215.jpeg'
+import p24 from '../assets/IMG_9796.jpeg'
+import p25 from '../assets/IMG_9981.jpeg'
+import p26 from '../assets/69289447271__A85E8DD8-2F56-4DC2-AFF7-89919DEFDA3E.fullsizerender.jpeg'
 
 const photos = [
   { src: p17, fit: 'cover' },
@@ -42,9 +48,15 @@ const photos = [
   { src: p18, fit: 'cover' },
   { src: p19, fit: 'cover' },
   { src: p20, fit: 'cover' },
+  { src: p21, fit: 'cover' },
+  { src: p22, fit: 'cover' },
+  { src: p23, fit: 'cover' },
+  { src: p24, fit: 'cover' },
+  { src: p25, fit: 'cover' },
+  { src: p26, fit: 'cover' },
 ]
-const ROT    = [-3, 2, -1.5, 2.8, -2.2, 1.8, -2.8, 1.2, -1.8, 3.1, -2.5, 1.5, 2.3, -1.8, -1.2, 2.7, -2.0, 1.6, -2.4]
-const WIDTHS = [140, 115, 155, 110, 150, 125, 160, 120, 145, 115, 155, 130, 110, 150, 120, 160, 135, 145, 120]
+const ROT    = [-3, 2, -1.5, 2.8, -2.2, 1.8, -2.8, 1.2, -1.8, 3.1, -2.5, 1.5, 2.3, -1.8, -1.2, 2.7, -2.0, 1.6, -2.4, -1.3, 2.5, -2.1, 1.7, -2.6, 1.4]
+const WIDTHS = [140, 115, 155, 110, 150, 125, 160, 120, 145, 115, 155, 130, 110, 150, 120, 160, 135, 145, 120, 140, 125, 155, 115, 150, 130]
 const CLIP_COLORS = ['#C4892A', '#4A7C5E', '#6FA5C7', '#BDB4A3', '#E8A547']
 
 export default function GalleryClothesline() {
