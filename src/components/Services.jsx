@@ -34,8 +34,6 @@ function ServiceCard({ s, open, onToggle }) {
       padding: '28px 24px',
       display: 'flex',
       flexDirection: 'column',
-      height: '100%',
-      boxSizing: 'border-box',
     }}>
       {/* Most booked badge */}
       {s.featured && (
