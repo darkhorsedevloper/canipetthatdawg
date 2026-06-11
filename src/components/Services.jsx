@@ -55,6 +55,20 @@ function ServiceCard({ s, open, onToggle }) {
         </span>
       )}
 
+      {/* Service name header */}
+      <p style={{
+        textAlign: 'center',
+        fontFamily: "'IBM Plex Mono', monospace",
+        fontSize: '15px',
+        fontWeight: 700,
+        letterSpacing: '0.16em',
+        textTransform: 'uppercase',
+        color: s.accent,
+        marginBottom: '10px',
+      }}>
+        {s.name}
+      </p>
+
       {/* Price + note */}
       <div style={{ textAlign: 'center', marginBottom: '20px' }}>
         <p style={{
