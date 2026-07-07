@@ -74,7 +74,7 @@ All fetched by `scripts/fetch-notion.js`, output to `src/data/`.
 
 ## Component Map (src/components/)
 
-**Current page order:** Nav → Hero → TrustBar → PhotoStrips → CTA → Services → EveryVisit → Why → About → CredsBento → FieldNotes → ReviewTicker → DawgOfTheDay → ContactTerminal → Footer
+**Current page order:** Nav → Hero → TrustBar → PhotoStrips → CTA → Services → GalleryClothesline → EveryVisit → Why → About → CredsBento → FieldNotes → ReviewTicker → DawgOfTheDay → ContactTerminal → Footer
 
 | Component | Data source | Notes |
 |-----------|-------------|-------|
@@ -84,6 +84,7 @@ All fetched by `scripts/fetch-notion.js`, output to `src/data/`.
 | PhotoStrips.jsx | Static assets | PP Kira Cute Down.JPEG, PP Kira Cute Summer.JPEG, PP Kira Cute.JPEG; scroll-snap carousel on mobile (`.photo-carousel`), 3-col grid on desktop (`.photo-strips-grid`) |
 | CTA.jsx | Hardcoded | "Getting started is simple." — 2 solid-color cards side by side on desktop, stacked on mobile (`.cta-steps-grid` → 1fr 1fr). Card 1: "Fill Out New Client Form" (orange, links to TTP create-account). Card 2: "Existing Clients" / "Log in here" (green, links to TTP create-account). Number span always rendered but empty on card 1 to preserve alignment. |
 | Services.jsx | Hardcoded | Flip cards — front: service name + badge + "Tap to learn more →", back: description + price + Book This button. BOOK_URL = timetopet.com/portal/create/create-account |
+| GalleryClothesline.jsx | Static assets | Polaroid photos hanging from a rope with colored clips. Horizontal scrolling strip. 19 photos (bree-*, IMG_*). Cards rotate slightly (ROT array), sway on hover. Polaroid dark background (#3A2F24), 7px padding, 20px bottom. Mixed `fit: 'cover'` and `fit: 'contain'` per photo. Clip colors cycle through orange/green/blue/neutral. |
 | EveryVisit.jsx | Hardcoded | Two feature cards: GPS Tracking (green) and Report Card (orange) |
 | Why.jsx | why.json | All 4 items hidden behind "View more" toggle. `useState(false)` + `{open && (...)}` conditional render. |
 | About.jsx | about.json | MiniMap + bio; "Within a 10 mile radius of 30318" label (hidden on mobile) |
@@ -94,7 +95,9 @@ All fetched by `scripts/fetch-notion.js`, output to `src/data/`.
 | ContactTerminal.jsx | Hardcoded | Heading: "Have Questions? Open a line." Multi-step contact form terminal. |
 | Footer.jsx | Hardcoded | Brand: "Can I Pet That **Dawg?**"; Instagram, Substack, Time To Pet links. No tagline. |
 | PawTrail.jsx | Hardcoded | Decorative scrolling paw banner |
-| MiniMap.jsx | Hardcoded | Real Leaflet map; 18 green dots; orange HQ dot + `.hq-label`; rotating neighborhood strip on mobile |
+| MiniMap.jsx | Hardcoded | **Pure vanilla Leaflet** (no react-leaflet). Esri World Street Map tiles for both light and dark mode. Dark mode: CSS filter invert on `.leaflet-tile-pane`. 18 green neighborhood dots with "Areas served" tooltips; orange HQ dot + `.hq-label`; rotating neighborhood strip on mobile. Map fills full left column height on desktop (`.about-map-wrap` CSS class); 360px fixed height on mobile. |
+| MapShowcase.jsx | Hardcoded | **Not in App.jsx** — dev/experimental. Shows 3 Leaflet map tile style options (Voyager, Positron, Stadia Smooth) side by side for selection. |
+| MiniCTA.jsx | Hardcoded | **Not in App.jsx** — reusable orange banner CTA strip. Props: `label`, `linkText`, `href`. Default links to TTP create-account. |
 
 ## Assets (src/assets/)
 
@@ -108,6 +111,12 @@ All fetched by `scripts/fetch-notion.js`, output to `src/data/`.
 | `PP Kira Cute Down.JPEG` | PhotoStrips |
 | `PP Kira Cute Summer.JPEG` | PhotoStrips |
 | `PP Kira Cute.JPEG` | PhotoStrips |
+| `bree-curly-lying.jpeg` | GalleryClothesline |
+| `bree-curly-kiss.jpeg` | GalleryClothesline |
+| `bree-curly-smiling.jpeg` | Available (not yet in gallery) |
+| `bree-dachshund.jpeg` | Available (not yet in gallery) |
+| `prissy walk.jpeg` | Available (not yet in gallery) |
+| `IMG_0018.jpeg` – `IMG_9981.jpeg` (various) | GalleryClothesline (17 of these used) |
 | `hero.png` | Unused placeholder |
 
 ## Known Pending Issues
@@ -115,6 +124,7 @@ All fetched by `scripts/fetch-notion.js`, output to `src/data/`.
 1. **Services.jsx still hardcoded** — services.json gets overwritten by Notion on every build but Services.jsx doesn't import it.
 2. **Hero photo placeholder** — still a dashed box. Real photo of Crickett + Kira on trail needed.
 3. **CTA Existing Clients URL** — currently links to create-account URL; should link to the actual Time To Pet login page when confirmed.
+4. **Map tile — Esri Street** — no API key needed, free/public. Dark mode handled via CSS filter invert on `.leaflet-tile-pane`.
 
 ## Responsive Design
 

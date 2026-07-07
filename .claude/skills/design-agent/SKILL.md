@@ -73,7 +73,7 @@ When asked to design or review a new component or section:
 6. **Suggest alternatives** — when something doesn't fit, propose what does and why
 
 **Current page order:**
-Nav → Hero → TrustBar → PhotoStrips → CTA → Services → EveryVisit → Why → About → CredsBento → FieldNotes → ReviewTicker → DawgOfTheDay → ContactTerminal → Footer
+Nav → Hero → TrustBar → PhotoStrips → CTA → Services → GalleryClothesline → EveryVisit → Why → About → CredsBento → FieldNotes → ReviewTicker → DawgOfTheDay → ContactTerminal → Footer
 
 ## Established Component Patterns
 
@@ -300,6 +300,21 @@ Sources of mobile bounce and their fixes:
 ```jsx
 <div style={{ gap: '10px' }} className="bento-bottom">
 ```
+
+### GalleryClothesline
+
+Polaroids hanging from a rope with colored binder clips. Key details:
+- Rope: 2px `linear-gradient` div with box-shadow — subtle, not a hard line
+- Cards: `flexShrink: 0`, rotated via `transform: rotate(Ndeg)`, `transformOrigin: top center`
+- Sway on hover: `animation: sway 1s ease-in-out infinite` (CSS keyframes in `<style>` tag in component)
+- Clip: 14×18px colored rectangle centered above each card; colors cycle through orange/green/blue/neutral
+- Polaroid: dark background `#3A2F24`, `padding: '7px 7px 20px'` (extra bottom = caption space even without text)
+- Photo fit: `'cover'` (square via `paddingBottom: 100%` pattern) or `'contain'` (tall via fixed `height`)
+- Scroll container: `overflowX: auto`, `overflowY: visible` (visible is required — `hidden` clips rotated cards)
+
+### MiniCTA (reusable)
+
+Full-width orange CTA banner. Props: `label`, `linkText`, `href`. Renders as a full `<a>` tag — entire bar is clickable. Text and pill button use `#0A0806` (near-black) for contrast on orange. Not currently placed in `App.jsx` — available to insert between any sections.
 
 ## Common Patterns to Follow
 
