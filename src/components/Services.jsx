@@ -11,6 +11,8 @@ const ACCENT_FALLBACKS = {
 
 const stripMarkdown = (str) => str.replace(/\*\*/g, '').replace(/\*/g, '').trim()
 
+const priceNumber = (price) => parseFloat((price || '').replace(/[^0-9.]/g, '')) || 0
+
 const services = notionServices
   .filter(s => s.name && s.price)
   .map(s => ({
@@ -22,6 +24,8 @@ const services = notionServices
     // Promo chip: any badge containing "special" (e.g. "Summer Special")
     promo: /special/i.test(s.badge || ''),
   }))
+  // Cards always list cheapest -> priciest, whatever order Notion sends
+  .sort((a, b) => priceNumber(a.price) - priceNumber(b.price))
 
 const BOOK_URL = 'https://www.timetopet.com/portal/create/create-account'
 
