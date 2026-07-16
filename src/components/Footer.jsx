@@ -1,4 +1,4 @@
-import { FaInstagram, FaGithub } from 'react-icons/fa'
+import { FaInstagram, FaGithub, FaDog, FaCat, FaLaptopCode } from 'react-icons/fa'
 import { SiSubstack } from 'react-icons/si'
 import { BsCalendarCheck } from 'react-icons/bs'
 
@@ -55,15 +55,25 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Colophon — the "who built this?" scroll ends here */}
+      {/* Colophon — the "who built this?" scroll ends here.
+          Dog + cat = Sit. Stay. (the pet care); laptop = Ship. (the code) */}
       <div className="footer-credit">
-        <span style={{ color: 'var(--charcoal)', fontWeight: 700 }}>Sit. Stay. Ship.</span>
-        {' '}— I build websites &amp; tools for small businesses, too.{' '}
-        <a href="https://github.com/darkhorsedevloper" target="_blank" rel="noreferrer">
-          github.com/darkhorsedevloper
-        </a>
-        {' · '}
-        <a href="mailto:crickett@canipetthatdawg.co">crickett@canipetthatdawg.co</a>
+        <p className="footer-credit-tag">
+          <span className="footer-credit-icons" aria-hidden="true">
+            <FaDog size={17} />
+            <FaCat size={17} />
+            <FaLaptopCode size={17} />
+          </span>
+          <span className="footer-credit-tagline">Sit. Stay. Ship.</span>
+        </p>
+        <p className="footer-credit-pitch">
+          I build websites &amp; tools for small businesses, too.{' '}
+          <a href="https://github.com/darkhorsedevloper" target="_blank" rel="noreferrer">
+            github.com/darkhorsedevloper
+          </a>
+          {' · '}
+          <a href="mailto:crickett@canipetthatdawg.co">crickett@canipetthatdawg.co</a>
+        </p>
       </div>
     </footer>
   )

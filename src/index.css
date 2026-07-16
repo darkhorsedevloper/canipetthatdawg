@@ -251,21 +251,42 @@ img { display: block; max-width: 100%; }
 /* Colophon: built-by credit + web-work pitch */
 .footer-credit {
   border-top: 0.5px solid var(--border);
-  padding-top: 18px;
+  padding-top: 20px;
   font-family: 'IBM Plex Mono', monospace;
+}
+/* Icon trio + tagline — the visual anchor so it doesn't get lost */
+.footer-credit-tag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.footer-credit-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--orange);
+}
+.footer-credit-tagline {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--charcoal);
+}
+.footer-credit-pitch {
   font-size: 11px;
   letter-spacing: 0.06em;
   line-height: 1.9;
   color: var(--faint);
 }
-.footer-credit a {
+.footer-credit-pitch a {
   color: var(--orange);
   text-decoration: none;
   /* generous tap area on mobile without disturbing the line box */
   padding: 12px 2px;
   margin: -12px -2px;
 }
-.footer-credit a:hover { color: var(--charcoal); }
+.footer-credit-pitch a:hover { color: var(--charcoal); }
 
 @media (min-width: 640px) {
   .footer { padding: 40px 56px 32px; }
