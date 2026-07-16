@@ -25,7 +25,7 @@ const services = notionServices
 
 const BOOK_URL = 'https://www.timetopet.com/portal/create/create-account'
 
-function ServiceCard({ s, open, onToggle }) {
+function ServiceCard({ s, open, onToggle, order }) {
   return (
     <div style={{
       position: 'relative',
@@ -36,6 +36,7 @@ function ServiceCard({ s, open, onToggle }) {
       padding: '28px 24px',
       display: 'flex',
       flexDirection: 'column',
+      order, // mobile single-stack reading order (no effect on desktop columns)
     }}>
       {/* Most booked / promo badge */}
       {(s.featured || s.promo) && (
@@ -186,9 +187,16 @@ export default function Services() {
         Pick what best <span style={{ color: 'var(--orange)' }}>fits your dog.</span>
       </h2>
 
-      <div className="services-grid" style={{ alignItems: openSet.size > 0 ? 'start' : 'stretch' }}>
-        {services.map((s, i) => (
-          <ServiceCard key={i} s={s} open={openSet.has(i)} onToggle={() => handleToggle(i)} />
+      {/* Two independent columns (evens left, odds right) so an expanded
+          card only pushes its own column down. On mobile the wrappers are
+          display: contents and the inline `order` restores reading order. */}
+      <div className="services-grid">
+        {[0, 1].map(col => (
+          <div className="services-col" key={col}>
+            {services.map((s, i) => i % 2 === col && (
+              <ServiceCard key={i} s={s} order={i} open={openSet.has(i)} onToggle={() => handleToggle(i)} />
+            ))}
+          </div>
         ))}
       </div>
 

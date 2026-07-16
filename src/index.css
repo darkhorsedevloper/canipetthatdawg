@@ -419,14 +419,24 @@ img { display: block; max-width: 100%; }
   .cta-steps-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
 }
 
-/* Services grid — featured full-width top, 3-col below */
+/* Services layout — two INDEPENDENT columns on desktop (masonry-style),
+   so expanding one card only pushes cards in its own column. On mobile the
+   column wrappers dissolve (display: contents) and the cards flow as one
+   stack, re-ordered back to reading order via their inline `order`. */
 .services-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
   margin-bottom: 20px;
-  align-items: start;
 }
+.services-grid > .services-col { display: contents; }
 @media (min-width: 640px) {
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { flex-direction: row; align-items: flex-start; }
+  .services-grid > .services-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
 }
