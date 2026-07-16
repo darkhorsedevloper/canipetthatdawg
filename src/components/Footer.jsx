@@ -66,8 +66,10 @@ export default function Footer() {
           </span>
           <span className="footer-credit-tagline">Sit. Stay. Ship.</span>
         </p>
-        <p className="footer-credit-pitch">
-          I build websites &amp; tools for small businesses, too.{' '}
+        <p className="footer-credit-desc">
+          I build websites &amp; tools for small businesses, too.
+        </p>
+        <p className="footer-credit-links">
           <a href="https://github.com/darkhorsedevloper" target="_blank" rel="noreferrer">
             github.com/darkhorsedevloper
           </a>

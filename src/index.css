@@ -273,20 +273,30 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.04em;
   color: var(--charcoal);
 }
-.footer-credit-pitch {
+/* Description — matches the "CAN I PET THAT DAWG LLC" line under the brand:
+   Space Mono (var(--sans)), uppercase, same size + tracking + color */
+.footer-credit-desc {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 10px;
+}
+.footer-credit-links {
   font-size: 11px;
   letter-spacing: 0.06em;
   line-height: 1.9;
   color: var(--faint);
 }
-.footer-credit-pitch a {
+.footer-credit-links a {
   color: var(--orange);
   text-decoration: none;
   /* generous tap area on mobile without disturbing the line box */
   padding: 12px 2px;
   margin: -12px -2px;
 }
-.footer-credit-pitch a:hover { color: var(--charcoal); }
+.footer-credit-links a:hover { color: var(--charcoal); }
 
 @media (min-width: 640px) {
   .footer { padding: 40px 56px 32px; }
