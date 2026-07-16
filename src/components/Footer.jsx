@@ -73,7 +73,7 @@ export default function Footer() {
           <a href="https://github.com/darkhorsedevloper" target="_blank" rel="noreferrer">
             github.com/darkhorsedevloper
           </a>
-          {' · '}
+          {' · inquiries: '}
           <a href="mailto:crickett@canipetthatdawg.co">crickett@canipetthatdawg.co</a>
         </p>
       </div>
