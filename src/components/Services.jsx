@@ -19,6 +19,8 @@ const services = notionServices
     note: (s.note || '').trim(),
     accent: s.accent || ACCENT_FALLBACKS[s.name] || 'var(--green)',
     featured: (s.badge || '').toLowerCase().includes('most booked'),
+    // Promo chip: any badge containing "special" (e.g. "Summer Special")
+    promo: /special/i.test(s.badge || ''),
   }))
 
 const BOOK_URL = 'https://www.timetopet.com/portal/create/create-account'
@@ -35,8 +37,8 @@ function ServiceCard({ s, open, onToggle }) {
       display: 'flex',
       flexDirection: 'column',
     }}>
-      {/* Most booked badge */}
-      {s.featured && (
+      {/* Most booked / promo badge */}
+      {(s.featured || s.promo) && (
         <span style={{
           position: 'absolute',
           top: -11,
@@ -51,7 +53,7 @@ function ServiceCard({ s, open, onToggle }) {
           whiteSpace: 'nowrap',
           fontWeight: 700,
         }}>
-          ★ Most booked
+          {s.featured ? '★ Most booked' : `☀ ${s.badge}`}
         </span>
       )}
 

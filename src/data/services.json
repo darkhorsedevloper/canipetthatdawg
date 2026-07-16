@@ -23,7 +23,7 @@
     "name": "Overnight Stay",
     "badge": "Overnight",
     "desc": "In my experience, pets are happiest when they can stay in their own environment. I do my best to keep their routine consistent, give them plenty of company, and make sure they're comfortable while you're away. Every pet and every household is different, so care is always tailored to fit your needs.\n\n• This one is for the cats too! 😻",
-    "price": "$115",
+    "price": "$145",
     "note": "flat rate · no extras  · full 24 hours",
     "badgeColor": "var(--blue)",
     "accent": "var(--blue)",
@@ -37,6 +37,16 @@
     "note": "flat rate ·  choose what time works best for you ",
     "badgeColor": "var(--green)",
     "accent": null,
+    "span": false
+  },
+  {
+    "name": "Quick Trip",
+    "badge": "Summer Special",
+    "desc": "Some time for your pet to stretch their legs. A quick outing for a potty break, fresh air, and a little movement — perfect for busy days.",
+    "price": "$35",
+    "note": "45 minutes · summer special pricing",
+    "badgeColor": "var(--orange)",
+    "accent": "var(--orange)",
     "span": false
   },
   {
