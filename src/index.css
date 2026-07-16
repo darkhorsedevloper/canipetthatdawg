@@ -241,10 +241,35 @@ img { display: block; max-width: 100%; }
   gap: 28px;
   background: var(--card);
 }
+.footer-main {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
 .footer-links { display: flex; gap: 24px; }
 
+/* Colophon: built-by credit + web-work pitch */
+.footer-credit {
+  border-top: 0.5px solid var(--border);
+  padding-top: 18px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  line-height: 1.9;
+  color: var(--faint);
+}
+.footer-credit a {
+  color: var(--orange);
+  text-decoration: none;
+  /* generous tap area on mobile without disturbing the line box */
+  padding: 12px 2px;
+  margin: -12px -2px;
+}
+.footer-credit a:hover { color: var(--charcoal); }
+
 @media (min-width: 640px) {
-  .footer { padding: 56px; flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 0; }
+  .footer { padding: 40px 56px 32px; }
+  .footer-main { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 0; }
   .footer-links { gap: 32px; }
 }
 
