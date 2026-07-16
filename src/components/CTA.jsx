@@ -14,7 +14,7 @@ const STEPS = [
     label: 'Existing Clients',
     desc: 'Log in here',
     cta: 'Log in →',
-    href: 'https://www.timetopet.com/portal/create/create-account',
+    href: 'https://www.timetopet.com/portal',
     bg: '#4A7C5E',
     text: '#0A0806',
     subtext: 'rgba(10,8,6,0.55)',
