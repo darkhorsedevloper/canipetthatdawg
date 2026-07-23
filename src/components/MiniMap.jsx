@@ -52,18 +52,25 @@ export default function MiniMap() {
       boxZoom: false,
     })
     mapRef.current = m
-    m.setView(CENTER, 11)
-    // Flex layout may not be computed yet at mount — force tile refresh after layout
-    setTimeout(() => m.invalidateSize(), 50)
+    m.setView(CENTER, 10)
 
     L.tileLayer(TILE_URL, { maxZoom: 18 }).addTo(m)
 
-    // Service area circle
-    L.circle(HQ, {
-      radius: 16000,
+    // Service area circle — 25 mile radius (40234 m)
+    const serviceArea = L.circle(HQ, {
+      radius: 40234,
       color: ORANGE, fillColor: ORANGE, fillOpacity: 0.06,
       weight: 1.5, dashArray: '4 5', opacity: 0.55,
     }).addTo(m)
+
+    // Fit the view to the service-area circle. Flex layout may not be
+    // computed yet at mount — recalc size first, then frame the circle.
+    const frame = () => {
+      m.invalidateSize()
+      m.fitBounds(serviceArea.getBounds(), { padding: [8, 8] })
+    }
+    frame()
+    setTimeout(frame, 50)
 
     // Neighborhood dots
     neighborhoods.forEach(n => {
