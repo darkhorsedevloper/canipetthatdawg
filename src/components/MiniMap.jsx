@@ -9,6 +9,7 @@ const ORANGE     = '#C4892A'
 const TILE_URL = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
 
 const neighborhoods = [
+  // In-town Atlanta
   { name: 'Buckhead',       pos: [33.838, -84.385], tip: 'bottom' },
   { name: 'Brookhaven',     pos: [33.858, -84.338], tip: 'bottom' },
   { name: 'Berkeley Park',  pos: [33.790, -84.415] },
@@ -27,6 +28,28 @@ const neighborhoods = [
   { name: 'Adair Park',     pos: [33.728, -84.407] },
   { name: 'Mozley Park',    pos: [33.750, -84.430] },
   { name: 'Grove Park',     pos: [33.762, -84.442] },
+  // North metro
+  { name: 'Vinings',        pos: [33.865, -84.466] },
+  { name: 'Smyrna',         pos: [33.884, -84.514] },
+  { name: 'Marietta',       pos: [33.953, -84.550], tip: 'bottom' },
+  { name: 'Sandy Springs',  pos: [33.924, -84.378], tip: 'bottom' },
+  { name: 'Dunwoody',       pos: [33.946, -84.335], tip: 'bottom' },
+  { name: 'Chamblee',       pos: [33.892, -84.299] },
+  { name: 'Roswell',        pos: [34.023, -84.362], tip: 'bottom' },
+  { name: 'Alpharetta',     pos: [34.075, -84.294], tip: 'bottom' },
+  { name: 'Johns Creek',    pos: [34.029, -84.199], tip: 'bottom' },
+  // East metro
+  { name: 'Tucker',         pos: [33.855, -84.217] },
+  { name: 'Stone Mountain', pos: [33.808, -84.170] },
+  { name: 'Avondale Est.',  pos: [33.772, -84.262] },
+  // South metro
+  { name: 'East Point',     pos: [33.680, -84.440] },
+  { name: 'Hapeville',      pos: [33.660, -84.410] },
+  { name: 'College Park',   pos: [33.653, -84.449] },
+  { name: 'Forest Park',    pos: [33.622, -84.369] },
+  // West metro
+  { name: 'Mableton',       pos: [33.819, -84.583] },
+  { name: 'Douglasville',   pos: [33.752, -84.748] },
 ]
 
 function googleMapsUrl(n) {
