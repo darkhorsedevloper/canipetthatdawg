@@ -228,7 +228,7 @@ export default function ContactTerminal() {
             fontFamily: 'var(--serif)', fontSize: 13, fontWeight: 700,
             color: 'rgba(255,255,255,0.72)', letterSpacing: '0.08em', marginLeft: 10,
           }}>
-            crickett@canipet_that_dawg_llc ~ ticket
+            crickett@pet_that_dawg ~ ticket
           </span>
         </div>
 
