@@ -204,6 +204,35 @@ export default function Services() {
         ))}
       </div>
 
+      {/* Seasonal heat-schedule notice (through October) */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '12px',
+        background: 'color-mix(in srgb, var(--orange) 9%, transparent)',
+        border: '1px solid color-mix(in srgb, var(--orange) 28%, transparent)',
+        borderRadius: '9px',
+        padding: '14px 16px',
+        marginBottom: '16px',
+      }}>
+        <span style={{ fontSize: '18px', lineHeight: 1.2, flexShrink: 0 }} aria-hidden="true">☀️</span>
+        <p style={{ fontSize: '13px', color: 'var(--charcoal)', lineHeight: 1.7, margin: 0 }}>
+          <span style={{
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: '11px',
+            fontWeight: 700,
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: 'var(--orange)',
+            display: 'block',
+            marginBottom: '4px',
+          }}>
+            Summer schedule · through October
+          </span>
+          To beat the heat, <strong>Adventure Walks start at 7&nbsp;AM</strong>. Regular walks &amp; runs are scheduled <strong>before 10&nbsp;AM</strong> and <strong>after 5&nbsp;PM</strong>. <strong>Drop-Ins &amp; indoor enrichment</strong> can be scheduled any time of day.
+        </p>
+      </div>
+
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: 'var(--muted)', borderTop: '0.5px solid var(--border)', paddingTop: '16px' }}>
         <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--green)', flexShrink: 0, display: 'inline-block' }} />
         No hidden fees — no extra charges for second dogs, routine meds, or weekends.
